@@ -1,0 +1,1907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive Analytics - Detailed Study Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            padding: 20px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .main-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.8rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .preprocessing { background: linear-gradient(45deg, #FF6B6B, #FF8E53); }
+        .classification { background: linear-gradient(45deg, #4ECDC4, #44A08D); }
+        .numeric { background: linear-gradient(45deg, #45B7D1, #96C93D); }
+        .advanced { background: linear-gradient(45deg, #A8E6CF, #DCEDC8); }
+        .clustering { background: linear-gradient(45deg, #FFD93D, #FF6B6B); }
+        .performance { background: linear-gradient(45deg, #6C5CE7, #A29BFE); }
+
+        .section-header h1 {
+            color: #2c3e50;
+            font-size: 2.2rem;
+        }
+
+        .topic {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(0,0,0,0.02);
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .topic h2 {
+            color: #34495e;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .subtopic {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .subtopic h3 {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .definition {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .definition strong {
+            color: #1976d2;
+        }
+
+        .explanation {
+            margin: 15px 0;
+            padding: 12px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 6px;
+        }
+
+        .example {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #9c27b0;
+        }
+
+        .example strong {
+            color: #7b1fa2;
+        }
+
+        .formula {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            border: 1px solid #ddd;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .steps {
+            margin: 15px 0;
+        }
+
+        .steps ol {
+            margin-left: 20px;
+        }
+
+        .steps li {
+            margin-bottom: 8px;
+            padding: 5px 0;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffcc02 30%);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ff9800;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .pros, .cons {
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .pros {
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+            border-left: 4px solid #4caf50;
+        }
+
+        .cons {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border-left: 4px solid #f44336;
+        }
+
+        .algorithm-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid #dee2e6;
+        }
+
+        .warning {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        .warning strong {
+            color: #f57c00;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .main-section {
+                padding: 20px;
+            }
+            
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Predictive Analytics</h1>
+            <p>Complete Detailed Study Guide with Definitions and Explanations</p>
+        </div>
+
+        <!-- FUNDAMENTAL CONCEPTS -->
+        <div class="main-section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(45deg, #667eea, #764ba2);">📖</div>
+                <h1>Fundamental Concepts</h1>
+            </div>
+
+            <div class="topic">
+                <h2>Supervised Learning</h2>
+                
+                <div class="subtopic">
+                    <h3>What is Supervised Learning?</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Supervised learning is a type of machine learning where algorithms learn from labeled training data (input-output pairs) to make predictions or decisions on new, unseen data. The algorithm learns by example, using historical data where the correct answers are known.
+                    </div>
+                    
+                    <div class="explanation">
+                        In supervised learning, we have a dataset with both input features (independent variables) and target labels (dependent variables). The algorithm studies these examples to learn patterns and relationships, then applies this knowledge to predict outcomes for new data points.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Key Characteristics of Supervised Learning:</strong>
+                        <ul>
+                            <li><strong>Labeled Data:</strong> Training data includes both inputs and correct outputs</li>
+                            <li><strong>Goal-Oriented:</strong> Aims to predict specific target variables</li>
+                            <li><strong>Performance Measurable:</strong> Can evaluate accuracy using known correct answers</li>
+                            <li><strong>Function Mapping:</strong> Learns a function f(x) = y from inputs to outputs</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <strong>Example:</strong> Email spam detection - Train on thousands of emails labeled as "spam" or "not spam," then use the learned model to classify new incoming emails automatically.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Types of Supervised Learning:</strong>
+                        <ul>
+                            <li><strong>Classification:</strong> Predicts discrete categories or classes</li>
+                            <li><strong>Regression:</strong> Predicts continuous numerical values</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Unsupervised Learning</h2>
+                
+                <div class="subtopic">
+                    <h3>What is Unsupervised Learning?</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Unsupervised learning is a type of machine learning that finds hidden patterns, structures, or relationships in data without using labeled examples. The algorithm explores data to discover insights without being told what to look for.
+                    </div>
+                    
+                    <div class="explanation">
+                        Unlike supervised learning, unsupervised learning works with data that has no target labels or correct answers. The algorithm must discover patterns, group similar data points, or find underlying structures on its own. It's like exploring a new territory without a map.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Key Characteristics of Unsupervised Learning:</strong>
+                        <ul>
+                            <li><strong>Unlabeled Data:</strong> Training data contains only input features, no target outputs</li>
+                            <li><strong>Pattern Discovery:</strong> Aims to find hidden structures in data</li>
+                            <li><strong>Exploratory:</strong> Used for data exploration and understanding</li>
+                            <li><strong>No Predetermined Goal:</strong> Discovers what patterns exist rather than predicting specific outcomes</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <strong>Example:</strong> Customer segmentation - Analyze customer purchase behavior to automatically group customers into segments like "frequent buyers," "bargain hunters," and "premium customers" without being told these categories exist.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Types of Unsupervised Learning:</strong>
+                        <ul>
+                            <li><strong>Clustering:</strong> Groups similar data points together</li>
+                            <li><strong>Association Rules:</strong> Finds relationships between different items</li>
+                            <li><strong>Dimensionality Reduction:</strong> Simplifies data while preserving important information</li>
+                            <li><strong>Anomaly Detection:</strong> Identifies unusual or outlier data points</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Classification</h2>
+                
+                <div class="subtopic">
+                    <h3>What is Classification?</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Classification is a supervised learning task that involves predicting discrete categories, classes, or labels for new data points based on patterns learned from labeled training data. The output is always a category or class membership.
+                    </div>
+                    
+                    <div class="explanation">
+                        Classification algorithms learn to distinguish between different categories by studying examples of each class. The goal is to build a model that can accurately assign new, unseen data points to the correct category. The categories are predefined and discrete (you can't have half a category).
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Key Characteristics of Classification:</strong>
+                        <ul>
+                            <li><strong>Discrete Output:</strong> Predicts specific categories or classes</li>
+                            <li><strong>Decision Boundaries:</strong> Creates boundaries between different classes</li>
+                            <li><strong>Class Labels:</strong> Output is one of predefined class labels</li>
+                            <li><strong>Probability Estimation:</strong> Can provide confidence in predictions</li>
+                        </ul>
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Types of Classification:</strong>
+                        <ul>
+                            <li><strong>Binary Classification:</strong> Two classes (Yes/No, Spam/Not Spam, Pass/Fail)</li>
+                            <li><strong>Multi-class Classification:</strong> Multiple classes (Low/Medium/High, Product Categories)</li>
+                            <li><strong>Multi-label Classification:</strong> Multiple labels can be assigned simultaneously</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <strong>Examples of Classification:</strong>
+                        <ul>
+                            <li><strong>Medical Diagnosis:</strong> Classifying symptoms as indicating different diseases</li>
+                            <li><strong>Image Recognition:</strong> Identifying objects in photos (cat, dog, car, etc.)</li>
+                            <li><strong>Sentiment Analysis:</strong> Classifying reviews as positive, negative, or neutral</li>
+                            <li><strong>Credit Approval:</strong> Classifying loan applications as approved or rejected</li>
+                        </ul>
+                    </div>
+
+                    <div class="formula">
+                        Classification Function: f(x) → {Class₁, Class₂, ..., Classₙ}<br>
+                        Where x = input features, output is one of discrete class labels
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Regression</h2>
+                
+                <div class="subtopic">
+                    <h3>What is Regression?</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Regression is a supervised learning task that involves predicting continuous numerical values based on input features. Unlike classification which predicts categories, regression predicts quantities or amounts along a continuous scale.
+                    </div>
+                    
+                    <div class="explanation">
+                        Regression algorithms learn relationships between input variables and continuous output variables. The goal is to find a function that best describes how the output changes as the input changes. The predicted values can be any number within a range, not just specific categories.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Key Characteristics of Regression:</strong>
+                        <ul>
+                            <li><strong>Continuous Output:</strong> Predicts numerical values that can take any value in a range</li>
+                            <li><strong>Relationship Modeling:</strong> Models mathematical relationships between variables</li>
+                            <li><strong>Interpolation/Extrapolation:</strong> Can predict values within or beyond training range</li>
+                            <li><strong>Error Measurement:</strong> Uses distance-based metrics to measure prediction accuracy</li>
+                        </ul>
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Types of Regression:</strong>
+                        <ul>
+                            <li><strong>Linear Regression:</strong> Models linear relationships with straight lines</li>
+                            <li><strong>Polynomial Regression:</strong> Models non-linear relationships with curves</li>
+                            <li><strong>Multiple Regression:</strong> Uses multiple input variables to predict output</li>
+                            <li><strong>Logistic Regression:</strong> Actually a classification technique despite the name</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <strong>Examples of Regression:</strong>
+                        <ul>
+                            <li><strong>House Price Prediction:</strong> Predicting home values based on size, location, features</li>
+                            <li><strong>Sales Forecasting:</strong> Predicting future sales amounts based on historical data</li>
+                            <li><strong>Temperature Prediction:</strong> Forecasting weather temperatures</li>
+                            <li><strong>Stock Price Prediction:</strong> Estimating future stock prices</li>
+                            <li><strong>Salary Estimation:</strong> Predicting salary based on experience, education, skills</li>
+                        </ul>
+                    </div>
+
+                    <div class="formula">
+                        Regression Function: f(x) → ℝ (Real Numbers)<br>
+                        Where x = input features, output is a continuous numerical value
+                    </div>
+
+                    <div class="highlight">
+                        <strong>Key Difference from Classification:</strong> Classification answers "What category?" while Regression answers "How much?" or "What quantity?"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DATA PREPROCESSING -->
+        <div class="main-section">
+            <div class="section-header">
+                <div class="section-icon preprocessing">1</div>
+                <h1>Data Preprocessing</h1>
+            </div>
+
+            <div class="topic">
+                <h2>Managing Data with R</h2>
+                
+                <div class="subtopic">
+                    <h3>What is Data Management?</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Data management is the process of collecting, storing, organizing, and maintaining data in a way that makes it accessible, reliable, and useful for analysis.
+                    </div>
+                    
+                    <div class="explanation">
+                        In R programming, data management involves loading datasets from various sources (CSV files, databases, web APIs), organizing them into appropriate data structures, and preparing them for analysis. R provides several data structures like vectors, data frames, lists, and matrices to handle different types of data.
+                    </div>
+
+                    <div class="example">
+                        <strong>Example:</strong> Loading a customer database from a CSV file using read.csv() function, then organizing customer information into a data frame where each row represents a customer and each column represents attributes like age, income, purchase history.
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Exploring and Understanding Data</h2>
+                
+                <div class="subtopic">
+                    <h3>Exploratory Data Analysis (EDA)</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Exploratory Data Analysis is the process of analyzing and investigating data sets to summarize their main characteristics, often using statistical graphics and other data visualization methods.
+                    </div>
+                    
+                    <div class="explanation">
+                        EDA helps you understand what your data is telling you before applying any formal modeling techniques. It involves looking for patterns, spotting anomalies, testing hypotheses, and checking assumptions through summary statistics and visualizations.
+                    </div>
+
+                    <div class="steps">
+                        <strong>Key Steps in EDA:</strong>
+                        <ol>
+                            <li>Get basic information about dataset size and structure</li>
+                            <li>Check data types of each variable</li>
+                            <li>Identify missing values and outliers</li>
+                            <li>Calculate summary statistics (mean, median, mode, standard deviation)</li>
+                            <li>Create visualizations (histograms, box plots, scatter plots)</li>
+                            <li>Look for patterns and relationships between variables</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Exploring the Structure of Data</h2>
+                
+                <div class="subtopic">
+                    <h3>Data Structure Analysis</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Data structure exploration involves understanding the organization, format, and characteristics of your dataset, including dimensions, data types, and overall organization.
+                    </div>
+                    
+                    <div class="explanation">
+                        Understanding data structure is crucial because it determines what analysis methods you can apply. Different data types require different handling techniques and analytical approaches.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Common R Functions for Structure Exploration:</strong>
+                        <ul>
+                            <li><code>str()</code> - Shows structure of data object</li>
+                            <li><code>dim()</code> - Returns dimensions (rows, columns)</li>
+                            <li><code>names()</code> - Shows column names</li>
+                            <li><code>head()</code> - Shows first few rows</li>
+                            <li><code>tail()</code> - Shows last few rows</li>
+                            <li><code>summary()</code> - Provides summary statistics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Exploring Numeric Variables</h2>
+                
+                <div class="subtopic">
+                    <h3>Numeric Variable Analysis</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Numeric variables are quantitative variables that represent measurable quantities and can take on any value within a range. They can be continuous (like height, weight) or discrete (like number of purchases).
+                    </div>
+                    
+                    <div class="explanation">
+                        Exploring numeric variables involves understanding their distribution, central tendency, variability, and identifying any unusual values or patterns.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Key Measures for Numeric Variables:</strong>
+                        <ul>
+                            <li><strong>Central Tendency:</strong> Mean, Median, Mode</li>
+                            <li><strong>Variability:</strong> Standard Deviation, Variance, Range</li>
+                            <li><strong>Distribution Shape:</strong> Skewness, Kurtosis</li>
+                            <li><strong>Outlier Detection:</strong> IQR method, Z-score method</li>
+                        </ul>
+                    </div>
+
+                    <div class="formula">
+                        Mean = Σ(xi) / n<br>
+                        Standard Deviation = √(Σ(xi - μ)² / n)
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Exploring Categorical Variables</h2>
+                
+                <div class="subtopic">
+                    <h3>Categorical Variable Analysis</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Categorical variables represent characteristics that can be divided into groups or categories. They can be nominal (no natural order, like colors) or ordinal (natural order, like education levels).
+                    </div>
+                    
+                    <div class="explanation">
+                        Exploring categorical variables involves understanding the frequency distribution of categories, identifying the most and least common categories, and checking for any data quality issues.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Analysis Techniques for Categorical Variables:</strong>
+                        <ul>
+                            <li><strong>Frequency Tables:</strong> Count of each category</li>
+                            <li><strong>Proportions:</strong> Percentage of each category</li>
+                            <li><strong>Mode:</strong> Most frequently occurring category</li>
+                            <li><strong>Bar Charts:</strong> Visual representation of frequencies</li>
+                            <li><strong>Pie Charts:</strong> Show proportional relationships</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <strong>Example:</strong> For a "Customer Type" variable with categories (Premium, Standard, Basic), you might find: Premium: 25%, Standard: 60%, Basic: 15%. This tells you most customers are Standard tier.
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Exploring Relationships Between Variables</h2>
+                
+                <div class="subtopic">
+                    <h3>Variable Relationship Analysis</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Relationship exploration involves examining how variables interact with each other, including correlations, associations, and dependencies that might exist between different variables in your dataset.
+                    </div>
+                    
+                    <div class="explanation">
+                        Understanding relationships is crucial for predictive modeling because these relationships form the basis for making predictions. Strong relationships indicate that one variable can help predict another.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Types of Relationships:</strong>
+                        <ul>
+                            <li><strong>Numeric-Numeric:</strong> Correlation analysis, scatter plots</li>
+                            <li><strong>Categorical-Categorical:</strong> Chi-square test, contingency tables</li>
+                            <li><strong>Numeric-Categorical:</strong> Group comparisons, box plots</li>
+                            <li><strong>Linear Relationships:</strong> Pearson correlation (-1 to +1)</li>
+                            <li><strong>Non-linear Relationships:</strong> Spearman correlation, visual inspection</li>
+                        </ul>
+                    </div>
+
+                    <div class="formula">
+                        Pearson Correlation: r = Σ((xi - x̄)(yi - ȳ)) / √(Σ(xi - x̄)² × Σ(yi - ȳ)²)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUPERVISED LEARNING: CLASSIFICATION -->
+        <div class="main-section">
+            <div class="section-header">
+                <div class="section-icon classification">2</div>
+                <h1>Supervised Learning: Classification</h1>
+            </div>
+
+            <div class="topic">
+                <h2>Lazy Learning: Nearest Neighbors</h2>
+                
+                <div class="subtopic">
+                    <h3>K-Nearest Neighbors (KNN) Algorithm</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> K-Nearest Neighbors is a lazy learning algorithm that classifies new data points based on the majority class among the k nearest neighbors in the feature space. It's called "lazy" because it doesn't build a model during training.
+                    </div>
+                    
+                    <div class="explanation">
+                        KNN works by storing all training data and making predictions by finding the k most similar instances to a new data point. The similarity is typically measured using distance metrics like Euclidean distance.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>KNN Algorithm Steps:</strong>
+                        <ol>
+                            <li>Store all training data (features and labels)</li>
+                            <li>For a new data point, calculate distance to all training points</li>
+                            <li>Select k nearest neighbors based on distance</li>
+                            <li>For classification: take majority vote of k neighbors</li>
+                            <li>For regression: take average of k neighbors' values</li>
+                        </ol>
+                    </div>
+
+                    <div class="formula">
+                        Euclidean Distance: d = √(Σ(xi - yi)²)
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <strong>Advantages:</strong>
+                            <ul>
+                                <li>Simple to understand and implement</li>
+                                <li>No assumptions about data distribution</li>
+                                <li>Works well with small datasets</li>
+                                <li>Can handle multi-class problems naturally</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <strong>Disadvantages:</strong>
+                            <ul>
+                                <li>Computationally expensive for large datasets</li>
+                                <li>Sensitive to irrelevant features</li>
+                                <li>Sensitive to local structure of data</li>
+                                <li>Requires scaling of features</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Probabilistic Learning: Using Naive Bayes</h2>
+                
+                <div class="subtopic">
+                    <h3>Naive Bayes Classifier</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Naive Bayes is a probabilistic classifier based on Bayes' theorem with the "naive" assumption that features are conditionally independent given the class label.
+                    </div>
+                    
+                    <div class="explanation">
+                        Despite its simplistic assumption, Naive Bayes often performs surprisingly well in practice, especially for text classification and spam filtering. It calculates the probability of each class given the input features and predicts the class with the highest probability.
+                    </div>
+
+                    <div class="formula">
+                        Bayes' Theorem: P(A|B) = P(B|A) × P(A) / P(B)<br><br>
+                        Naive Bayes: P(class|features) = P(features|class) × P(class) / P(features)
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Types of Naive Bayes:</strong>
+                        <ul>
+                            <li><strong>Gaussian Naive Bayes:</strong> For continuous features (assumes normal distribution)</li>
+                            <li><strong>Multinomial Naive Bayes:</strong> For discrete features (like word counts)</li>
+                            <li><strong>Bernoulli Naive Bayes:</strong> For binary features</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <strong>Example:</strong> Email spam classification - Calculate P(spam|words) by examining word frequencies in spam vs. non-spam emails. If an email contains words more commonly found in spam, it gets classified as spam.
+                    </div>
+
+                    <div class="highlight">
+                        <strong>Why "Naive"?</strong> The algorithm assumes all features are independent, which is rarely true in real life. For example, in email classification, the presence of "free" and "money" together is more indicative of spam than either word alone.
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Divide and Conquer: Decision Trees and Rules</h2>
+                
+                <div class="subtopic">
+                    <h3>Decision Trees</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> A decision tree is a hierarchical model that makes predictions by asking a series of questions about the features, where each internal node represents a test on a feature, each branch represents an outcome, and each leaf represents a class label.
+                    </div>
+                    
+                    <div class="explanation">
+                        Decision trees work by recursively splitting the data based on feature values that best separate the classes. The goal is to create pure subsets where most instances belong to the same class.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Key Concepts:</strong>
+                        <ul>
+                            <li><strong>Entropy:</strong> Measure of impurity in a dataset</li>
+                            <li><strong>Information Gain:</strong> Reduction in entropy after splitting</li>
+                            <li><strong>Gini Impurity:</strong> Alternative measure of impurity</li>
+                            <li><strong>Pruning:</strong> Removing branches to prevent overfitting</li>
+                        </ul>
+                    </div>
+
+                    <div class="formula">
+                        Entropy: H(S) = -Σ(pi × log2(pi))<br>
+                        Information Gain: IG(S,A) = H(S) - Σ((|Sv|/|S|) × H(Sv))
+                    </div>
+
+                    <div class="steps">
+                        <strong>Decision Tree Construction:</strong>
+                        <ol>
+                            <li>Start with entire dataset at root node</li>
+                            <li>Calculate entropy/impurity of current node</li>
+                            <li>For each feature, calculate information gain if split on that feature</li>
+                            <li>Choose feature with highest information gain</li>
+                            <li>Split dataset based on chosen feature</li>
+                            <li>Repeat process for each subset until stopping criteria met</li>
+                            <li>Assign class label to leaf nodes based on majority class</li>
+                        </ol>
+                    </div>
+
+                    <div class="subtopic">
+                        <h3>Decision Rules</h3>
+                        <div class="definition">
+                            <strong>Definition:</strong> Decision rules are if-then statements extracted from decision trees that can be used independently for classification. Each path from root to leaf in a decision tree corresponds to one rule.
+                        </div>
+                        
+                        <div class="example">
+                            <strong>Example Rule:</strong> IF (age > 25) AND (income > 50000) AND (credit_score > 700) THEN approve_loan = YES
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUPERVISED LEARNING: NUMERIC PREDICTION -->
+        <div class="main-section">
+            <div class="section-header">
+                <div class="section-icon numeric">3</div>
+                <h1>Supervised Learning: Numeric Prediction</h1>
+            </div>
+
+            <div class="topic">
+                <h2>Forecasting Numeric Data</h2>
+                
+                <div class="subtopic">
+                    <h3>Numeric Prediction Overview</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Numeric prediction, also called regression, involves predicting continuous numerical values rather than discrete categories. The goal is to find a function that maps input features to numeric outputs.
+                    </div>
+                    
+                    <div class="explanation">
+                        Unlike classification which predicts categories, regression predicts quantities. This is useful for forecasting sales, predicting prices, estimating temperatures, or any scenario where the output is a number.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Types of Numeric Prediction:</strong>
+                        <ul>
+                            <li><strong>Simple Linear Regression:</strong> One input variable</li>
+                            <li><strong>Multiple Linear Regression:</strong> Multiple input variables</li>
+                            <li><strong>Polynomial Regression:</strong> Non-linear relationships</li>
+                            <li><strong>Time Series Forecasting:</strong> Predictions based on temporal patterns</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Simple Linear Regression</h2>
+                
+                <div class="subtopic">
+                    <h3>Linear Regression Fundamentals</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Simple linear regression is a statistical method that models the relationship between a dependent variable and a single independent variable by fitting a linear equation to observed data points.
+                    </div>
+                    
+                    <div class="explanation">
+                        The goal is to find the best-fitting straight line through the data points. This line can then be used to predict new values. The "best" line is typically the one that minimizes the sum of squared errors.
+                    </div>
+
+                    <div class="formula">
+                        Linear Equation: y = mx + b<br>
+                        Where: y = dependent variable, x = independent variable<br>
+                        m = slope, b = y-intercept
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Key Components:</strong>
+                        <ul>
+                            <li><strong>Slope (m):</strong> Rate of change in y for unit change in x</li>
+                            <li><strong>Intercept (b):</strong> Value of y when x = 0</li>
+                            <li><strong>Residuals:</strong> Differences between actual and predicted values</li>
+                            <li><strong>R-squared:</strong> Proportion of variance explained by the model</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <strong>Example:</strong> Predicting house prices based on square footage. If slope = 100, it means each additional square foot increases price by $100 on average.
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Polynomial Regression</h2>
+                
+                <div class="subtopic">
+                    <h3>Non-Linear Relationships</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Polynomial regression extends linear regression by adding polynomial terms (x², x³, etc.) to model non-linear relationships between variables while still using linear regression techniques.
+                    </div>
+                    
+                    <div class="explanation">
+                        When the relationship between variables follows a curve rather than a straight line, polynomial regression can capture these non-linear patterns by including higher-order terms.
+                    </div>
+
+                    <div class="formula">
+                        Polynomial Equation: y = b₀ + b₁x + b₂x² + b₃x³ + ... + bₙxⁿ
+                    </div>
+
+                    <div class="warning">
+                        <strong>Overfitting Warning:</strong> Higher-degree polynomials can fit training data very well but may perform poorly on new data. This is called overfitting.
+                    </div>
+
+                    <div class="example">
+                        <strong>Example:</strong> Car fuel efficiency vs. speed follows a curve - efficiency increases with speed up to a point, then decreases. A quadratic equation (degree 2) might model this well.
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Ordinary Least Squares Estimation</h2>
+                
+                <div class="subtopic">
+                    <h3>OLS Method</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Ordinary Least Squares (OLS) is a method for estimating the parameters in a linear regression model by minimizing the sum of squared residuals (differences between observed and predicted values).
+                    </div>
+                    
+                    <div class="explanation">
+                        OLS finds the line that minimizes the total squared distance between the actual data points and the predicted values on the line. This mathematical approach ensures the "best fit" line according to the least squares criterion.
+                    </div>
+
+                    <div class="formula">
+                        Objective: Minimize Σ(yi - ŷi)²<br>
+                        Where: yi = actual value, ŷi = predicted value<br><br>
+                        Slope: m = Σ((xi - x̄)(yi - ȳ)) / Σ(xi - x̄)²<br>
+                        Intercept: b = ȳ - m × x̄
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>OLS Assumptions:</strong>
+                        <ul>
+                            <li><strong>Linearity:</strong> Relationship is linear</li>
+                            <li><strong>Independence:</strong> Observations are independent</li>
+                            <li><strong>Homoscedasticity:</strong> Constant variance of residuals</li>
+                            <li><strong>Normality:</strong> Residuals are normally distributed</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Correlations</h2>
+                
+                <div class="subtopic">
+                    <h3>Correlation Analysis</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Correlation measures the strength and direction of the linear relationship between two variables, ranging from -1 (perfect negative correlation) to +1 (perfect positive correlation), with 0 indicating no linear relationship.
+                    </div>
+                    
+                    <div class="explanation">
+                        Correlation helps identify which variables are related and how strongly. This is crucial for feature selection in predictive modeling and understanding data relationships.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Types of Correlation:</strong>
+                        <ul>
+                            <li><strong>Pearson Correlation:</strong> Measures linear relationships</li>
+                            <li><strong>Spearman Correlation:</strong> Measures monotonic relationships</li>
+                            <li><strong>Kendall's Tau:</strong> Alternative rank-based correlation</li>
+                        </ul>
+                    </div>
+
+                    <div class="highlight">
+                        <strong>Important:</strong> Correlation does not imply causation! High correlation between variables doesn't mean one causes the other.
+                    </div>
+
+                    <div class="formula">
+                        Pearson Correlation: r = Σ((xi - x̄)(yi - ȳ)) / √(Σ(xi - x̄)² × Σ(yi - ȳ)²)
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Correlation Strength Interpretation:</strong>
+                        <ul>
+                            <li><strong>0.0 to ±0.3:</strong> Weak correlation</li>
+                            <li><strong>±0.3 to ±0.7:</strong> Moderate correlation</li>
+                            <li><strong>±0.7 to ±1.0:</strong> Strong correlation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUPERVISED LEARNING: DUAL USE -->
+        <div class="main-section">
+            <div class="section-header">
+                <div class="section-icon advanced">4</div>
+                <h1>Supervised Learning: Dual Use</h1>
+            </div>
+
+            <div class="topic">
+                <h2>Black Box Methods</h2>
+                
+                <div class="subtopic">
+                    <h3>Understanding Black Box Algorithms</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Black box methods are machine learning algorithms where the internal decision-making process is not easily interpretable or explainable, even though they may produce highly accurate predictions.
+                    </div>
+                    
+                    <div class="explanation">
+                        These methods are called "black boxes" because you can see the input and output, but the internal workings are opaque. While they may sacrifice interpretability, they often achieve superior predictive performance on complex problems.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Characteristics of Black Box Methods:</strong>
+                        <ul>
+                            <li><strong>High Complexity:</strong> Complex internal representations</li>
+                            <li><strong>Non-linear:</strong> Can capture complex non-linear patterns</li>
+                            <li><strong>Feature Interactions:</strong> Automatically learn feature combinations</li>
+                            <li><strong>Performance:</strong> Often achieve state-of-the-art results</li>
+                            <li><strong>Interpretability:</strong> Difficult to explain individual predictions</li>
+                        </ul>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <strong>Advantages:</strong>
+                            <ul>
+                                <li>Superior predictive accuracy</li>
+                                <li>Handle complex patterns automatically</li>
+                                <li>Work well with large datasets</li>
+                                <li>Minimal feature engineering required</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <strong>Disadvantages:</strong>
+                            <ul>
+                                <li>Lack of interpretability</li>
+                                <li>Difficulty in debugging</li>
+                                <li>Regulatory compliance issues</li>
+                                <li>Trust and acceptance challenges</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Neural Networks</h2>
+                
+                <div class="subtopic">
+                    <h3>What are Neural Networks?</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Neural networks are computing systems inspired by the biological neural networks of animal brains. They consist of interconnected nodes (artificial neurons) that process information through weighted connections and activation functions to learn complex patterns and make predictions.
+                    </div>
+                    
+                    <div class="explanation">
+                        Just like the human brain has billions of neurons connected through synapses, artificial neural networks have artificial neurons connected through weighted links. These networks can learn from data by adjusting the strength of connections (weights) between neurons, enabling them to recognize patterns, make predictions, and solve complex problems.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Neural Network Components:</strong>
+                        <ul>
+                            <li><strong>Neurons (Nodes):</strong> Basic processing units that receive inputs, process them, and produce outputs</li>
+                            <li><strong>Weights:</strong> Connection strengths between neurons that determine influence of one neuron on another</li>
+                            <li><strong>Bias:</strong> Additional parameter that helps adjust the output along with the weighted sum of inputs</li>
+                            <li><strong>Activation Function:</strong> Mathematical function that determines whether a neuron should be activated</li>
+                            <li><strong>Layers:</strong> Organized groups of neurons - input layer, hidden layers, and output layer</li>
+                        </ul>
+                    </div>
+
+                    <div class="formula">
+                        Neuron Output: y = f(Σ(wi × xi) + b)<br>
+                        Where: f = activation function, wi = weights, xi = inputs, b = bias
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>How Neural Networks Learn:</strong>
+                        <ol>
+                            <li><strong>Forward Pass:</strong> Input data flows through network layers to produce output</li>
+                            <li><strong>Error Calculation:</strong> Compare predicted output with actual target</li>
+                            <li><strong>Backpropagation:</strong> Calculate how much each weight contributed to the error</li>
+                            <li><strong>Weight Update:</strong> Adjust weights to reduce error using gradient descent</li>
+                            <li><strong>Iteration:</strong> Repeat process thousands of times until network learns patterns</li>
+                        </ol>
+                    </div>
+
+                    <div class="example">
+                        <strong>Simple Example:</strong> A neural network for recognizing handwritten digits (0-9). Input layer receives pixel values, hidden layers detect edges and shapes, output layer identifies which digit it is. Through training on thousands of examples, it learns to recognize new handwritten digits.
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>Types of Neural Networks</h3>
+                    <div class="explanation">
+                        Different types of neural networks are designed for different types of problems and data structures. Each type has unique characteristics and applications.
+                    </div>
+
+                    <div class="subtopic">
+                        <h3>1. Feedforward Neural Networks (FNN)</h3>
+                        <div class="definition">
+                            <strong>Definition:</strong> The simplest type of neural network where information flows in only one direction - from input layer through hidden layers to output layer, without any loops or cycles.
+                        </div>
+                        
+                        <div class="algorithm-box">
+                            <strong>Characteristics:</strong>
+                            <ul>
+                                <li><strong>Unidirectional Flow:</strong> Information moves forward only</li>
+                                <li><strong>Simple Architecture:</strong> Input → Hidden → Output layers</li>
+                                <li><strong>Static Processing:</strong> Same input always produces same output</li>
+                                <li><strong>Good for:</strong> Basic classification and regression problems</li>
+                            </ul>
+                        </div>
+
+                        <div class="example">
+                            <strong>Example:</strong> Predicting house prices based on features like size, location, age. Input layer receives these features, hidden layers find relationships, output layer predicts price.
+                        </div>
+                    </div>
+
+                    <div class="subtopic">
+                        <h3>2. Convolutional Neural Networks (CNN)</h3>
+                        <div class="definition">
+                            <strong>Definition:</strong> Specialized neural networks designed for processing grid-like data such as images. They use convolutional layers that apply filters to detect local features like edges, shapes, and patterns.
+                        </div>
+                        
+                        <div class="algorithm-box">
+                            <strong>Key Components:</strong>
+                            <ul>
+                                <li><strong>Convolutional Layers:</strong> Apply filters to detect features</li>
+                                <li><strong>Pooling Layers:</strong> Reduce spatial dimensions while keeping important information</li>
+                                <li><strong>Feature Maps:</strong> Outputs of convolutional operations</li>
+                                <li><strong>Filters/Kernels:</strong> Small matrices that detect specific patterns</li>
+                            </ul>
+                        </div>
+
+                        <div class="algorithm-box">
+                            <strong>Applications:</strong>
+                            <ul>
+                                <li><strong>Image Recognition:</strong> Identifying objects in photos</li>
+                                <li><strong>Medical Imaging:</strong> Detecting tumors in X-rays, MRIs</li>
+                                <li><strong>Computer Vision:</strong> Self-driving cars, facial recognition</li>
+                                <li><strong>Document Analysis:</strong> OCR, handwriting recognition</li>
+                            </ul>
+                        </div>
+
+                        <div class="example">
+                            <strong>Example:</strong> CNN for cat vs dog classification. Early layers detect edges and textures, middle layers detect shapes like ears and noses, final layers combine these to identify the animal.
+                        </div>
+                    </div>
+
+                    <div class="subtopic">
+                        <h3>3. Recurrent Neural Networks (RNN)</h3>
+                        <div class="definition">
+                            <strong>Definition:</strong> Neural networks with memory capability that can process sequences of data by maintaining hidden states that carry information from previous time steps, making them suitable for sequential and temporal data.
+                        </div>
+                        
+                        <div class="algorithm-box">
+                            <strong>Key Features:</strong>
+                            <ul>
+                                <li><strong>Memory:</strong> Can remember information from previous inputs</li>
+                                <li><strong>Sequential Processing:</strong> Processes data step by step in sequence</li>
+                                <li><strong>Hidden State:</strong> Internal memory that updates at each time step</li>
+                                <li><strong>Feedback Loops:</strong> Output can be fed back as input</li>
+                            </ul>
+                        </div>
+
+                        <div class="algorithm-box">
+                            <strong>Applications:</strong>
+                            <ul>
+                                <li><strong>Natural Language Processing:</strong> Language translation, text generation</li>
+                                <li><strong>Speech Recognition:</strong> Converting speech to text</li>
+                                <li><strong>Time Series Prediction:</strong> Stock prices, weather forecasting</li>
+                                <li><strong>Sentiment Analysis:</strong> Understanding emotions in text</li>
+                            </ul>
+                        </div>
+
+                        <div class="example">
+                            <strong>Example:</strong> RNN for language translation. It reads a sentence word by word, remembering context from previous words to understand meaning, then generates translation word by word.
+                        </div>
+
+                        <div class="warning">
+                            <strong>RNN Limitation:</strong> Traditional RNNs suffer from vanishing gradient problem with long sequences. LSTM and GRU variants solve this issue.
+                        </div>
+                    </div>
+
+                    <div class="subtopic">
+                        <h3>4. Long Short-Term Memory (LSTM)</h3>
+                        <div class="definition">
+                            <strong>Definition:</strong> A special type of RNN designed to overcome the vanishing gradient problem by using gates to control information flow, allowing it to remember important information for long periods and forget irrelevant information.
+                        </div>
+                        
+                        <div class="algorithm-box">
+                            <strong>LSTM Gates:</strong>
+                            <ul>
+                                <li><strong>Forget Gate:</strong> Decides what information to discard from cell state</li>
+                                <li><strong>Input Gate:</strong> Decides what new information to store in cell state</li>
+                                <li><strong>Output Gate:</strong> Controls what parts of cell state to output</li>
+                                <li><strong>Cell State:</strong> Memory that flows through the network</li>
+                            </ul>
+                        </div>
+
+                        <div class="example">
+                            <strong>Example:</strong> LSTM for stock price prediction. It can remember long-term trends (bull/bear markets) while adapting to short-term fluctuations, making more accurate predictions than simple RNNs.
+                        </div>
+                    </div>
+
+                    <div class="subtopic">
+                        <h3>5. Generative Adversarial Networks (GAN)</h3>
+                        <div class="definition">
+                            <strong>Definition:</strong> A system of two neural networks competing against each other: a Generator that creates fake data and a Discriminator that tries to distinguish real from fake data. Through this competition, the Generator learns to create increasingly realistic data.
+                        </div>
+                        
+                        <div class="algorithm-box">
+                            <strong>GAN Components:</strong>
+                            <ul>
+                                <li><strong>Generator:</strong> Creates fake data (images, text, etc.)</li>
+                                <li><strong>Discriminator:</strong> Distinguishes real from fake data</li>
+                                <li><strong>Adversarial Training:</strong> Both networks improve through competition</li>
+                                <li><strong>Nash Equilibrium:</strong> Goal state where both networks are optimized</li>
+                            </ul>
+                        </div>
+
+                        <div class="algorithm-box">
+                            <strong>Applications:</strong>
+                            <ul>
+                                <li><strong>Image Generation:</strong> Creating realistic photos of people, objects</li>
+                                <li><strong>Data Augmentation:</strong> Generating training data for other models</li>
+                                <li><strong>Art Creation:</strong> Generating artistic images and designs</li>
+                                <li><strong>Super Resolution:</strong> Enhancing image quality</li>
+                            </ul>
+                        </div>
+
+                        <div class="example">
+                            <strong>Example:</strong> GAN creating fake celebrity photos. Generator creates images, Discriminator tries to spot fakes. Over time, Generator becomes so good that its fake photos are indistinguishable from real ones.
+                        </div>
+                    </div>
+
+                    <div class="subtopic">
+                        <h3>6. Autoencoder Networks</h3>
+                        <div class="definition">
+                            <strong>Definition:</strong> Neural networks trained to copy their input to their output through a compressed hidden representation (encoding), forcing them to learn efficient data representations and remove noise.
+                        </div>
+                        
+                        <div class="algorithm-box">
+                            <strong>Autoencoder Structure:</strong>
+                            <ul>
+                                <li><strong>Encoder:</strong> Compresses input into lower-dimensional representation</li>
+                                <li><strong>Bottleneck:</strong> Compressed representation (latent space)</li>
+                                <li><strong>Decoder:</strong> Reconstructs original input from compressed representation</li>
+                                <li><strong>Reconstruction Loss:</strong> Measures difference between input and output</li>
+                            </ul>
+                        </div>
+
+                        <div class="algorithm-box">
+                            <strong>Applications:</strong>
+                            <ul>
+                                <li><strong>Dimensionality Reduction:</strong> Compressing data while preserving important features</li>
+                                <li><strong>Denoising:</strong> Removing noise from images or audio</li>
+                                <li><strong>Anomaly Detection:</strong> Identifying unusual patterns in data</li>
+                                <li><strong>Feature Learning:</strong> Learning useful representations for other tasks</li>
+                            </ul>
+                        </div>
+
+                        <div class="example">
+                            <strong>Example:</strong> Denoising autoencoder for image restoration. Trained on pairs of noisy and clean images, it learns to remove noise and restore original image quality.
+                        </div>
+                    </div>
+
+                    <div class="highlight">
+                        <strong>Choosing the Right Neural Network:</strong>
+                        <ul>
+                            <li><strong>Images:</strong> Use CNNs for computer vision tasks</li>
+                            <li><strong>Sequential Data:</strong> Use RNNs/LSTMs for time series or text</li>
+                            <li><strong>Tabular Data:</strong> Use Feedforward networks for structured data</li>
+                            <li><strong>Generation Tasks:</strong> Use GANs for creating new data</li>
+                            <li><strong>Compression/Denoising:</strong> Use Autoencoders</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Support Vector Machines</h2>
+                
+                <div class="subtopic">
+                    <h3>SVM Fundamentals</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Support Vector Machine (SVM) is a powerful algorithm that finds the optimal hyperplane to separate different classes by maximizing the margin between the closest data points (support vectors) of different classes.
+                    </div>
+                    
+                    <div class="explanation">
+                        SVM works by finding the decision boundary that has the maximum margin from the nearest data points of each class. This approach often leads to better generalization on unseen data.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Key SVM Concepts:</strong>
+                        <ul>
+                            <li><strong>Hyperplane:</strong> Decision boundary separating classes</li>
+                            <li><strong>Support Vectors:</strong> Data points closest to the hyperplane</li>
+                            <li><strong>Margin:</strong> Distance between hyperplane and nearest points</li>
+                            <li><strong>Kernel Trick:</strong> Transform data to higher dimensions</li>
+                        </ul>
+                    </div>
+
+                    <div class="subtopic">
+                        <h3>Kernel Functions</h3>
+                        <div class="definition">
+                            <strong>Definition:</strong> Kernel functions allow SVM to create non-linear decision boundaries by implicitly mapping data to higher-dimensional spaces without explicitly computing the transformation.
+                        </div>
+
+                        <div class="algorithm-box">
+                            <strong>Common Kernel Functions:</strong>
+                            <ul>
+                                <li><strong>Linear:</strong> K(x,y) = x·y - For linearly separable data</li>
+                                <li><strong>Polynomial:</strong> K(x,y) = (x·y + c)^d - For polynomial relationships</li>
+                                <li><strong>RBF (Gaussian):</strong> K(x,y) = e^(-γ||x-y||²) - Most popular, handles non-linear data</li>
+                                <li><strong>Sigmoid:</strong> K(x,y) = tanh(γx·y + c) - Similar to neural networks</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="formula">
+                        SVM Objective: Minimize ½||w||² + C Σξi<br>
+                        Subject to: yi(w·xi + b) ≥ 1 - ξi<br>
+                        Where: C = regularization parameter, ξi = slack variables
+                    </div>
+
+                    <div class="example">
+                        <strong>Example:</strong> Document classification - SVM can separate spam emails from legitimate ones by finding the optimal boundary in the high-dimensional space of word frequencies.
+                    </div>
+
+                    <div class="highlight">
+                        <strong>SVM for Regression:</strong> Support Vector Regression (SVR) uses the same principles but predicts continuous values instead of classes.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UNSUPERVISED LEARNING -->
+        <div class="main-section">
+            <div class="section-header">
+                <div class="section-icon clustering">5</div>
+                <h1>Unsupervised Learning: Clustering and Pattern Detection</h1>
+            </div>
+
+            <div class="topic">
+                <h2>K-Means Clustering</h2>
+                
+                <div class="subtopic">
+                    <h3>K-Means Algorithm</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> K-Means is a partitioning clustering algorithm that divides data into k clusters by minimizing the within-cluster sum of squared distances from data points to their cluster centroids.
+                    </div>
+                    
+                    <div class="explanation">
+                        K-Means works by iteratively assigning data points to the nearest centroid and updating centroids based on the mean of assigned points. This process continues until centroids stabilize or maximum iterations are reached.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>K-Means Algorithm Steps:</strong>
+                        <ol>
+                            <li><strong>Initialize:</strong> Choose k initial cluster centroids randomly</li>
+                            <li><strong>Assignment:</strong> Assign each point to the nearest centroid</li>
+                            <li><strong>Update:</strong> Calculate new centroids as mean of assigned points</li>
+                            <li><strong>Repeat:</strong> Steps 2-3 until convergence or max iterations</li>
+                            <li><strong>Output:</strong> Final cluster assignments and centroids</li>
+                        </ol>
+                    </div>
+
+                    <div class="formula">
+                        Objective Function: J = Σᵢ₌₁ᵏ Σ(x∈Cᵢ) ||x - μᵢ||²<br>
+                        Where: Cᵢ = cluster i, μᵢ = centroid of cluster i
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>K-Means Clustering Intuition</h3>
+                    <div class="explanation">
+                        The intuition behind K-Means is that data points within the same cluster should be similar to each other and different from points in other clusters. The algorithm finds natural groupings by minimizing intra-cluster variance.
+                    </div>
+
+                    <div class="example">
+                        <strong>Example:</strong> Customer segmentation based on purchasing behavior. K-Means might identify groups like "frequent buyers," "occasional buyers," and "bargain hunters" based on purchase frequency and amount spent.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Distance Metrics:</strong>
+                        <ul>
+                            <li><strong>Euclidean Distance:</strong> Most common, works well for spherical clusters</li>
+                            <li><strong>Manhattan Distance:</strong> Sum of absolute differences</li>
+                            <li><strong>Cosine Distance:</strong> Measures angle between vectors</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>K-Means Random Initialization Trap</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> The random initialization trap refers to the problem where different random initializations of centroids can lead to different clustering results, potentially finding sub-optimal solutions.
+                    </div>
+
+                    <div class="explanation">
+                        K-Means is sensitive to initial centroid placement and can converge to local optima rather than the global optimum. Poor initialization can result in unbalanced or meaningless clusters.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Solutions to Initialization Problem:</strong>
+                        <ul>
+                            <li><strong>Multiple Runs:</strong> Run algorithm multiple times with different initializations</li>
+                            <li><strong>K-Means++:</strong> Smart initialization that spreads initial centroids</li>
+                            <li><strong>Forgy Method:</strong> Randomly choose k data points as initial centroids</li>
+                            <li><strong>Random Partition:</strong> Randomly assign points to clusters, then calculate centroids</li>
+                        </ul>
+                    </div>
+
+                    <div class="warning">
+                        <strong>Best Practice:</strong> Always run K-Means multiple times (typically 10-100 runs) and select the result with the lowest within-cluster sum of squares.
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>K-Means: Selecting Number of Clusters</h3>
+                    <div class="explanation">
+                        Determining the optimal number of clusters (k) is one of the most challenging aspects of K-Means clustering. Several methods can help guide this decision.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Methods for Choosing k:</strong>
+                        <ul>
+                            <li><strong>Elbow Method:</strong> Plot within-cluster sum of squares vs. k, look for "elbow"</li>
+                            <li><strong>Silhouette Analysis:</strong> Measure how similar points are within clusters vs. other clusters</li>
+                            <li><strong>Gap Statistic:</strong> Compare clustering results to null reference distribution</li>
+                            <li><strong>Domain Knowledge:</strong> Use business understanding to guide choice</li>
+                        </ul>
+                    </div>
+
+                    <div class="formula">
+                        Silhouette Score: s(i) = (b(i) - a(i)) / max(a(i), b(i))<br>
+                        Where: a(i) = average distance to same cluster, b(i) = average distance to nearest cluster
+                    </div>
+
+                    <div class="example">
+                        <strong>Example:</strong> In customer segmentation, business might naturally have 3 segments (high, medium, low value), but data analysis might suggest 5 clusters provide better separation.
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Dataset Gathering</h2>
+                
+                <div class="subtopic">
+                    <h3>Data Collection for Clustering</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Dataset gathering for clustering involves collecting, preparing, and structuring data in a way that enables effective pattern discovery and grouping of similar instances.
+                    </div>
+                    
+                    <div class="explanation">
+                        Unlike supervised learning where you need labeled data, clustering works with unlabeled data. However, data quality and relevance are still crucial for meaningful results.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Data Gathering Considerations:</strong>
+                        <ul>
+                            <li><strong>Relevance:</strong> Include features that capture meaningful differences</li>
+                            <li><strong>Scale:</strong> Normalize features to prevent dominance by large-scale variables</li>
+                            <li><strong>Completeness:</strong> Handle missing values appropriately</li>
+                            <li><strong>Dimensionality:</strong> Consider dimensionality reduction for high-dimensional data</li>
+                            <li><strong>Sample Size:</strong> Ensure sufficient data for stable clustering</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <strong>Example:</strong> For customer clustering, gather data on purchase frequency, average order value, product categories bought, seasonality patterns, and customer demographics.
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Hierarchical Clustering</h2>
+                
+                <div class="subtopic">
+                    <h3>Hierarchical Clustering Methods</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Hierarchical clustering creates a tree-like hierarchy of clusters, either by merging smaller clusters into larger ones (agglomerative) or splitting large clusters into smaller ones (divisive).
+                    </div>
+                    
+                    <div class="explanation">
+                        Unlike K-Means, hierarchical clustering doesn't require pre-specifying the number of clusters. It creates a dendrogram that shows the hierarchical relationship between clusters at different levels.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Types of Hierarchical Clustering:</strong>
+                        <ul>
+                            <li><strong>Agglomerative (Bottom-up):</strong> Start with individual points, merge similar clusters</li>
+                            <li><strong>Divisive (Top-down):</strong> Start with all points, recursively split clusters</li>
+                        </ul>
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Agglomerative Clustering Steps:</strong>
+                        <ol>
+                            <li>Start with each data point as its own cluster</li>
+                            <li>Calculate distances between all pairs of clusters</li>
+                            <li>Merge the two closest clusters</li>
+                            <li>Update distance matrix</li>
+                            <li>Repeat until all points are in one cluster</li>
+                            <li>Create dendrogram showing merge history</li>
+                        </ol>
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Linkage Criteria:</strong>
+                        <ul>
+                            <li><strong>Single Linkage:</strong> Distance between closest points in clusters</li>
+                            <li><strong>Complete Linkage:</strong> Distance between farthest points in clusters</li>
+                            <li><strong>Average Linkage:</strong> Average distance between all pairs</li>
+                            <li><strong>Ward Linkage:</strong> Minimizes within-cluster variance</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <strong>Example:</strong> Organizing products in an e-commerce catalog - start with individual products, group similar items, then group categories, creating a natural hierarchy.
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <strong>Advantages:</strong>
+                            <ul>
+                                <li>No need to specify number of clusters</li>
+                                <li>Creates interpretable hierarchy</li>
+                                <li>Deterministic results</li>
+                                <li>Works well with small datasets</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <strong>Disadvantages:</strong>
+                            <ul>
+                                <li>Computationally expensive O(n³)</li>
+                                <li>Sensitive to outliers</li>
+                                <li>Difficult to handle large datasets</li>
+                                <li>Cannot undo previous steps</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Association Rules</h2>
+                
+                <div class="subtopic">
+                    <h3>Association Rule Mining</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Association rule mining discovers frequent patterns and relationships between different items in transactional data, expressed as "if-then" rules showing which items tend to occur together.
+                    </div>
+                    
+                    <div class="explanation">
+                        Association rules identify relationships of the form "If A, then B" where A and B are sets of items. These rules help understand customer behavior, product relationships, and cross-selling opportunities.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Key Metrics for Association Rules:</strong>
+                        <ul>
+                            <li><strong>Support:</strong> Frequency of itemset in dataset</li>
+                            <li><strong>Confidence:</strong> Reliability of the rule</li>
+                            <li><strong>Lift:</strong> Strength of association beyond random chance</li>
+                        </ul>
+                    </div>
+
+                    <div class="formula">
+                        Support(A→B) = |A ∪ B| / |Total Transactions|<br>
+                        Confidence(A→B) = |A ∪ B| / |A|<br>
+                        Lift(A→B) = Confidence(A→B) / Support(B)
+                    </div>
+
+                    <div class="example">
+                        <strong>Example Rule:</strong> {Bread, Butter} → {Milk}<br>
+                        Support = 20% (20% of transactions contain all three items)<br>
+                        Confidence = 80% (80% of bread+butter purchases also include milk)<br>
+                        Lift = 2.0 (milk is twice as likely with bread+butter than randomly)
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>Finding Patterns</h3>
+                    <div class="explanation">
+                        Pattern finding in association rule mining involves identifying frequent itemsets that meet minimum support and confidence thresholds, then generating meaningful rules from these patterns.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Apriori Algorithm Steps:</strong>
+                        <ol>
+                            <li>Find all frequent 1-itemsets (individual items)</li>
+                            <li>Generate candidate 2-itemsets from frequent 1-itemsets</li>
+                            <li>Count support for candidate 2-itemsets</li>
+                            <li>Keep only frequent 2-itemsets</li>
+                            <li>Repeat for larger itemsets until no new frequent sets found</li>
+                            <li>Generate association rules from frequent itemsets</li>
+                        </ol>
+                    </div>
+
+                    <div class="highlight">
+                        <strong>Apriori Principle:</strong> If an itemset is frequent, then all of its subsets must also be frequent. This allows pruning of candidate itemsets to improve efficiency.
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>Market Basket Analysis Using Association Rules</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Market Basket Analysis is a specific application of association rule mining that analyzes customer purchase patterns to understand which products are frequently bought together.
+                    </div>
+                    
+                    <div class="explanation">
+                        This analysis helps retailers optimize product placement, design promotions, and make recommendations. It's the foundation of "customers who bought this also bought" systems.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Business Applications:</strong>
+                        <ul>
+                            <li><strong>Product Placement:</strong> Place associated items near each other</li>
+                            <li><strong>Cross-selling:</strong> Recommend complementary products</li>
+                            <li><strong>Promotion Planning:</strong> Bundle frequently bought items</li>
+                            <li><strong>Inventory Management:</strong> Ensure associated items are in stock together</li>
+                            <li><strong>Store Layout:</strong> Design efficient shopping paths</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <strong>Real Example:</strong> Amazon's recommendation system uses market basket analysis to suggest "Frequently bought together" items, significantly increasing sales through cross-selling.
+                    </div>
+
+                    <div class="warning">
+                        <strong>Spurious Correlations:</strong> Not all associations are meaningful. High support, confidence, and lift don't guarantee causation or business value. Always validate findings with domain knowledge.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODEL PERFORMANCE -->
+        <div class="main-section">
+            <div class="section-header">
+                <div class="section-icon performance">6</div>
+                <h1>Model Performance</h1>
+            </div>
+
+            <div class="topic">
+                <h2>Evaluating Model Performance</h2>
+                
+                <div class="subtopic">
+                    <h3>Performance Evaluation Overview</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Model performance evaluation is the process of assessing how well a machine learning model performs on unseen data, using various metrics and validation techniques to measure accuracy, reliability, and generalization ability.
+                    </div>
+                    
+                    <div class="explanation">
+                        Proper evaluation is crucial because a model that performs well on training data might fail on new data (overfitting). Evaluation helps select the best model and tune parameters for optimal performance.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Evaluation Strategies:</strong>
+                        <ul>
+                            <li><strong>Hold-out Validation:</strong> Split data into train/test sets</li>
+                            <li><strong>Cross-validation:</strong> Multiple train/test splits</li>
+                            <li><strong>Bootstrap Sampling:</strong> Sampling with replacement</li>
+                            <li><strong>Time Series Validation:</strong> Temporal splits for time-dependent data</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>Classification Metrics</h3>
+                    <div class="explanation">
+                        Classification metrics evaluate how well a model predicts categorical outcomes. Different metrics emphasize different aspects of performance.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Key Classification Metrics:</strong>
+                        <ul>
+                            <li><strong>Accuracy:</strong> Proportion of correct predictions</li>
+                            <li><strong>Precision:</strong> True positives / (True positives + False positives)</li>
+                            <li><strong>Recall (Sensitivity):</strong> True positives / (True positives + False negatives)</li>
+                            <li><strong>F1-Score:</strong> Harmonic mean of precision and recall</li>
+                            <li><strong>Specificity:</strong> True negatives / (True negatives + False positives)</li>
+                        </ul>
+                    </div>
+
+                    <div class="formula">
+                        Accuracy = (TP + TN) / (TP + TN + FP + FN)<br>
+                        Precision = TP / (TP + FP)<br>
+                        Recall = TP / (TP + FN)<br>
+                        F1-Score = 2 × (Precision × Recall) / (Precision + Recall)
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Confusion Matrix:</strong>
+                        <table style="border-collapse: collapse; margin: 10px auto;">
+                            <tr style="border: 1px solid #ddd;">
+                                <td style="padding: 8px; border: 1px solid #ddd;"></td>
+                                <td style="padding: 8px; border: 1px solid #ddd;"><strong>Predicted Positive</strong></td>
+                                <td style="padding: 8px; border: 1px solid #ddd;"><strong>Predicted Negative</strong></td>
+                            </tr>
+                            <tr style="border: 1px solid #ddd;">
+                                <td style="padding: 8px; border: 1px solid #ddd;"><strong>Actual Positive</strong></td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">True Positive (TP)</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">False Negative (FN)</td>
+                            </tr>
+                            <tr style="border: 1px solid #ddd;">
+                                <td style="padding: 8px; border: 1px solid #ddd;"><strong>Actual Negative</strong></td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">False Positive (FP)</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">True Negative (TN)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>Regression Metrics</h3>
+                    <div class="explanation">
+                        Regression metrics evaluate how well a model predicts continuous numerical values by measuring the difference between predicted and actual values.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Key Regression Metrics:</strong>
+                        <ul>
+                            <li><strong>Mean Absolute Error (MAE):</strong> Average absolute difference</li>
+                            <li><strong>Mean Squared Error (MSE):</strong> Average squared difference</li>
+                            <li><strong>Root Mean Squared Error (RMSE):</strong> Square root of MSE</li>
+                            <li><strong>R-squared (R²):</strong> Proportion of variance explained</li>
+                            <li><strong>Mean Absolute Percentage Error (MAPE):</strong> Percentage-based error</li>
+                        </ul>
+                    </div>
+
+                    <div class="formula">
+                        MAE = (1/n) × Σ|yi - ŷi|<br>
+                        MSE = (1/n) × Σ(yi - ŷi)²<br>
+                        RMSE = √MSE<br>
+                        R² = 1 - (SSres / SStot)
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Improving Model Performance</h2>
+                
+                <div class="subtopic">
+                    <h3>Performance Improvement Strategies</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Model performance improvement involves systematic approaches to enhance model accuracy, reduce overfitting, and improve generalization through various techniques including data enhancement, feature engineering, and ensemble methods.
+                    </div>
+                    
+                    <div class="explanation">
+                        Improving model performance is an iterative process that involves understanding why a model is underperforming and applying appropriate techniques to address specific issues.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Common Improvement Strategies:</strong>
+                        <ul>
+                            <li><strong>Data Quality:</strong> Clean data, handle missing values, remove outliers</li>
+                            <li><strong>Feature Engineering:</strong> Create new features, transform existing ones</li>
+                            <li><strong>Feature Selection:</strong> Remove irrelevant or redundant features</li>
+                            <li><strong>Hyperparameter Tuning:</strong> Optimize algorithm parameters</li>
+                            <li><strong>Regularization:</strong> Prevent overfitting through penalty terms</li>
+                            <li><strong>Ensemble Methods:</strong> Combine multiple models</li>
+                        </ul>
+                    </div>
+
+                    <div class="warning">
+                        <strong>Bias-Variance Tradeoff:</strong> There's always a tradeoff between bias (underfitting) and variance (overfitting). The goal is to find the optimal balance for best generalization.
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Bagging</h2>
+                
+                <div class="subtopic">
+                    <h3>Bootstrap Aggregating (Bagging)</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Bagging is an ensemble method that trains multiple models on different bootstrap samples of the training data and combines their predictions through averaging (regression) or voting (classification) to reduce variance and improve generalization.
+                    </div>
+                    
+                    <div class="explanation">
+                        Bagging works on the principle that combining multiple models trained on slightly different data reduces overfitting and improves stability. Each model sees a different perspective of the data.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Bagging Algorithm Steps:</strong>
+                        <ol>
+                            <li><strong>Bootstrap Sampling:</strong> Create multiple bootstrap samples from training data</li>
+                            <li><strong>Train Models:</strong> Train identical algorithms on each bootstrap sample</li>
+                            <li><strong>Make Predictions:</strong> Each model makes predictions on new data</li>
+                            <li><strong>Aggregate Results:</strong> Combine predictions through voting or averaging</li>
+                        </ol>
+                    </div>
+
+                    <div class="formula">
+                        Bootstrap Sample: Sample n instances with replacement from original dataset<br>
+                        Final Prediction: ŷ = (1/M) × Σᵢ₌₁ᴹ ŷᵢ (regression)<br>
+                        Final Prediction: ŷ = mode(ŷ₁, ŷ₂, ..., ŷₘ) (classification)
+                    </div>
+
+                    <div class="example">
+                        <strong>Example:</strong> Train 100 decision trees on different bootstrap samples of customer data. For a new customer, each tree makes a prediction, and the final prediction is the majority vote of all trees.
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <strong>Advantages:</strong>
+                            <ul>
+                                <li>Reduces overfitting and variance</li>
+                                <li>Improves model stability</li>
+                                <li>Can be parallelized easily</li>
+                                <li>Works with any base algorithm</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <strong>Disadvantages:</strong>
+                            <ul>
+                                <li>Increased computational cost</li>
+                                <li>Less interpretable than single models</li>
+                                <li>May not improve bias significantly</li>
+                                <li>Requires more memory storage</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Boosting</h2>
+                
+                <div class="subtopic">
+                    <h3>Boosting Algorithms</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Boosting is an ensemble method that sequentially trains weak learners (models slightly better than random guessing), where each new model focuses on correcting the mistakes of previous models, ultimately creating a strong learner.
+                    </div>
+                    
+                    <div class="explanation">
+                        Unlike bagging which trains models independently, boosting trains models sequentially. Each model learns from the errors of its predecessors, gradually improving the ensemble's performance on difficult cases.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Popular Boosting Algorithms:</strong>
+                        <ul>
+                            <li><strong>AdaBoost:</strong> Adaptive Boosting, adjusts weights of misclassified examples</li>
+                            <li><strong>Gradient Boosting:</strong> Fits new models to residual errors</li>
+                            <li><strong>XGBoost:</strong> Extreme Gradient Boosting with regularization</li>
+                            <li><strong>LightGBM:</strong> Light Gradient Boosting Machine</li>
+                        </ul>
+                    </div>
+
+                    <div class="subtopic">
+                        <h3>AdaBoost Algorithm</h3>
+                        <div class="algorithm-box">
+                            <strong>AdaBoost Steps:</strong>
+                            <ol>
+                                <li><strong>Initialize:</strong> Set equal weights for all training examples</li>
+                                <li><strong>Train Weak Learner:</strong> Train model on weighted training data</li>
+                                <li><strong>Calculate Error:</strong> Compute weighted error rate</li>
+                                <li><strong>Calculate Alpha:</strong> Determine model weight based on error</li>
+                                <li><strong>Update Weights:</strong> Increase weights of misclassified examples</li>
+                                <li><strong>Repeat:</strong> Steps 2-5 for specified number of iterations</li>
+                                <li><strong>Combine:</strong> Final prediction is weighted combination of all models</li>
+                            </ol>
+                        </div>
+
+                        <div class="formula">
+                            Alpha: αₜ = 0.5 × ln((1 - εₜ) / εₜ)<br>
+                            Weight Update: wᵢ⁽ᵗ⁺¹⁾ = wᵢ⁽ᵗ⁾ × exp(-αₜ × yᵢ × hₜ(xᵢ))<br>
+                            Final Prediction: H(x) = sign(Σₜ₌₁ᵀ αₜ × hₜ(x))
+                        </div>
+                    </div>
+
+                    <div class="example">
+                        <strong>Example:</strong> Email spam detection using AdaBoost with decision stumps. First model might focus on word "free," second model learns to identify "money" in emails that first model missed, third model handles more subtle patterns.
+                    </div>
+
+                    <div class="highlight">
+                        <strong>Key Insight:</strong> Boosting reduces both bias and variance, making it particularly effective for improving weak learners like decision stumps into highly accurate models.
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h2>Random Forests</h2>
+                
+                <div class="subtopic">
+                    <h3>Random Forest Algorithm</h3>
+                    <div class="definition">
+                        <strong>Definition:</strong> Random Forest is an ensemble method that combines bagging with random feature selection, training multiple decision trees on bootstrap samples while randomly selecting a subset of features at each split, then aggregating their predictions.
+                    </div>
+                    
+                    <div class="explanation">
+                        Random Forest addresses the limitation of bagging where trees might be too similar. By introducing randomness in both data sampling and feature selection, it creates more diverse trees that collectively make better predictions.
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Random Forest Components:</strong>
+                        <ul>
+                            <li><strong>Bootstrap Sampling:</strong> Each tree trained on different data sample</li>
+                            <li><strong>Random Feature Selection:</strong> At each split, consider only random subset of features</li>
+                            <li><strong>Decision Trees:</strong> Base learners (usually unpruned)</li>
+                            <li><strong>Voting/Averaging:</strong> Combine predictions from all trees</li>
+                        </ul>
+                    </div>
+
+                    <div class="algorithm-box">
+                        <strong>Random Forest Algorithm Steps:</strong>
+                        <ol>
+                            <li><strong>Create Bootstrap Sample:</strong> Sample n instances with replacement</li>
+                            <li><strong>Train Decision Tree:</strong> At each node, randomly select m features (m < total features)</li>
+                            <li><strong>Find Best Split:</strong> Choose best split among selected m features</li>
+                            <li><strong>Grow Tree:</strong> Continue until stopping criteria met (don't prune)</li>
+                            <li><strong>Repeat:</strong> Steps 1-4 for desired number of trees</li>
+                            <li><strong>Make Predictions:</strong> Aggregate predictions from all trees</li>
+                        </ol>
+                    </div>
+
+                    <div class="formula">
+                        Typical m values:<br>
+                        Classification: m = √(total features)<br>
+                        Regression: m = (total features) / 3<br><br>
+                        Out-of-Bag Error: Error rate using instances not in bootstrap sample
+                    </div>
+
+                    <div class="subtopic">
+                        <h3>Random Forest Features</h3>
+                        <div class="algorithm-box">
+                            <strong>Key Advantages:</strong>
+                            <ul>
+                                <li><strong>High Accuracy:</strong> Often achieves excellent performance</li>
+                                <li><strong>Handles Overfitting:</strong> Robust against overfitting</li>
+                                <li><strong>Feature Importance:</strong> Provides feature importance rankings</li>
+                                <li><strong>Missing Values:</strong> Can handle missing data well</li>
+                                <li><strong>Mixed Data Types:</strong> Works with numerical and categorical features</li>
+                                <li><strong>Parallelizable:</strong> Trees can be trained independently</li>
+                            </ul>
+                        </div>
+
+                        <div class="algorithm-box">
+                            <strong>Feature Importance Calculation:</strong>
+                            <ul>
+                                <li><strong>Gini Importance:</strong> Based on impurity reduction at splits</li>
+                                <li><strong>Permutation Importance:</strong> Based on performance decrease when feature is shuffled</li>
+                                <li><strong>Out-of-Bag Importance:</strong> Using out-of-bag samples for validation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="example">
+                        <strong>Example:</strong> Credit scoring using Random Forest with 1000 trees. Each tree uses different customer samples and considers random subsets of features (income, age, credit history, etc.). Final decision combines all tree predictions.
+                    </div>
+
+                    <div class="highlight">
+                        <strong>Hyperparameters to Tune:</strong>
+                        <ul>
+                            <li><strong>n_estimators:</strong> Number of trees (more is usually better, but diminishing returns)</li>
+                            <li><strong>max_features:</strong> Number of features to consider at each split</li>
+                            <li><strong>max_depth:</strong> Maximum depth of trees</li>
+                            <li><strong>min_samples_split:</strong> Minimum samples required to split a node</li>
+                            <li><strong>min_samples_leaf:</strong> Minimum samples required at leaf node</li>
+                        </ul>
+                    </div>
+
+                    <div class="warning">
+                        <strong>Computational Considerations:</strong> Random Forests can be memory-intensive and slower for prediction compared to single models, especially with many trees. However, training can be parallelized effectively.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer" style="text-align: center; color: white; margin-top: 40px; padding: 20px; opacity: 0.8;">
+            <p>🎯 This comprehensive guide covers all essential concepts in Predictive Analytics. Master these topics through theory understanding and practical implementation in R programming!</p>
+        </div>
+    </div>
+</body>
+</html>
+                    

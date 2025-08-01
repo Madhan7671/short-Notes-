@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Short Notes</title>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background: #f8f9fb;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        padding: 2rem;
+      }
+
+      /* Portfolio Button (Top Right) */
+      .portfolio-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #0077b5, #38bdf8);
+        color: #fff;
+        border: none;
+        padding: 10px 18px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        text-decoration: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: background 0.3s;
+        z-index: 1100;
+      }
+      .portfolio-btn:hover {
+        background: linear-gradient(135deg, #005f8a, #2496c4);
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        width: 100%;
+        max-width: 1200px;
+      }
+
+      .card {
+        background: #fff;
+        padding: 1.5rem;
+        border-radius: 12px;
+        text-align: center;
+        text-decoration: none;
+        color: #2d3436;
+        font-weight: 600;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+      .card:hover {
+        background: #f0f9ff;
+        transform: translateY(-5px);
+      }
+
+      /* Contact Menu Wrapper */
+      .contact-wrapper {
+        position: fixed;
+        right: 40px;
+        bottom: 40px;
+        width: 80px;
+        height: 80px;
+        z-index: 1000;
+      }
+
+      /* Main Button */
+      .contact-btn {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: #fff;
+        border: none;
+        font-size: 12px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 1.2;
+        cursor: pointer;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: pulse 3s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 10px rgba(102, 126, 234, 0.4);
+        }
+        50% {
+          box-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
+        }
+        100% {
+          box-shadow: 0 0 10px rgba(102, 126, 234, 0.4);
+        }
+      }
+
+      /* Menu Items */
+      .menu-item {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #fff;
+        color: #fff;
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.4s ease;
+        font-size: 20px;
+        text-decoration: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+      .menu-item.call {
+        background: #4caf50;
+      }
+      .menu-item.email {
+        background: #ff9800;
+      }
+      .menu-item.linkedin {
+        background: #0077b5;
+      }
+
+      /* Active state: expand to left half circle */
+      .contact-wrapper.active .menu-item:nth-child(1) {
+        transform: translate(calc(-90px * cos(0deg)), calc(-90px * sin(0deg)));
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .contact-wrapper.active .menu-item:nth-child(2) {
+        transform: translate(
+          calc(-90px * cos(45deg)),
+          calc(-90px * sin(45deg))
+        );
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .contact-wrapper.active .menu-item:nth-child(3) {
+        transform: translate(
+          calc(-90px * cos(90deg)),
+          calc(-90px * sin(90deg))
+        );
+        opacity: 1;
+        pointer-events: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Portfolio Button -->
+    <a href="about.html" class="portfolio-btn">About Me</a>
+
+    <h1>Available Tutorials</h1>
+    <div class="card-container">
+      <a href="computer_networks_pdf.html" class="card">Computer Network</a>
+      <a href="dbms_tutorial.html" class="card">DBMS Tutorial</a>
+      <a href="os_syllabus_pdf_ready.html" class="card">Operating Systems</a>
+      <a href="predictive_analytics_guide.html" class="card"
+        >Predictive Analytics</a
+      >
+      <a href="oop_interview_guide.html" class="card">OOPS (Java/C++)</a>
+    </div>
+
+    <!-- Floating Radial Menu -->
+    <div class="contact-wrapper" id="contactWrapper">
+      <a href="tel:+917671917739" class="menu-item call" title="Call"
+        ><i class="fas fa-phone"></i
+      ></a>
+      <a
+        href="mailto:madhanmaddasani7671@gmail.com"
+        class="menu-item email"
+        title="Email"
+        ><i class="fas fa-envelope"></i
+      ></a>
+      <a
+        href="https://www.linkedin.com/in/madhan1729/"
+        class="menu-item linkedin"
+        title="LinkedIn"
+        target="_blank"
+        ><i class="fab fa-linkedin-in"></i
+      ></a>
+      <button class="contact-btn" id="contactBtn">Contact<br />Us</button>
+    </div>
+
+    <script>
+      const wrapper = document.getElementById("contactWrapper");
+      const btn = document.getElementById("contactBtn");
+
+      btn.addEventListener("click", () => {
+        wrapper.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>

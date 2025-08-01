@@ -1,0 +1,2622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Networks Complete Guide - Detailed Notes</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0.7in;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.4;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 15px;
+            background: white;
+            font-size: 16px;
+            text-wrap: fixed;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #2980b9;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-left: 4px solid #3498db;
+            padding-left: 12px;
+            background-color: #f8f9fa;
+            padding: 8px 12px;
+        }
+        
+        h3 {
+            color: #34495e;
+            font-size: 1.1em;
+            margin-top: 18px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        h4 {
+            color: #7f8c8d;
+            font-size: 1em;
+            margin-top: 12px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        code {
+            background-color: #f8f9fa;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Consolas', monospace;
+            color: #e74c3c;
+            font-size: 10px;
+        }
+        
+        .definition-box {
+            background-color: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 4px;
+        }
+        
+        .how-it-works {
+            background-color: #f0f8ff;
+            border-left: 4px solid #4169e1;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 4px;
+        }
+        
+        .important-note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 4px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 10px;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 6px;
+            text-align: left;
+        }
+        
+        .comparison-table th {
+            background-color: #f2f2f2;
+            font-weight: 600;
+        }
+        
+        .diagram {
+            background-color: #f9f9f9;
+            border: 2px solid #ddd;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            font-family: monospace;
+            font-size: 10px;
+            border-radius: 5px;
+        }
+        
+        .section-divider {
+            border-top: 2px solid #ecf0f1;
+            margin: 20px 0;
+        }
+        
+        .acronym {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+        
+        .formula {
+            background-color: #f5f5f5;
+            padding: 8px;
+            border-radius: 3px;
+            font-family: monospace;
+            text-align: center;
+            margin: 8px 0;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+                margin: 0;
+                font-size: 10px;
+            }
+            
+            .page-break {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Computer Networks Complete Guide - Detailed Study Notes</h1>
+
+    <h2>1. INTRODUCTION TO COMPUTER NETWORKS</h2>
+
+    <h3>1.1 What is a Computer Network?</h3>
+    <div class="definition-box">
+        <strong>Computer Network:</strong> A collection of interconnected computing devices that can communicate and share resources with each other through a communication medium.
+        <br><br>
+        <strong>Key Components:</strong>
+        <ul>
+            <li><strong>Nodes:</strong> Devices like computers, servers, printers, routers</li>
+            <li><strong>Links:</strong> Physical or wireless connections (cables, radio waves)</li>
+            <li><strong>Protocols:</strong> Rules for communication (TCP/IP, HTTP, etc.)</li>
+            <li><strong>Network Interface:</strong> Hardware/software for network access</li>
+        </ul>
+    </div>
+
+    <h3>1.2 Uses of Computer Networks</h3>
+    <ul>
+        <li><strong>Resource Sharing:</strong>
+            <ul>
+                <li>Hardware: Printers, scanners, storage devices</li>
+                <li>Software: Applications, databases, operating systems</li>
+                <li>Internet connection sharing</li>
+            </ul>
+        </li>
+        <li><strong>Data Sharing:</strong>
+            <ul>
+                <li>File transfer between computers</li>
+                <li>Database synchronization</li>
+                <li>Real-time data sharing</li>
+            </ul>
+        </li>
+        <li><strong>Communication:</strong>
+            <ul>
+                <li>Email (SMTP, POP3, IMAP)</li>
+                <li>Instant messaging</li>
+                <li>Video conferencing (VoIP)</li>
+                <li>Social networking</li>
+            </ul>
+        </li>
+        <li><strong>Business Applications:</strong>
+            <ul>
+                <li>E-commerce transactions</li>
+                <li>Online banking</li>
+                <li>Cloud computing services</li>
+                <li>Remote work capabilities</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>1.3 Network Types (Based on Geographic Coverage)</h3>
+
+    <h4>1. PAN (Personal Area Network)</h4>
+    <div class="definition-box">
+        <strong>Definition:</strong> Smallest network covering personal workspace (typically 10 meters)
+        <br><strong>Technologies:</strong> Bluetooth, IrDA, Zigbee, USB
+        <br><strong>Examples:</strong> Phone to headphone connection, laptop to mouse
+    </div>
+
+    <div class="diagram">
+        <strong>PAN Example</strong><br><br>
+        [Smartphone] ←→ Bluetooth ←→ [Headphones]<br>
+                ↓<br>
+        [Laptop] ←→ USB ←→ [External Drive]
+    </div>
+
+    <h4>2. LAN (Local Area Network)</h4>
+    <div class="definition-box">
+        <strong>Definition:</strong> Network covering small geographic area (building, campus)
+        <br><strong>Range:</strong> Up to few kilometers
+        <br><strong>Technologies:</strong> Ethernet (IEEE 802.3), Wi-Fi (IEEE 802.11)
+        <br><strong>Speed:</strong> 10 Mbps to 10 Gbps
+        <br><strong>Examples:</strong> Office network, home Wi-Fi, school computer lab
+    </div>
+
+    <h4>3. MAN (Metropolitan Area Network)</h4>
+    <div class="definition-box">
+        <strong>Definition:</strong> Network covering city or metropolitan area
+        <br><strong>Range:</strong> 5-50 kilometers
+        <br><strong>Technologies:</strong> Fiber optic cables, microwave links
+        <br><strong>Examples:</strong> City-wide Wi-Fi, cable TV networks, university campus network
+    </div>
+
+    <h4>4. WAN (Wide Area Network)</h4>
+    <div class="definition-box">
+        <strong>Definition:</strong> Network covering large geographic areas (countries, continents)
+        <br><strong>Range:</strong> Unlimited (global)
+        <br><strong>Technologies:</strong> Leased lines, satellites, MPLS, Internet
+        <br><strong>Examples:</strong> Internet, corporate networks, telephone networks
+    </div>
+
+    <div class="comparison-table">
+        <table>
+            <tr>
+                <th>Network Type</th>
+                <th>Coverage</th>
+                <th>Speed</th>
+                <th>Cost</th>
+                <th>Error Rate</th>
+                <th>Ownership</th>
+            </tr>
+            <tr>
+                <td><strong>PAN</strong></td>
+                <td>~10m</td>
+                <td>1-100 Mbps</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>Personal</td>
+            </tr>
+            <tr>
+                <td><strong>LAN</strong></td>
+                <td>~1km</td>
+                <td>10 Mbps-10 Gbps</td>
+                <td>Moderate</td>
+                <td>Low</td>
+                <td>Private</td>
+            </tr>
+            <tr>
+                <td><strong>MAN</strong></td>
+                <td>~50km</td>
+                <td>1-100 Mbps</td>
+                <td>High</td>
+                <td>Moderate</td>
+                <td>Public/Private</td>
+            </tr>
+            <tr>
+                <td><strong>WAN</strong></td>
+                <td>Unlimited</td>
+                <td>56 Kbps-100 Gbps</td>
+                <td>Very High</td>
+                <td>High</td>
+                <td>Public</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>1.4 Network Devices & Topologies</h3>
+
+    <h4>Network Devices:</h4>
+
+    <div class="definition-box">
+        <strong>Hub (Physical Layer Device):</strong>
+        <ul>
+            <li>Basic connectivity device with multiple ports</li>
+            <li>Operates at Physical Layer (Layer 1)</li>
+            <li>Broadcasts data to all connected devices</li>
+            <li>Creates single collision domain</li>
+            <li>Half-duplex communication only</li>
+            <li>Largely obsolete due to limitations</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>Switch (Data Link Layer Device):</strong>
+        <ul>
+            <li>Intelligent device that learns MAC addresses</li>
+            <li>Operates at Data Link Layer (Layer 2)</li>
+            <li>Maintains MAC address table (CAM table)</li>
+            <li>Creates separate collision domain for each port</li>
+            <li>Supports full-duplex communication</li>
+            <li>Reduces network collisions significantly</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How Switch Works:</strong>
+        <ol>
+            <li><strong>Learning:</strong> Records source MAC addresses from incoming frames</li>
+            <li><strong>Flooding:</strong> Broadcasts frame to all ports if destination unknown</li>
+            <li><strong>Forwarding:</strong> Sends frame to specific port if destination known</li>
+            <li><strong>Filtering:</strong> Drops frame if source and destination on same port</li>
+            <li><strong>Aging:</strong> Removes old MAC entries after timeout (typically 300 seconds)</li>
+        </ol>
+    </div>
+
+    <div class="definition-box">
+        <strong>Router (Network Layer Device):</strong>
+        <ul>
+            <li>Connects different networks (internetworking)</li>
+            <li>Operates at Network Layer (Layer 3)</li>
+            <li>Makes routing decisions based on IP addresses</li>
+            <li>Maintains routing tables</li>
+            <li>Provides NAT (Network Address Translation)</li>
+            <li>Can filter traffic (basic firewall functionality)</li>
+        </ul>
+    </div>
+
+    <div class="diagram">
+        <strong>Device Comparison</strong><br><br>
+        Hub: [PC1] ←→ HUB ←→ [PC2] (Shared bandwidth)<br>
+                    ↕<br>
+                  [PC3]<br><br>
+        
+        Switch: [PC1] ←→ SWITCH ←→ [PC2] (Dedicated bandwidth)<br>
+                        ↕<br>
+                      [PC3]<br><br>
+        
+        Router: [LAN1] ←→ ROUTER ←→ [LAN2]<br>
+                        ↕<br>
+                    [Internet]
+    </div>
+
+    <h4>Network Topologies:</h4>
+
+    <div class="definition-box">
+        <strong>Bus Topology:</strong>
+        <ul>
+            <li>All devices connected to single cable (backbone)</li>
+            <li>Terminators at both ends prevent signal reflection</li>
+            <li>Uses CSMA/CD for media access control</li>
+            <li>Advantages: Simple, cost-effective, easy to extend</li>
+            <li>Disadvantages: Single point of failure, performance degrades with more devices</li>
+        </ul>
+    </div>
+
+    <div class="diagram">
+        <strong>Bus Topology</strong><br>
+        [PC1] ——— [PC2] ——— [PC3] ——— [PC4]<br>
+        Terminator ————————————————— Terminator
+    </div>
+
+    <div class="definition-box">
+        <strong>Star Topology:</strong>
+        <ul>
+            <li>All devices connected to central hub/switch</li>
+            <li>Most common topology in modern LANs</li>
+            <li>Easy to troubleshoot and manage</li>
+            <li>Advantages: No collision issues, easy fault isolation</li>
+            <li>Disadvantages: Central device failure affects entire network</li>
+        </ul>
+    </div>
+
+    <div class="diagram">
+        <strong>Star Topology</strong><br><br>
+              [PC1]<br>
+                |<br>
+        [PC4] ——— HUB/SWITCH ——— [PC2]<br>
+                |<br>
+              [PC3]
+    </div>
+
+    <div class="definition-box">
+        <strong>Ring Topology:</strong>
+        <ul>
+            <li>Devices connected in circular fashion</li>
+            <li>Data travels in one direction (unidirectional)</li>
+            <li>Uses token passing for media access</li>
+            <li>Examples: Token Ring (IEEE 802.5), FDDI</li>
+            <li>Advantages: Predictable performance, no collisions</li>
+            <li>Disadvantages: Single break affects entire network</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>Mesh Topology:</strong>
+        <ul>
+            <li>Every device connected to every other device</li>
+            <li>Full Mesh: n(n-1)/2 connections for n devices</li>
+            <li>Partial Mesh: Some devices have multiple connections</li>
+            <li>Advantages: High reliability, multiple paths</li>
+            <li>Disadvantages: Expensive, complex to manage</li>
+        </ul>
+    </div>
+
+    <h3>1.5 Internet Basics</h3>
+
+    <div class="definition-box">
+        <strong>Internet:</strong> Global network of interconnected networks using TCP/IP protocol suite
+        <br><strong>Key Components:</strong>
+        <ul>
+            <li><strong>ISP (Internet Service Provider):</strong> Companies providing Internet access</li>
+            <li><strong>Backbone:</strong> High-speed data transmission lines</li>
+            <li><strong>Routers:</strong> Direct traffic between networks</li>
+            <li><strong>Protocols:</strong> Standards for communication (TCP/IP, HTTP, DNS)</li>
+        </ul>
+    </div>
+
+    <h4>Internet Addressing System:</h4>
+
+    <div class="definition-box">
+        <strong>IP Address (Internet Protocol Address):</strong>
+        <ul>
+            <li>Unique numerical identifier for network devices</li>
+            <li><strong>IPv4:</strong> 32-bit address (e.g., 192.168.1.1)</li>
+            <li><strong>IPv6:</strong> 128-bit address (e.g., 2001:db8::1)</li>
+            <li>Two parts: Network portion + Host portion</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>Domain Name System (DNS):</strong>
+        <ul>
+            <li>Translates human-readable names to IP addresses</li>
+            <li>Hierarchical naming system</li>
+            <li>Components: TLD (.com, .org), SLD (google), subdomain (www)</li>
+            <li>Example: www.google.com → 172.217.164.110</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How DNS Resolution Works:</strong>
+        <ol>
+            <li>User types URL in browser</li>
+            <li>Browser checks local DNS cache</li>
+            <li>Query sent to ISP's DNS server</li>
+            <li>Recursive queries to Root, TLD, and Authoritative servers</li>
+            <li>IP address returned to browser</li>
+            <li>Browser connects to web server using IP address</li>
+        </ol>
+    </div>
+
+    <div class="definition-box">
+        <strong>URL (Uniform Resource Locator):</strong>
+        <br>Format: <code>protocol://domain:port/path?query#fragment</code>
+        <br>Example: <code>https://www.example.com:443/page?id=123#section1</code>
+        <ul>
+            <li><strong>Protocol:</strong> http, https, ftp, etc.</li>
+            <li><strong>Domain:</strong> www.example.com</li>
+            <li><strong>Port:</strong> 443 (optional, default for https)</li>
+            <li><strong>Path:</strong> /page</li>
+            <li><strong>Query:</strong> ?id=123</li>
+            <li><strong>Fragment:</strong> #section1</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>Packets:</strong>
+        <ul>
+            <li>Small units of data transmitted over networks</li>
+            <li>Contains header (addressing info) and payload (actual data)</li>
+            <li>Typical size: 1500 bytes (Ethernet MTU)</li>
+            <li>Advantages: Error recovery, load balancing, efficient transmission</li>
+        </ul>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>2. NETWORK MODELS</h2>
+
+    <h3>2.1 Why Layers?</h3>
+    <div class="definition-box">
+        <strong>Layered Architecture Benefits:</strong>
+        <ul>
+            <li><strong>Modularity:</strong> Each layer has specific, well-defined functions</li>
+            <li><strong>Interoperability:</strong> Standardized interfaces between layers</li>
+            <li><strong>Maintainability:</strong> Changes in one layer don't affect others</li>
+            <li><strong>Troubleshooting:</strong> Easier to isolate and fix problems</li>
+            <li><strong>Development:</strong> Different teams can work on different layers</li>
+            <li><strong>Reusability:</strong> Lower layers can support multiple upper layer protocols</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How Layering Works:</strong>
+        <ol>
+            <li><strong>Encapsulation:</strong> Each layer adds its header to data from above</li>
+            <li><strong>Transmission:</strong> Complete frame sent over physical medium</li>
+            <li><strong>De-encapsulation:</strong> Receiving device removes headers layer by layer</li>
+            <li><strong>Peer Communication:</strong> Each layer communicates with same layer on other device</li>
+        </ol>
+    </div>
+
+    <h3>2.2 TCP/IP Model (4 Layers)</h3>
+
+    <div class="diagram">
+        <strong>TCP/IP Model</strong><br><br>
+        ┌─────────────────────┐<br>
+        │   Application       │ ← HTTP, FTP, SMTP, DNS<br>
+        ├─────────────────────┤<br>
+        │   Transport         │ ← TCP, UDP<br>
+        ├─────────────────────┤<br>
+        │   Internet          │ ← IP, ICMP, ARP<br>
+        ├─────────────────────┤<br>
+        │   Network Access    │ ← Ethernet, Wi-Fi<br>
+        └─────────────────────┘
+    </div>
+
+    <h4>Layer 4: Application Layer</h4>
+    <div class="definition-box">
+        <strong>Function:</strong> Provides network services directly to user applications
+        <br><strong>Protocols:</strong>
+        <ul>
+            <li><strong>HTTP/HTTPS:</strong> Web browsing (ports 80/443)</li>
+            <li><strong>FTP:</strong> File transfer (ports 20/21)</li>
+            <li><strong>SMTP:</strong> Email sending (port 25)</li>
+            <li><strong>DNS:</strong> Domain name resolution (port 53)</li>
+            <li><strong>DHCP:</strong> Automatic IP configuration (ports 67/68)</li>
+            <li><strong>Telnet/SSH:</strong> Remote terminal access (ports 23/22)</li>
+        </ul>
+    </div>
+
+    <h4>Layer 3: Transport Layer</h4>
+    <div class="definition-box">
+        <strong>Function:</strong> Provides end-to-end communication services
+        <br><strong>Key Features:</strong>
+        <ul>
+            <li>Segmentation and reassembly of data</li>
+            <li>Error detection and correction</li>
+            <li>Flow control</li>
+            <li>Multiplexing using port numbers</li>
+        </ul>
+        <br><strong>Protocols:</strong>
+        <ul>
+            <li><strong>TCP:</strong> Reliable, connection-oriented</li>
+            <li><strong>UDP:</strong> Unreliable, connectionless</li>
+        </ul>
+    </div>
+
+    <h4>Layer 2: Internet Layer</h4>
+    <div class="definition-box">
+        <strong>Function:</strong> Handles routing and logical addressing
+        <br><strong>Key Features:</strong>
+        <ul>
+            <li>Logical addressing using IP addresses</li>
+            <li>Routing between different networks</li>
+            <li>Packet forwarding</li>
+            <li>Fragmentation and reassembly</li>
+        </ul>
+        <br><strong>Protocols:</strong>
+        <ul>
+            <li><strong>IP:</strong> Internet Protocol (IPv4/IPv6)</li>
+            <li><strong>ICMP:</strong> Internet Control Message Protocol</li>
+            <li><strong>ARP:</strong> Address Resolution Protocol</li>
+        </ul>
+    </div>
+
+    <h4>Layer 1: Network Access Layer</h4>
+    <div class="definition-box">
+        <strong>Function:</strong> Handles physical transmission of data
+        <br><strong>Key Features:</strong>
+        <ul>
+            <li>Physical addressing using MAC addresses</li>
+            <li>Frame formatting</li>
+            <li>Error detection</li>
+            <li>Media access control</li>
+        </ul>
+        <br><strong>Technologies:</strong>
+        <ul>
+            <li><strong>Ethernet:</strong> Wired LAN technology</li>
+            <li><strong>Wi-Fi:</strong> Wireless LAN technology</li>
+            <li><strong>PPP:</strong> Point-to-Point Protocol</li>
+        </ul>
+    </div>
+
+    <h3>2.3 OSI Model (7 Layers)</h3>
+
+    <div class="diagram">
+        <strong>OSI Model</strong><br><br>
+        7 │ Application   │ ← Network services<br>
+        6 │ Presentation  │ ← Data formatting<br>
+        5 │ Session       │ ← Dialog control<br>
+        4 │ Transport     │ ← End-to-end delivery<br>
+        3 │ Network       │ ← Routing<br>
+        2 │ Data Link     │ ← Frame delivery<br>
+        1 │ Physical      │ ← Bits transmission<br>
+    </div>
+
+    <div class="important-note">
+        <strong>Memory Aid:</strong> "All People Seem To Need Data Processing" or "Physical Data Network Transport Session Presentation Application"
+    </div>
+
+    <div class="comparison-table">
+        <table>
+            <tr>
+                <th>OSI Layer</th>
+                <th>Function</th>
+                <th>Examples</th>
+                <th>TCP/IP Equivalent</th>
+            </tr>
+            <tr>
+                <td><strong>7-Application</strong></td>
+                <td>Network services to applications</td>
+                <td>HTTP, FTP, SMTP</td>
+                <td rowspan="3">Application</td>
+            </tr>
+            <tr>
+                <td><strong>6-Presentation</strong></td>
+                <td>Data formatting, encryption</td>
+                <td>SSL/TLS, JPEG, ASCII</td>
+            </tr>
+            <tr>
+                <td><strong>5-Session</strong></td>
+                <td>Session management</td>
+                <td>NetBIOS, RPC</td>
+            </tr>
+            <tr>
+                <td><strong>4-Transport</strong></td>
+                <td>End-to-end communication</td>
+                <td>TCP, UDP</td>
+                <td>Transport</td>
+            </tr>
+            <tr>
+                <td><strong>3-Network</strong></td>
+                <td>Routing, logical addressing</td>
+                <td>IP, ICMP, OSPF</td>
+                <td>Internet</td>
+            </tr>
+            <tr>
+                <td><strong>2-Data Link</strong></td>
+                <td>Frame delivery, error detection</td>
+                <td>Ethernet, PPP, Wi-Fi</td>
+                <td rowspan="2">Network Access</td>
+            </tr>
+            <tr>
+                <td><strong>1-Physical</strong></td>
+                <td>Bit transmission</td>
+                <td>Cables, hubs, signals</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>3. PHYSICAL LAYER</h2>
+
+    <h3>3.1 Signals</h3>
+
+    <div class="definition-box">
+        <strong>Signal:</strong> Physical quantity that varies with time to represent information
+    </div>
+
+    <h4>Analog Signals</h4>
+    <div class="definition-box">
+        <strong>Analog Signal:</strong> Continuous signal that varies smoothly over time
+        <br><strong>Characteristics:</strong>
+        <ul>
+            <li><strong>Amplitude:</strong> Maximum strength of signal</li>
+            <li><strong>Frequency:</strong> Number of cycles per second (Hz)</li>
+            <li><strong>Phase:</strong> Position of waveform in time</li>
+            <li><strong>Period:</strong> Time for one complete cycle (T = 1/f)</li>
+        </ul>
+        <br><strong>Examples:</strong> Voice, radio waves, sound waves
+    </div>
+
+    <div class="formula">
+        <strong>Analog Signal Formula:</strong><br>
+        s(t) = A × sin(2πft + φ)<br>
+        Where: A = Amplitude, f = Frequency, φ = Phase
+    </div>
+
+    <h4>Digital Signals</h4>
+    <div class="definition-box">
+        <strong>Digital Signal:</strong> Discrete signal with finite number of values
+        <br><strong>Characteristics:</strong>
+        <ul>
+            <li><strong>Binary:</strong> Two levels (0 and 1)</li>
+            <li><strong>Bit Rate:</strong> Number of bits per second (bps)</li>
+            <li><strong>Bit Interval:</strong> Time duration of one bit</li>
+            <li><strong>Square Wave:</strong> Abrupt transitions between levels</li>
+        </ul>
+        <br><strong>Advantages:</strong> Noise immunity, easy regeneration, error detection
+    </div>
+
+    <div class="how-it-works">
+        <strong>How Digital Transmission Works:</strong>
+        <ol>
+            <li><strong>Encoding:</strong> Convert data to binary format</li>
+            <li><strong>Line Coding:</strong> Convert binary to electrical signals</li>
+            <li><strong>Transmission:</strong> Send signals over physical medium</li>
+            <li><strong>Reception:</strong> Receive and decode signals</li>
+            <li><strong>Regeneration:</strong> Restore original signal quality</li>
+        </ol>
+    </div>
+
+    <div class="diagram">
+        <strong>Signal Comparison</strong><br><br>
+        Analog: ∿∿∿∿∿∿∿∿ (Smooth sine wave)<br>
+        Digital: ‾‾|___|‾‾‾|__ (Square wave)
+    </div>
+
+    <h3>3.2 Transmission Media</h3>
+
+    <div class="definition-box">
+        <strong>Transmission Media:</strong> Physical pathway for electromagnetic signals between transmitter and receiver
+        <br><strong>Types:</strong>
+        <ul>
+            <li><strong>Guided Media:</strong> Signals confined to physical path</li>
+            <li><strong>Unguided Media:</strong> Signals propagate through air/space</li>
+        </ul>
+    </div>
+
+    <h4>Guided Media (Wired)</h4>
+
+    <div class="definition-box">
+        <strong>1. Twisted Pair Cable:</strong>
+        <br><strong>Construction:</strong> Two insulated copper wires twisted together
+        <br><strong>Types:</strong>
+        <ul>
+            <li><strong>UTP (Unshielded Twisted Pair):</strong> No shielding, cheaper</li>
+            <li><strong>STP (Shielded Twisted Pair):</strong> Foil/braided shielding, better noise immunity</li>
+        </ul>
+        <br><strong>Categories:</strong>
+        <ul>
+            <li><strong>Cat 3:</strong> 10 Mbps, voice applications</li>
+            <li><strong>Cat 5:</strong> 100 Mbps, Fast Ethernet</li>
+            <li><strong>Cat 5e:</strong> 1 Gbps, Enhanced Cat 5</li>
+            <li><strong>Cat 6:</strong> 10 Gbps (short distance), improved specifications</li>
+            <li><strong>Cat 6a:</strong> 10 Gbps (100m), augmented Cat 6</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>Why Twisted Pairs Work:</strong>
+        <ul>
+            <li><strong>Twisting:</strong> Reduces electromagnetic interference (EMI)</li>
+            <li><strong>Cancellation:</strong> External noise affects both wires equally, cancels out</li>
+            <li><strong>Crosstalk Reduction:</strong> Different twist rates prevent interference between pairs</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>2. Coaxial Cable:</strong>
+        <br><strong>Construction:</strong> Central conductor, insulation, braided shield, outer jacket
+        <br><strong>Types:</strong>
+        <ul>
+            <li><strong>Baseband:</strong> Single signal (10Base2, 10Base5)</li>
+            <li><strong>Broadband:</strong> Multiple signals (Cable TV, Cable Internet)</li>
+        </ul>
+        <br><strong>Advantages:</strong> Higher bandwidth than twisted pair, better shielding
+        <br><strong>Applications:</strong> Cable TV, broadband Internet, Ethernet backbones
+    </div>
+
+    <div class="definition-box">
+        <strong>3. Fiber Optic Cable:</strong>
+        <br><strong>Construction:</strong> Glass/plastic core, cladding, buffer, jacket
+        <br><strong>Principle:</strong> Total Internal Reflection of light
+        <br><strong>Types:</strong>
+        <ul>
+            <li><strong>Single-mode:</strong> Small core (8-10 μm), laser source, long distance (>40km)</li>
+            <li><strong>Multi-mode:</strong> Large core (50-100 μm), LED source, shorter distance (<2km)</li>
+        </ul>
+        <br><strong>Advantages:</strong> High bandwidth, long distance, immune to EMI, secure
+        <br><strong>Disadvantages:</strong> Expensive, difficult installation, fragile
+    </div>
+
+    <div class="how-it-works">
+        <strong>How Fiber Optics Work:</strong>
+        <ol>
+            <li><strong>Light Generation:</strong> LED/Laser converts electrical to optical signals</li>
+            <li><strong>Core Transmission:</strong> Light travels through glass core</li>
+            <li><strong>Total Internal Reflection:</strong> Light bounces off core-cladding boundary</li>
+            <li><strong>Detection:</strong> Photodiode converts optical back to electrical</li>
+        </ol>
+    </div>
+
+    <div class="comparison-table">
+        <table>
+            <tr>
+                <th>Medium</th>
+                <th>Bandwidth</th>
+                <th>Distance</th>
+                <th>Cost</th>
+                <th>EMI Immunity</th>
+                <th>Applications</th>
+            </tr>
+            <tr>
+                <td><strong>Twisted Pair</strong></td>
+                <td>Up to 1 GHz</td>
+                <td>100m</td>
+                <td>Low</td>
+                <td>Moderate</td>
+                <td>LANs, telephone</td>
+            </tr>
+            <tr>
+                <td><strong>Coaxial</strong></td>
+                <td>Up to 1 GHz</td>
+                <td>500m</td>
+                <td>Moderate</td>
+                <td>Good</td>
+                <td>Cable TV, Internet</td>
+            </tr>
+            <tr>
+                <td><strong>Fiber Optic</strong></td>
+                <td>Up to 75 THz</td>
+                <td>40+ km</td>
+                <td>High</td>
+                <td>Excellent</td>
+                <td>WANs, backbones</td>
+            </tr>
+        </table>
+    </div>
+
+    <h4>Unguided Media (Wireless)</h4>
+
+    <div class="definition-box">
+        <strong>1. Radio Waves (3 KHz - 1 GHz):</strong>
+        <ul>
+            <li><strong>Characteristics:</strong> Omnidirectional, penetrate buildings</li>
+            <li><strong>Applications:</strong> AM/FM radio, TV broadcasting, cellular</li>
+            <li><strong>Advantages:</strong> Long range, no line-of-sight needed</li>
+            <li><strong>Disadvantages:</strong> Interference, security issues</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>2. Microwaves (1 GHz - 300 GHz):</strong>
+        <ul>
+            <li><strong>Characteristics:</strong> Directional, line-of-sight required</li>
+            <li><strong>Applications:</strong> Satellite communication, Wi-Fi, Bluetooth</li>
+            <li><strong>Advantages:</strong> High bandwidth, focused transmission</li>
+            <li><strong>Disadvantages:</strong> Weather sensitive, line-of-sight needed</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>3. Infrared (300 GHz - 400 THz):</strong>
+        <ul>
+            <li><strong>Characteristics:</strong> Very directional, blocked by obstacles</li>
+            <li><strong>Applications:</strong> Remote controls, IrDA, short-range communication</li>
+            <li><strong>Advantages:</strong> Secure, no interference with radio</li>
+            <li><strong>Disadvantages:</strong> Very short range, line-of-sight required</li>
+        </ul>
+    </div>
+
+    <h3>3.3 Modulation & Multiplexing</h3>
+
+    <h4>Modulation Techniques</h4>
+    <div class="definition-box">
+        <strong>Modulation:</strong> Process of varying properties of carrier signal to encode information
+        <br><strong>Purpose:</strong> 
+        <ul>
+            <li>Enable long-distance transmission</li>
+            <li>Reduce antenna size requirements</li>
+            <li>Allow multiple signals to share medium</li>
+            <li>Improve signal quality</li>
+        </ul>
+    </div>
+
+    <h4>Analog Modulation:</h4>
+    <ul>
+        <li><strong>AM (Amplitude Modulation):</strong>
+            <ul>
+                <li>Information encoded in amplitude variations</li>
+                <li>Carrier frequency remains constant</li>
+                <li>Susceptible to noise</li>
+                <li>Used in AM radio broadcasting</li>
+            </ul>
+        </li>
+        <li><strong>FM (Frequency Modulation):</strong>
+            <ul>
+                <li>Information encoded in frequency variations</li>
+                <li>Amplitude remains constant</li>
+                <li>Better noise immunity than AM</li>
+                <li>Used in FM radio, TV audio</li>
+            </ul>
+        </li>
+        <li><strong>PM (Phase Modulation):</strong>
+            <ul>
+                <li>Information encoded in phase variations</li>
+                <li>Similar to FM in implementation</li>
+                <li>Used in digital communications</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h4>Digital Modulation:</h4>
+    <ul>
+        <li><strong>ASK (Amplitude Shift Keying):</strong>
+            <ul>
+                <li>Binary 1 = high amplitude, 0 = low amplitude</li>
+                <li>Simple implementation</li>
+                <li>Susceptible to noise</li>
+            </ul>
+        </li>
+        <li><strong>FSK (Frequency Shift Keying):</strong>
+            <ul>
+                <li>Binary 1 = one frequency, 0 = another frequency</li>
+                <li>Better noise immunity than ASK</li>
+                <li>Used in modems</li>
+            </ul>
+        </li>
+        <li><strong>PSK (Phase Shift Keying):</strong>
+            <ul>
+                <li>Binary 1 = phase shift, 0 = no phase shift</li>
+                <li>Most efficient digital modulation</li>
+                <li>Used in satellite communications</li>
+            </ul>
+        </li>
+        <li><strong>QAM (Quadrature Amplitude Modulation):</strong>
+            <ul>
+                <li>Combines amplitude and phase modulation</li>
+                <li>High data rates possible</li>
+                <li>Used in cable modems, Wi-Fi</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h4>Multiplexing Techniques</h4>
+    <div class="definition-box">
+        <strong>Multiplexing:</strong> Technique to transmit multiple signals simultaneously over a single communication channel
+        <br><strong>Benefits:</strong> Efficient use of bandwidth, cost reduction, simplified infrastructure
+    </div>
+
+    <div class="definition-box">
+        <strong>FDM (Frequency Division Multiplexing):</strong>
+        <ul>
+            <li>Different frequency bands assigned to different signals</li>
+            <li>Guard bands prevent interference between channels</li>
+            <li>Used in radio/TV broadcasting, cable TV</li>
+            <li>Analog multiplexing technique</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How FDM Works:</strong>
+        <ol>
+            <li><strong>Signal Separation:</strong> Each input signal modulated to different frequency</li>
+            <li><strong>Combining:</strong> All modulated signals combined into composite signal</li>
+            <li><strong>Transmission:</strong> Composite signal sent over single medium</li>
+            <li><strong>Demultiplexing:</strong> Receiver separates signals using filters</li>
+        </ol>
+    </div>
+
+    <div class="definition-box">
+        <strong>TDM (Time Division Multiplexing):</strong>
+        <ul>
+            <li>Different time slots assigned to different signals</li>
+            <li><strong>Synchronous TDM:</strong> Fixed time slots for each input</li>
+            <li><strong>Statistical TDM:</strong> Dynamic allocation based on demand</li>
+            <li>Used in digital telephone systems, T1/E1 lines</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How TDM Works:</strong>
+        <ol>
+            <li><strong>Sampling:</strong> Each input sampled in round-robin fashion</li>
+            <li><strong>Time Slot Assignment:</strong> Each sample assigned specific time slot</li>
+            <li><strong>Frame Creation:</strong> All samples combined into TDM frame</li>
+            <li><strong>Synchronization:</strong> Receiver uses timing to separate signals</li>
+        </ol>
+    </div>
+
+    <div class="definition-box">
+        <strong>WDM (Wavelength Division Multiplexing):</strong>
+        <ul>
+            <li>Different wavelengths (colors) of light for different signals</li>
+            <li><strong>CWDM:</strong> Coarse WDM (wide channel spacing, ~20nm)</li>
+            <li><strong>DWDM:</strong> Dense WDM (narrow spacing, ~0.8nm, up to 160 channels)</li>
+            <li>Used in fiber optic communications</li>
+            <li>Dramatically increases fiber capacity</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>CDM (Code Division Multiplexing):</strong>
+        <ul>
+            <li>Different spreading codes for different signals</li>
+            <li>All signals share same frequency and time</li>
+            <li>Used in CDMA cellular networks</li>
+            <li>Provides inherent security and privacy</li>
+        </ul>
+    </div>
+
+    <div class="diagram">
+        <strong>Multiplexing Comparison</strong><br><br>
+        FDM: |f1|f2|f3|f4| (Frequency domain)<br>
+        TDM: |t1|t2|t3|t4| (Time domain)<br>
+        WDM: |λ1|λ2|λ3|λ4| (Wavelength domain)<br>
+        CDM: |c1+c2+c3+c4| (Code domain)
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>4. DATA LINK LAYER</h2>
+
+    <h3>4.1 Purpose and Functions</h3>
+    <div class="definition-box">
+        <strong>Data Link Layer:</strong> Provides reliable node-to-node delivery of data frames
+        <br><strong>Main Functions:</strong>
+        <ul>
+            <li><strong>Framing:</strong> Organizing bits into frames</li>
+            <li><strong>Physical Addressing:</strong> Adding MAC addresses</li>
+            <li><strong>Flow Control:</strong> Managing transmission rate</li>
+            <li><strong>Error Control:</strong> Detecting and correcting errors</li>
+            <li><strong>Access Control:</strong> Controlling access to shared medium</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>Frame Structure:</strong>
+        <br>Components of a typical frame:
+        <ul>
+            <li><strong>Flag/Delimiter:</strong> Marks beginning and end of frame</li>
+            <li><strong>Header:</strong> Contains addressing and control information</li>
+            <li><strong>Data:</strong> Actual information being transmitted</li>
+            <li><strong>Trailer:</strong> Contains error detection code (CRC)</li>
+        </ul>
+    </div>
+
+    <div class="diagram">
+        <strong>Generic Frame Format</strong><br><br>
+        |Flag|Header|Data Field|Trailer|Flag|<br>
+        |    |  SA  |          | CRC   |    |<br>
+        |    |  DA  |          |       |    |<br>
+        |    | Ctrl |          |       |    |
+    </div>
+
+    <h4>Data Link Layer Sublayers:</h4>
+    <div class="definition-box">
+        <strong>LLC (Logical Link Control) - IEEE 802.2:</strong>
+        <ul>
+            <li>Upper sublayer of Data Link Layer</li>
+            <li>Provides interface to Network Layer</li>
+            <li>Handles flow control and error recovery</li>
+            <li>Protocol-independent services</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>MAC (Media Access Control):</strong>
+        <ul>
+            <li>Lower sublayer of Data Link Layer</li>
+            <li>Controls access to transmission medium</li>
+            <li>Handles physical addressing (MAC addresses)</li>
+            <li>Protocol-specific (Ethernet, Wi-Fi, etc.)</li>
+        </ul>
+    </div>
+
+    <h3>4.2 Error Detection & Correction</h3>
+
+    <div class="definition-box">
+        <strong>Types of Errors:</strong>
+        <ul>
+            <li><strong>Single-bit Error:</strong> Only one bit in frame is incorrect</li>
+            <li><strong>Burst Error:</strong> Multiple consecutive bits are incorrect</li>
+            <li><strong>Random Error:</strong> Errors occur randomly throughout frame</li>
+        </ul>
+    </div>
+
+    <h4>Error Detection Methods:</h4>
+
+    <div class="definition-box">
+        <strong>1. Parity Check:</strong>
+        <br><strong>Simple Parity:</strong>
+        <ul>
+            <li>Add one parity bit to make total 1s even (even parity) or odd (odd parity)</li>
+            <li>Can detect single-bit errors only</li>
+            <li>Cannot detect even number of errors</li>
+            <li>Simple but limited effectiveness</li>
+        </ul>
+        <br><strong>Two-dimensional Parity:</strong>
+        <ul>
+            <li>Longitudinal Redundancy Check (LRC)</li>
+            <li>Vertical Redundancy Check (VRC)</li>
+            <li>Can detect and correct some burst errors</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How Parity Works:</strong>
+        <br>Example with Even Parity:
+        <ul>
+            <li>Data: 1101001 (4 ones - even, parity bit = 0)</li>
+            <li>Transmitted: 11010010</li>
+            <li>If received: 11011010 (5 ones - odd, error detected)</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>2. CRC (Cyclic Redundancy Check):</strong>
+        <ul>
+            <li>Most widely used error detection method</li>
+            <li>Based on polynomial arithmetic</li>
+            <li>Can detect all single-bit errors</li>
+            <li>Can detect all double-bit errors</li>
+            <li>Can detect odd number of errors</li>
+            <li>Can detect burst errors up to r bits (r = degree of generator)</li>
+        </ul>
+        <br><strong>Common Polynomials:</strong>
+        <ul>
+            <li><strong>CRC-8:</strong> x^8 + x^2 + x + 1</li>
+            <li><strong>CRC-16:</strong> x^16 + x^12 + x^5 + 1</li>
+            <li><strong>CRC-32:</strong> x^32 + x^26 + x^23 + ... + 1</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How CRC Works:</strong>
+        <ol>
+            <li><strong>Sender:</strong>
+                <ul>
+                    <li>Append r zeros to data (r = degree of generator)</li>
+                    <li>Divide by generator polynomial using XOR</li>
+                    <li>Replace zeros with remainder (CRC)</li>
+                    <li>Transmit data + CRC</li>
+                </ul>
+            </li>
+            <li><strong>Receiver:</strong>
+                <ul>
+                    <li>Divide received data by same generator</li>
+                    <li>If remainder is zero → No error</li>
+                    <li>If remainder is non-zero → Error detected</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <div class="definition-box">
+        <strong>3. Checksum:</strong>
+        <ul>
+            <li>Sum of all bytes/words in data segment</li>
+            <li>Simple arithmetic calculation</li>
+            <li>Used in TCP and UDP headers</li>
+            <li>Less reliable than CRC for error detection</li>
+        </ul>
+    </div>
+
+    <h4>Error Correction Methods:</h4>
+
+    <div class="definition-box">
+        <strong>Hamming Code:</strong>
+        <ul>
+            <li>Can detect up to 2-bit errors and correct 1-bit errors</li>
+            <li>Uses parity bits at positions 2^n (1, 2, 4, 8, 16, ...)</li>
+            <li>Number of parity bits: m ≥ log₂(n+m+1) where n = data bits</li>
+            <li>Hamming distance determines error detection/correction capability</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How Hamming Code Works:</strong>
+        <br>Example with 4 data bits (D₄D₃D₂D₁):
+        <ol>
+            <li>Position parity bits: P₁(1), P₂(2), D₁(3), P₃(4), D₂(5), D₃(6), D₄(7)</li>
+            <li>P₁ checks positions 1,3,5,7 (odd positions)</li>
+            <li>P₂ checks positions 2,3,6,7</li>
+            <li>P₃ checks positions 4,5,6,7</li>
+            <li>Error position = P₃P₂P₁ (binary)</li>
+        </ol>
+    </div>
+
+    <div class="formula">
+        <strong>Hamming Distance Formula:</strong><br>
+        To detect d errors: Hamming distance ≥ d + 1<br>
+        To correct d errors: Hamming distance ≥ 2d + 1
+    </div>
+
+    <h3>4.3 Flow Control Mechanisms</h3>
+
+    <div class="definition-box">
+        <strong>Flow Control:</strong> Mechanism to control the rate of data transmission between sender and receiver to prevent buffer overflow
+    </div>
+
+    <h4>1. Stop-and-Wait Protocol</h4>
+    <div class="definition-box">
+        <strong>Stop-and-Wait:</strong>
+        <ul>
+            <li>Sender transmits one frame and waits for acknowledgment</li>
+            <li>Only after receiving ACK, sends next frame</li>
+            <li>Simple but inefficient for long-delay links</li>
+            <li>Utilization = 1/(1 + 2a) where a = tₚ/tₜ</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How Stop-and-Wait Works:</strong>
+        <ol>
+            <li>Sender transmits frame and starts timer</li>
+            <li>Receiver receives frame, sends ACK</li>
+            <li>Sender receives ACK, sends next frame</li>
+            <li>If timeout occurs, sender retransmits frame</li>
+        </ol>
+    </div>
+
+    <div class="diagram">
+        <strong>Stop-and-Wait Timeline</strong><br><br>
+        Sender    →    Frame 1    →    Receiver<br>
+        Sender    ←      ACK      ←    Receiver<br>
+        Sender    →    Frame 2    →    Receiver<br>
+        Sender    ←      ACK      ←    Receiver
+    </div>
+
+    <h4>2. Sliding Window Protocol</h4>
+    <div class="definition-box">
+        <strong>Sliding Window:</strong>
+        <ul>
+            <li>Multiple frames can be outstanding (unacknowledged)</li>
+            <li>Window size determines maximum outstanding frames</li>
+            <li>Better utilization than stop-and-wait</li>
+            <li>Two variants: Go-Back-N and Selective Repeat</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>Go-Back-N ARQ:</strong>
+        <ul>
+            <li>Receiver accepts frames in order only</li>
+            <li>Discards out-of-order frames</li>
+            <li>Sender retransmits from error point onwards</li>
+            <li>Window size: 1 ≤ W ≤ 2ⁿ-1 (n = sequence number bits)</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>Selective Repeat ARQ:</strong>
+        <ul>
+            <li>Receiver accepts out-of-order frames</li>
+            <li>Stores frames in buffer until gap is filled</li>
+            <li>Sender retransmits only errored frames</li>
+            <li>Window size: W ≤ 2ⁿ⁻¹</li>
+        </ul>
+    </div>
+
+    <div class="comparison-table">
+        <table>
+            <tr>
+                <th>Protocol</th>
+                <th>Window Size</th>
+                <th>Buffer Required</th>
+                <th>Complexity</th>
+                <th>Efficiency</th>
+            </tr>
+            <tr>
+                <td><strong>Stop-and-Wait</strong></td>
+                <td>1</td>
+                <td>1 frame</td>
+                <td>Low</td>
+                <td>Low</td>
+            </tr>
+            <tr>
+                <td><strong>Go-Back-N</strong></td>
+                <td>2ⁿ-1</td>
+                <td>1 frame</td>
+                <td>Medium</td>
+                <td>Medium</td>
+            </tr>
+            <tr>
+                <td><strong>Selective Repeat</strong></td>
+                <td>2ⁿ⁻¹</td>
+                <td>W frames</td>
+                <td>High</td>
+                <td>High</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>4.4 Switching Techniques</h3>
+
+    <div class="definition-box">
+        <strong>Switching:</strong> Process of connecting input ports to output ports to establish communication paths
+    </div>
+
+    <div class="definition-box">
+        <strong>Circuit Switching:</strong>
+        <ul>
+            <li>Dedicated physical path established for entire conversation</li>
+            <li>Three phases: Setup, Data Transfer, Teardown</li>
+            <li>Resources reserved throughout connection</li>
+            <li>Examples: Traditional telephone networks, ISDN</li>
+            <li>Advantages: Guaranteed bandwidth, low latency</li>
+            <li>Disadvantages: Inefficient resource usage, blocking</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>Packet Switching:</strong>
+        <ul>
+            <li>Data divided into packets, routed independently</li>
+            <li>Store-and-forward mechanism</li>
+            <li>No dedicated path, resources shared</li>
+            <li>Examples: Internet, X.25, Frame Relay</li>
+            <li>Advantages: Efficient resource usage, robust</li>
+            <li>Disadvantages: Variable delay, potential packet loss</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How Packet Switching Works:</strong>
+        <ol>
+            <li><strong>Packetization:</strong> Data divided into packets with headers</li>
+            <li><strong>Routing:</strong> Each packet routed independently</li>
+            <li><strong>Store-and-Forward:</strong> Intermediate nodes store packets temporarily</li>
+            <li><strong>Reassembly:</strong> Destination reassembles packets in correct order</li>
+        </ol>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>5. MAC SUBLAYER</h2>
+
+    <h3>5.1 Multiple Access Protocols</h3>
+
+    <div class="definition-box">
+        <strong>Multiple Access Problem:</strong> How to coordinate access to a shared communication medium among multiple stations
+        <br><strong>Categories:</strong>
+        <ul>
+            <li><strong>Random Access:</strong> No coordination, handle collisions</li>
+            <li><strong>Controlled Access:</strong> Stations take turns in orderly fashion</li>
+            <li><strong>Channelization:</strong> Medium divided into channels</li>
+        </ul>
+    </div>
+
+    <h4>Random Access Protocols:</h4>
+
+    <div class="definition-box">
+        <strong>1. Pure ALOHA:</strong>
+        <ul>
+            <li>Transmit whenever data is ready</li>
+            <li>If collision occurs, wait random time and retransmit</li>
+            <li>Maximum throughput: 18.4% (S = G × e^(-2G))</li>
+            <li>Vulnerable time: 2 × frame transmission time</li>
+            <li>Simple but inefficient</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>2. Slotted ALOHA:</strong>
+        <ul>
+            <li>Time divided into discrete slots equal to frame time</li>
+            <li>Transmission only at slot boundaries</li>
+            <li>Maximum throughput: 36.8% (S = G × e^(-G))</li>
+            <li>Vulnerable time: 1 × frame transmission time</li>
+            <li>Requires global synchronization</li>
+        </ul>
+    </div>
+
+    <div class="diagram">
+        <strong>ALOHA Comparison</strong><br><br>
+        Pure ALOHA: Collision can occur anytime<br>
+        |----A----|collision|----B----|<br><br>
+        
+        Slotted ALOHA: Collision only at slot boundary<br>
+        |slot1|slot2|slot3|slot4|<br>
+        | A  | B  |collision| C  |
+    </div>
+
+    <div class="definition-box">
+        <strong>3. CSMA (Carrier Sense Multiple Access):</strong>
+        <ul>
+            <li>Listen before transmit ("Sense before Send")</li>
+            <li>Reduces collision probability</li>
+            <li>Variations based on what to do when medium is busy:</li>
+            <ul>
+                <li><strong>1-persistent:</strong> Transmit immediately when medium becomes idle</li>
+                <li><strong>Non-persistent:</strong> Wait random time before sensing again</li>
+                <li><strong>p-persistent:</strong> Transmit with probability p when medium idle</li>
+            </ul>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>4. CSMA/CD (Collision Detection):</strong>
+        <ul>
+            <li>Used in Ethernet (IEEE 802.3)</li>
+            <li>Listen while transmitting to detect collisions</li>
+            <li>If collision detected, abort transmission and send jam signal</li>
+            <li>Use binary exponential backoff for retransmission</li>
+            <li>Minimum frame size = 2 × propagation delay × bandwidth</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How CSMA/CD Works:</strong>
+        <ol>
+            <li><strong>Carrier Sense:</strong> Listen to medium before transmission</li>
+            <li><strong>Transmit:</strong> If medium idle, start transmission</li>
+            <li><strong>Collision Detection:</strong> Monitor for collisions during transmission</li>
+            <li><strong>Jam Signal:</strong> If collision detected, send 32-bit jam pattern</li>
+            <li><strong>Backoff:</strong> Wait random time (binary exponential backoff)</li>
+            <li><strong>Retry:</strong> Attempt retransmission (max 16 attempts)</li>
+        </ol>
+    </div>
+
+    <div class="formula">
+        <strong>Binary Exponential Backoff:</strong><br>
+        After nth collision: Wait random time from {0, 1, 2, ..., 2^min(n,10) - 1} × slot time<br>
+        Slot time = 512 bit times = 51.2 μs (10 Mbps Ethernet)
+    </div>
+
+    <div class="definition-box">
+        <strong>5. CSMA/CA (Collision Avoidance):</strong>
+        <ul>
+            <li>Used in Wi-Fi (IEEE 802.11)</li>
+            <li>Cannot detect collisions in wireless (hidden terminal problem)</li>
+            <li>Use RTS/CTS mechanism to avoid collisions</li>
+            <li>Positive acknowledgment for successful transmission</li>
+            <li>Exponential backoff for retransmission</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How CSMA/CA Works:</strong>
+        <ol>
+            <li><strong>Carrier Sense:</strong> Check if medium is idle</li>
+            <li><strong>IFS Wait:</strong> Wait for Inter-Frame Space period</li>
+            <li><strong>Backoff:</strong> Wait random backoff time if medium was busy</li>
+            <li><strong>RTS:</strong> Send Request to Send (optional)</li>
+            <li><strong>CTS:</strong> Receive Clear to Send (optional)</li>
+            <li><strong>Data:</strong> Transmit data frame</li>
+            <li><strong>ACK:</strong> Receive acknowledgment</li>
+        </ol>
+    </div>
+
+    <div class="diagram">
+        <strong>RTS/CTS Mechanism</strong><br><br>
+        Sender → RTS → Receiver<br>
+        Sender ← CTS ← Receiver<br>
+        Sender → DATA → Receiver<br>
+        Sender ← ACK ← Receiver<br><br>
+        Hidden nodes hear CTS, defer transmission
+    </div>
+
+    <h4>Controlled Access Protocols:</h4>
+
+    <div class="definition-box">
+        <strong>Token Passing:</strong>
+        <ul>
+            <li>Special frame (token) circulates among stations</li>
+            <li>Only token holder can transmit</li>
+            <li>After transmission, release token to next station</li>
+            <li>Examples: Token Ring (IEEE 802.5), Token Bus</li>
+            <li>Advantages: No collisions, bounded access delay</li>
+            <li>Disadvantages: Token overhead, single point of failure</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>Polling:</strong>
+        <ul>
+            <li>Primary station polls secondary stations</li>
+            <li>Each secondary transmits when polled</li>
+            <li>Primary controls all communication</li>
+            <li>Used in point-to-multipoint networks</li>
+            <li>Advantages: No collisions, centralized control</li>
+            <li>Disadvantages: Polling overhead, single point of failure</li>
+        </ul>
+    </div>
+
+    <h3>5.2 Ethernet Standards (IEEE 802.3)</h3>
+
+    <div class="definition-box">
+        <strong>Ethernet:</strong> Most widely used LAN technology
+        <br><strong>Naming Convention:</strong> [Speed][Signaling][Medium]
+        <ul>
+            <li><strong>Speed:</strong> 10, 100, 1000 (Mbps)</li>
+            <li><strong>Signaling:</strong> BASE (baseband), BROAD (broadband)</li>
+            <li><strong>Medium:</strong> T (twisted pair), F (fiber), 2/5 (coax segment length)</li>
+        </ul>
+    </div>
+
+    <div class="comparison-table">
+        <table>
+            <tr>
+                <th>Standard</th>
+                <th>Speed</th>
+                <th>Medium</th>
+                <th>Max Distance</th>
+                <th>Encoding</th>
+                <th>Year</th>
+            </tr>
+            <tr>
+                <td><strong>10BASE-T</strong></td>
+                <td>10 Mbps</td>
+                <td>UTP Cat 3</td>
+                <td>100m</td>
+                <td>Manchester</td>
+                <td>1990</td>
+            </tr>
+            <tr>
+                <td><strong>100BASE-TX</strong></td>
+                <td>100 Mbps</td>
+                <td>UTP Cat 5</td>
+                <td>100m</td>
+                <td>4B/5B + MLT-3</td>
+                <td>1995</td>
+            </tr>
+            <tr>
+                <td><strong>1000BASE-T</strong></td>
+                <td>1 Gbps</td>
+                <td>UTP Cat 5e</td>
+                <td>100m</td>
+                <td>PAM-5</td>
+                <td>1999</td>
+            </tr>
+            <tr>
+                <td><strong>10GBASE-T</strong></td>
+                <td>10 Gbps</td>
+                <td>UTP Cat 6a</td>
+                <td>100m</td>
+                <td>PAM-16</td>
+                <td>2006</td>
+            </tr>
+            <tr>
+                <td><strong>100GBASE-T</strong></td>
+                <td>100 Gbps</td>
+                <td>UTP Cat 8</td>
+                <td>30m</td>
+                <td>PAM-16</td>
+                <td>2016</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="definition-box">
+        <strong>Ethernet Frame Format (IEEE 802.3):</strong>
+        <ul>
+            <li><strong>Preamble:</strong> 7 bytes of 10101010 for synchronization</li>
+            <li><strong>SFD:</strong> Start Frame Delimiter (10101011)</li>
+            <li><strong>Destination Address:</strong> 6 bytes MAC address</li>
+            <li><strong>Source Address:</strong> 6 bytes MAC address</li>
+            <li><strong>Length/Type:</strong> 2 bytes (length ≤ 1500, type > 1500)</li>
+            <li><strong>Data:</strong> 46-1500 bytes payload</li>
+            <li><strong>FCS:</strong> 4 bytes Frame Check Sequence (CRC-32)</li>
+        </ul>
+    </div>
+
+    <div class="diagram">
+        <strong>Ethernet Frame Format</strong><br><br>
+        |Preamble|SFD|DA|SA|Len/Type|Data + Pad|FCS|<br>
+        | 7 bytes|1B|6B|6B|  2B    |46-1500B |4B |<br><br>
+        Total frame size: 64-1518 bytes
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>6. NETWORK LAYER</h2>
+
+    <h3>6.1 IP Addressing</h3>
+
+    <div class="definition-box">
+        <strong>IP Address:</strong> Unique logical identifier assigned to network interfaces
+        <br><strong>Purpose:</strong>
+        <ul>
+            <li>Identify network and host portions</li>
+            <li>Enable routing between different networks</li>
+            <li>Provide hierarchical addressing structure</li>
+        </ul>
+    </div>
+
+    <h4>IPv4 Addressing</h4>
+    <div class="definition-box">
+        <strong>IPv4:</strong> 32-bit address space (4.3 billion addresses)
+        <br><strong>Format:</strong> Dotted decimal notation (192.168.1.1)
+        <br><strong>Structure:</strong> Network portion + Host portion
+    </div>
+
+    <h4>Classful Addressing:</h4>
+    <div class="comparison-table">
+        <table>
+            <tr>
+                <th>Class</th>
+                <th>Range</th>
+                <th>Network Bits</th>
+                <th>Host Bits</th>
+                <th>Networks</th>
+                <th>Hosts per Network</th>
+            </tr>
+            <tr>
+                <td><strong>A</strong></td>
+                <td>1.0.0.0 - 126.255.255.255</td>
+                <td>8</td>
+                <td>24</td>
+                <td>126</td>
+                <td>16,777,214</td>
+            </tr>
+            <tr>
+                <td><strong>B</strong></td>
+                <td>128.0.0.0 - 191.255.255.255</td>
+                <td>16</td>
+                <td>16</td>
+                <td>16,384</td>
+                <td>65,534</td>
+            </tr>
+            <tr>
+                <td><strong>C</strong></td>
+                <td>192.0.0.0 - 223.255.255.255</td>
+                <td>24</td>
+                <td>8</td>
+                <td>2,097,152</td>
+                <td>254</td>
+            </tr>
+            <tr>
+                <td><strong>D</strong></td>
+                <td>224.0.0.0 - 239.255.255.255</td>
+                <td colspan="4">Multicast</td>
+            </tr>
+            <tr>
+                <td><strong>E</strong></td>
+                <td>240.0.0.0 - 255.255.255.255</td>
+                <td colspan="4">Reserved</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="important-note">
+        <strong>Special IP Addresses:</strong>
+        <ul>
+            <li><strong>0.0.0.0:</strong> This network (used in routing)</li>
+            <li><strong>127.0.0.0/8:</strong> Loopback addresses</li>
+            <li><strong>169.254.0.0/16:</strong> Link-local addresses (APIPA)</li>
+            <li><strong>255.255.255.255:</strong> Limited broadcast</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>Private IP Addresses (RFC 1918):</strong>
+        <ul>
+            <li><strong>Class A:</strong> 10.0.0.0/8 (10.0.0.0 - 10.255.255.255)</li>
+            <li><strong>Class B:</strong> 172.16.0.0/12 (172.16.0.0 - 172.31.255.255)</li>
+            <li><strong>Class C:</strong> 192.168.0.0/16 (192.168.0.0 - 192.168.255.255)</li>
+        </ul>
+    </div>
+
+    <h4>CIDR (Classless Inter-Domain Routing):</h4>
+    <div class="definition-box">
+        <strong>CIDR:</strong> Replaces classful addressing with flexible subnet masks
+        <br><strong>Notation:</strong> IP address/prefix length (e.g., 192.168.1.0/24)
+        <br><strong>Benefits:</strong>
+        <ul>
+            <li>Efficient use of address space</li>
+            <li>Reduces routing table size</li>
+            <li>Supports variable-length subnet masking (VLSM)</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How CIDR Works:</strong>
+        <ul>
+            <li><strong>/24:</strong> First 24 bits are network, last 8 bits are host</li>
+            <li><strong>Subnet Mask:</strong> 255.255.255.0 for /24</li>
+            <li><strong>Network Address:</strong> Logical AND of IP and subnet mask</li>
+            <li><strong>Broadcast Address:</strong> All host bits set to 1</li>
+        </ul>
+    </div>
+
+    <div class="formula">
+        <strong>CIDR Calculations:</strong><br>
+        Number of hosts = 2^(32-prefix) - 2<br>
+        Number of subnets = 2^(borrowed bits)<br>
+        Example: 192.168.1.0/26<br>
+        Hosts per subnet = 2^(32-26) - 2 = 62<br>
+        Subnets available = 2^2 = 4 (if borrowed 2 bits from /24)
+    </div>
+
+    <h4>Subnetting:</h4>
+    <div class="definition-box">
+        <strong>Subnetting:</strong> Dividing a network into smaller subnetworks
+        <br><strong>Benefits:</strong>
+        <ul>
+            <li>Better network organization</li>
+            <li>Improved security through segmentation</li>
+            <li>Reduced broadcast traffic</li>
+            <li>Efficient IP address utilization</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>Subnetting Example:</strong>
+        <br>Given: 192.168.1.0/24, create 4 subnets
+        <ol>
+            <li><strong>Determine bits needed:</strong> 2^n ≥ 4, so n = 2 bits</li>
+            <li><strong>New subnet mask:</strong> /24 + 2 = /26 (255.255.255.192)</li>
+            <li><strong>Subnet increment:</strong> 256 - 192 = 64</li>
+            <li><strong>Subnets:</strong>
+                <ul>
+                    <li>192.168.1.0/26 (hosts: .1-.62, broadcast: .63)</li>
+                    <li>192.168.1.64/26 (hosts: .65-.126, broadcast: .127)</li>
+                    <li>192.168.1.128/26 (hosts: .129-.190, broadcast: .191)</li>
+                    <li>192.168.1.192/26 (hosts: .193-.254, broadcast: .255)</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <h4>Supernetting (Route Aggregation):</h4>
+    <div class="definition-box">
+        <strong>Supernetting:</strong> Combining multiple networks into a larger network
+        <br><strong>Purpose:</strong> Reduce routing table size and simplify routing
+        <br><strong>Example:</strong> Combine 192.168.0.0/24, 192.168.1.0/24, 192.168.2.0/24, 192.168.3.0/24 into 192.168.0.0/22
+    </div>
+
+    <h4>IPv6 Addressing:</h4>
+    <div class="definition-box">
+        <strong>IPv6:</strong> 128-bit address space (3.4 × 10^38 addresses)
+        <br><strong>Format:</strong> 8 groups of 4 hexadecimal digits (2001:db8::1)
+        <br><strong>Features:</strong>
+        <ul>
+            <li>Larger address space</li>
+            <li>Built-in security (IPSec)</li>
+            <li>Auto-configuration</li>
+            <li>No broadcast (uses multicast)</li>
+            <li>Simplified header format</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>IPv6 Address Types:</strong>
+        <ul>
+            <li><strong>Unicast:</strong> One-to-one communication</li>
+            <li><strong>Multicast:</strong> One-to-many communication (FF00::/8)</li>
+            <li><strong>Anycast:</strong> One-to-nearest communication</li>
+        </ul>
+        <br><strong>Special Addresses:</strong>
+        <ul>
+            <li><strong>::1/128:</strong> Loopback address</li>
+            <li><strong>::/128:</strong> Unspecified address</li>
+            <li><strong>FE80::/10:</strong> Link-local addresses</li>
+            <li><strong>FC00::/7:</strong> Unique local addresses</li>
+        </ul>
+    </div>
+
+    <h3>6.2 Routing</h3>
+
+    <div class="definition-box">
+        <strong>Routing:</strong> Process of determining the best path for packets to travel from source to destination
+        <br><strong>Key Components:</strong>
+        <ul>
+            <li><strong>Routing Table:</strong> Database of network destinations and next hops</li>
+            <li><strong>Routing Metrics:</strong> Criteria for path selection (hop count, bandwidth, delay)</li>
+            <li><strong>Routing Protocols:</strong> Algorithms for sharing routing information</li>
+        </ul>
+    </div>
+
+    <h4>Routing Algorithms:</h4>
+
+    <div class="definition-box">
+        <strong>1. Distance Vector Routing:</strong>
+        <ul>
+            <li>Based on Bellman-Ford algorithm</li>
+            <li>Each router maintains distance to all destinations</li>
+            <li>Periodically shares routing table with neighbors</li>
+            <li>Examples: RIP (Routing Information Protocol)</li>
+            <li>Problems: Count-to-infinity, slow convergence</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How Distance Vector Works:</strong>
+        <ol>
+            <li>Each router knows distance to directly connected neighbors</li>
+            <li>Routers exchange distance vectors with neighbors</li>
+            <li>Update routing table using: D(x,y) = min{D(x,z) + D(z,y)} for all z</li>
+            <li>Repeat until convergence (no more changes)</li>
+        </ol>
+    </div>
+
+    <div class="definition-box">
+        <strong>RIP (Routing Information Protocol):</strong>
+        <ul>
+            <li>Uses hop count as metric (max 15 hops)</li>
+            <li>Updates every 30 seconds</li>
+            <li>RIP v1: Classful routing</li>
+            <li>RIP v2: Classless routing, authentication</li>
+            <li>Simple but limited scalability</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>2. Link State Routing:</strong>
+        <ul>
+            <li>Based on Dijkstra's shortest path algorithm</li>
+            <li>Each router maintains complete network topology</li>
+            <li>Floods link state information to all routers</li>
+            <li>Examples: OSPF (Open Shortest Path First)</li>
+            <li>Faster convergence than distance vector</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How Link State Works:</strong>
+        <ol>
+            <li><strong>Discover neighbors:</strong> Send Hello packets</li>
+            <li><strong>Measure link costs:</strong> Calculate delay, bandwidth</li>
+            <li><strong>Build LSA:</strong> Create Link State Advertisement</li>
+            <li><strong>Flood LSAs:</strong> Distribute to all routers</li>
+            <li><strong>Build topology:</strong> Create complete network graph</li>
+            <li><strong>Calculate paths:</strong> Use Dijkstra's algorithm</li>
+        </ol>
+    </div>
+
+    <div class="definition-box">
+        <strong>OSPF (Open Shortest Path First):</strong>
+        <ul>
+            <li>Uses cost as metric (based on bandwidth)</li>
+            <li>Supports hierarchical routing (areas)</li>
+            <li>Fast convergence and loop-free</li>
+            <li>Supports authentication and multicast</li>
+            <li>More complex but highly scalable</li>
+        </ul>
+    </div>
+
+    <div class="comparison-table">
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Distance Vector (RIP)</th>
+                <th>Link State (OSPF)</th>
+            </tr>
+            <tr>
+                <td><strong>Algorithm</strong></td>
+                <td>Bellman-Ford</td>
+                <td>Dijkstra</td>
+            </tr>
+            <tr>
+                <td><strong>Information Shared</strong></td>
+                <td>Distance to destinations</td>
+                <td>Link state information</td>
+            </tr>
+            <tr>
+                <td><strong>Update Frequency</strong></td>
+                <td>Periodic (30 sec)</td>
+                <td>Event-driven</td>
+            </tr>
+            <tr>
+                <td><strong>Convergence</strong></td>
+                <td>Slow</td>
+                <td>Fast</td>
+            </tr>
+            <tr>
+                <td><strong>Memory Usage</strong></td>
+                <td>Low</td>
+                <td>High</td>
+            </tr>
+            <tr>
+                <td><strong>CPU Usage</strong></td>
+                <td>Low</td>
+                <td>High</td>
+            </tr>
+            <tr>
+                <td><strong>Scalability</strong></td>
+                <td>Limited</td>
+                <td>High</li>
+            </tr>
+        </table>
+    </div>
+
+    <h3>6.3 Congestion Control</h3>
+
+    <div class="definition-box">
+        <strong>Congestion:</strong> Situation where network demand exceeds available capacity
+        <br><strong>Effects:</strong>
+        <ul>
+            <li>Increased packet loss</li>
+            <li>Higher delays</li>
+            <li>Reduced throughput</li>
+            <li>Network instability</li>
+        </ul>
+    </div>
+
+    <h4>Congestion Control Mechanisms:</h4>
+
+    <div class="definition-box">
+        <strong>1. Token Bucket Algorithm:</strong>
+        <ul>
+            <li>Bucket holds tokens, each representing right to send packet</li>
+            <li>Tokens added at constant rate (r tokens/second)</li>
+            <li>Bucket capacity limits burst size</li>
+            <li>If tokens available, packet sent and token removed</li>
+            <li>Smooths traffic and prevents excessive bursts</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How Token Bucket Works:</strong>
+        <ol>
+            <li><strong>Initialization:</strong> Bucket filled to capacity C</li>
+            <li><strong>Token Addition:</strong> Add tokens at rate r per second</li>
+            <li><strong>Packet Arrival:</strong> Check if tokens available</li>
+            <li><strong>Transmission:</strong> If tokens available, send packet and consume token</li>
+            <li><strong>Blocking:</strong> If no tokens, either drop or buffer packet</li>
+        </ol>
+    </div>
+
+    <div class="definition-box">
+        <strong>2. Leaky Bucket Algorithm:</strong>
+        <ul>
+            <li>Bucket with fixed capacity and constant output rate</li>
+            <li>Packets enter bucket at variable rate</li>
+            <li>Packets leave bucket at constant rate</li>
+            <li>If bucket full, incoming packets dropped</li>
+            <li>Provides constant output rate regardless of input</li>
+        </ul>
+    </div>
+
+    <div class="diagram">
+        <strong>Token vs Leaky Bucket</strong><br><br>
+        Token Bucket:<br>
+        [Tokens] → |Bucket| → Output (Variable rate)<br>
+                   (Capacity C)<br><br>
+        
+        Leaky Bucket:<br>
+        Input → |Bucket| → Output (Constant rate)<br>
+        (Variable) (Capacity) (Fixed rate)
+    </div>
+
+    <div class="comparison-table">
+        <table>
+            <tr>
+                <th>Aspect</th>
+                <th>Token Bucket</th>
+                <th>Leaky Bucket</th>
+            </tr>
+            <tr>
+                <td><strong>Output Rate</strong></td>
+                <td>Variable (up to token rate)</td>
+                <td>Constant</td>
+            </tr>
+            <tr>
+                <td><strong>Burst Handling</strong></td>
+                <td>Allows bursts up to bucket size</td>
+                <td>Smooths all bursts</td>
+            </tr>
+            <tr>
+                <td><strong>Buffer Requirement</strong></td>
+                <td>Minimal</td>
+                <td>Requires buffering</td>
+            </tr>
+            <tr>
+                <td><strong>Implementation</strong></td>
+                <td>Simple</td>
+                <td>More complex</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>7. TRANSPORT LAYER</h2>
+
+    <h3>7.1 TCP vs UDP</h3>
+
+    <div class="definition-box">
+        <strong>Transport Layer:</strong> Provides end-to-end communication services between applications
+        <br><strong>Key Functions:</strong>
+        <ul>
+            <li>Process-to-process communication</li>
+            <li>Segmentation and reassembly</li>
+            <li>Error detection and correction</li>
+            <li>Flow control</li>
+            <li>Congestion control</li>
+        </ul>
+    </div>
+
+    <div class="comparison-table">
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>TCP</th>
+                <th>UDP</th>
+            </tr>
+            <tr>
+                <td><strong>Full Form</strong></td>
+                <td>Transmission Control Protocol</td>
+                <td>User Datagram Protocol</td>
+            </tr>
+            <tr>
+                <td><strong>Connection</strong></td>
+                <td>Connection-oriented</td>
+                <td>Connectionless</td>
+            </tr>
+            <tr>
+                <td><strong>Reliability</strong></td>
+                <td>Reliable delivery</td>
+                <td>Unreliable delivery</td>
+            </tr>
+            <tr>
+                <td><strong>Ordering</strong></td>
+                <td>Maintains order</td>
+                <td>No ordering guarantee</td>
+            </tr>
+            <tr>
+                <td><strong>Error Checking</strong></td>
+                <td>Extensive error control</td>
+                <td>Basic checksum only</td>
+            </tr>
+            <tr>
+                <td><strong>Flow Control</strong></td>
+                <td>Yes (sliding window)</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td><strong>Congestion Control</strong></td>
+                <td>Yes</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td><strong>Header Size</strong></td>
+                <td>20-60 bytes</td>
+                <td>8 bytes</td>
+            </tr>
+            <tr>
+                <td><strong>Speed</strong></td>
+                <td>Slower (due to overhead)</td>
+                <td>Faster (minimal overhead)</td>
+            </tr>
+            <tr>
+                <td><strong>Applications</strong></td>
+                <td>Web browsing, email, file transfer</td>
+                <td>Video streaming, gaming, DNS</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>7.2 TCP Features</h3>
+
+    <h4>TCP Header Format:</h4>
+    <div class="diagram">
+        <strong>TCP Header (20-60 bytes)</strong><br><br>
+        |Source Port (16)|Destination Port (16)|<br>
+        |Sequence Number (32 bits)           |<br>
+        |Acknowledgment Number (32 bits)     |<br>
+        |HLEN|Res|Flags|Window Size (16)     |<br>
+        |Checksum (16)  |Urgent Pointer (16) |<br>
+        |Options (0-40 bytes)               |<br>
+        |Data                               |
+    </div>
+
+    <div class="definition-box">
+        <strong>TCP Flags (6 bits):</strong>
+        <ul>
+            <li><strong>URG:</strong> Urgent pointer field significant</li>
+            <li><strong>ACK:</strong> Acknowledgment field significant</li>
+            <li><strong>PSH:</strong> Push function (deliver to application immediately)</li>
+            <li><strong>RST:</strong> Reset connection</li>
+            <li><strong>SYN:</strong> Synchronize sequence numbers</li>
+            <li><strong>FIN:</strong> Finish - no more data from sender</li>
+        </ul>
+    </div>
+
+    <h4>TCP Three-Way Handshake:</h4>
+    <div class="definition-box">
+        <strong>Connection Establishment:</strong> Reliable method to establish TCP connection
+    </div>
+
+    <div class="how-it-works">
+        <strong>How Three-Way Handshake Works:</strong>
+        <ol>
+            <li><strong>SYN:</strong> Client sends SYN with initial sequence number</li>
+            <li><strong>SYN-ACK:</strong> Server responds with SYN-ACK and its sequence number</li>
+            <li><strong>ACK:</strong> Client sends ACK to confirm connection established</li>
+        </ol>
+    </div>
+
+    <div class="diagram">
+        <strong>TCP Three-Way Handshake</strong><br><br>
+        Client                    Server<br>
+        |                           |<br>
+        |---SYN(seq=x)------------>|<br>
+        |                           |<br>
+        |<--SYN-ACK(seq=y,ack=x+1)-|<br>
+        |                           |<br>
+        |---ACK(seq=x+1,ack=y+1)-->|<br>
+        |                           |<br>
+        |     Connection Established|
+    </div>
+
+    <h4>TCP Connection Termination:</h4>
+    <div class="how-it-works">
+        <strong>Four-Way Connection Termination:</strong>
+        <ol>
+            <li><strong>FIN:</strong> Active close - sender sends FIN</li>
+            <li><strong>ACK:</strong> Receiver acknowledges FIN</li>
+            <li><strong>FIN:</strong> Passive close - receiver sends FIN</li>
+            <li><strong>ACK:</strong> Original sender acknowledges final FIN</li>
+        </ol>
+    </div>
+
+    <div class="diagram">
+        <strong>TCP Connection Termination</strong><br><br>
+        Client                    Server<br>
+        |                           |<br>
+        |---FIN(seq=x)------------>|<br>
+        |                           |<br>
+        |<--ACK(ack=x+1)-----------|<br>
+        |                           |<br>
+        |<--FIN(seq=y)-------------|<br>
+        |                           |<br>
+        |---ACK(ack=y+1)---------->|<br>
+        |                           |<br>
+        |    Connection Closed      |
+    </div>
+
+    <h4>TCP Flow Control:</h4>
+    <div class="definition-box">
+        <strong>Sliding Window Flow Control:</strong>
+        <ul>
+            <li>Receiver advertises available buffer space (window size)</li>
+            <li>Sender can transmit up to window size without ACK</li>
+            <li>Window slides as acknowledgments received</li>
+            <li>Prevents buffer overflow at receiver</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How TCP Flow Control Works:</strong>
+        <ol>
+            <li><strong>Window Advertisement:</strong> Receiver tells sender available buffer space</li>
+            <li><strong>Data Transmission:</strong> Sender transmits up to window size</li>
+            <li><strong>ACK with Window Update:</strong> Receiver acknowledges and updates window</li>
+            <li><strong>Window Sliding:</strong> Window slides forward as data acknowledged</li>
+            <li><strong>Flow Control:</strong> If window = 0, sender stops transmitting</li>
+        </ol>
+    </div>
+
+    <h4>TCP Congestion Control:</h4>
+    <div class="definition-box">
+        <strong>Congestion Control Mechanisms:</strong>
+        <ul>
+            <li><strong>Slow Start:</strong> Exponential increase of congestion window</li>
+            <li><strong>Congestion Avoidance:</strong> Linear increase after threshold</li>
+            <li><strong>Fast Retransmit:</strong> Retransmit on 3 duplicate ACKs</li>
+            <li><strong>Fast Recovery:</strong> Avoid slow start after fast retransmit</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>TCP Congestion Control Algorithm:</strong>
+        <ol>
+            <li><strong>Slow Start:</strong> cwnd = 1, double every RTT until ssthresh</li>
+            <li><strong>Congestion Avoidance:</strong> Increase cwnd by 1/cwnd for each ACK</li>
+            <li><strong>Timeout:</strong> ssthresh = cwnd/2, cwnd = 1, restart slow start</li>
+            <li><strong>3 Dup ACKs:</strong> ssthresh = cwnd/2, cwnd = ssthresh, fast recovery</li>
+        </ol>
+    </div>
+
+    <div class="formula">
+        <strong>TCP Congestion Window:</strong><br>
+        Slow Start: cwnd = cwnd × 2 (exponential)<br>
+        Congestion Avoidance: cwnd = cwnd + 1/cwnd (linear)<br>
+        ssthresh = Slow Start threshold
+    </div>
+
+    <h3>7.3 UDP Features</h3>
+
+    <h4>UDP Header Format:</h4>
+    <div class="diagram">
+        <strong>UDP Header (8 bytes)</strong><br><br>
+        |Source Port (16)|Destination Port (16)|<br>
+        |Length (16)     |Checksum (16)        |<br>
+        |Data                                   |
+    </div>
+
+    <div class="definition-box">
+        <strong>UDP Characteristics:</strong>
+        <ul>
+            <li><strong>Connectionless:</strong> No connection establishment needed</li>
+            <li><strong>Unreliable:</strong> No guarantee of delivery</li>
+            <li><strong>Unordered:</strong> No sequencing of data</li>
+            <li><strong>No Flow Control:</strong> Sender transmits at any rate</li>
+            <li><strong>No Congestion Control:</strong> No network feedback</li>
+            <li><strong>Lightweight:</strong> Minimal protocol overhead</li>
+        </ul>
+    </div>
+
+    <div class="important-note">
+        <strong>When to Use UDP:</strong>
+        <ul>
+            <li><strong>Real-time applications:</strong> Video/audio streaming</li>
+            <li><strong>Simple request-response:</strong> DNS queries</li>
+            <li><strong>Broadcast/multicast:</strong> Network discovery</li>
+            <li><strong>Gaming:</strong> Online multiplayer games</li>
+            <li><strong>IoT applications:</strong> Sensor data transmission</li>
+        </ul>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>8. APPLICATION LAYER</h2>
+
+    <h3>8.1 DNS (Domain Name System)</h3>
+
+    <div class="definition-box">
+        <strong>DNS:</strong> Hierarchical naming system that translates domain names to IP addresses
+        <br><strong>Purpose:</strong> Provide human-readable names for network resources
+        <br><strong>Structure:</strong> Distributed database with hierarchical namespace
+    </div>
+
+    <h4>DNS Hierarchy:</h4>
+    <div class="diagram">
+        <strong>DNS Hierarchy</strong><br><br>
+                   . (Root)<br>
+                /    |    \<br>
+              com   org    edu<br>
+             /  |    |      |<br>
+         google amazon      mit<br>
+           |     |          |<br>
+          www   www        www
+    </div>
+
+    <div class="definition-box">
+        <strong>DNS Components:</strong>
+        <ul>
+            <li><strong>Root Servers:</strong> 13 logical servers worldwide (a.root-servers.net to m.root-servers.net)</li>
+            <li><strong>TLD Servers:</strong> Top-Level Domain servers (.com, .org, .edu, country codes)</li>
+            <li><strong>Authoritative Servers:</strong> Store DNS records for specific domains</li>
+            <li><strong>Local DNS Servers:</strong> ISP servers that cache DNS responses</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>DNS Record Types:</strong>
+        <ul>
+            <li><strong>A:</strong> Maps domain name to IPv4 address</li>
+            <li><strong>AAAA:</strong> Maps domain name to IPv6 address</li>
+            <li><strong>CNAME:</strong> Creates alias for another domain name</li>
+            <li><strong>MX:</strong> Mail exchange server for domain</li>
+            <li><strong>NS:</strong> Name server responsible for domain</li>
+            <li><strong>PTR:</strong> Reverse DNS lookup (IP to name)</li>
+            <li><strong>SOA:</strong> Start of Authority (domain metadata)</li>
+            <li><strong>TXT:</strong> Text information (SPF, DKIM records)</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How DNS Resolution Works:</strong>
+        <ol>
+            <li><strong>Query:</strong> User types URL, browser checks local cache</li>
+            <li><strong>Recursive Query:</strong> Query sent to local DNS server</li>
+            <li><strong>Root Query:</strong> Local DNS queries root server for TLD server</li>
+            <li><strong>TLD Query:</strong> Query TLD server for authoritative server</li>
+            <li><strong>Authoritative Query:</strong> Query authoritative server for IP address</li>
+            <li><strong>Response:</strong> IP address returned through chain</li>
+            <li><strong>Caching:</strong> Result cached at each level for future queries</li>
+        </ol>
+    </div>
+
+    <div class="diagram">
+        <strong>DNS Resolution Process</strong><br><br>
+        Client → Local DNS → Root DNS → TLD DNS → Auth DNS<br>
+        Client ← Local DNS ← Root DNS ← TLD DNS ← Auth DNS<br><br>
+        1. Query: www.example.com<br>
+        2. Response: 192.168.1.100
+    </div>
+
+    <h3>8.2 Email Protocols</h3>
+
+    <div class="definition-box">
+        <strong>Email System Components:</strong>
+        <ul>
+            <li><strong>MUA (Mail User Agent):</strong> Email client (Outlook, Gmail)</li>
+            <li><strong>MTA (Mail Transfer Agent):</strong> Email server (sendmail, postfix)</li>
+            <li><strong>MDA (Mail Delivery Agent):</strong> Delivers mail to mailbox</li>
+        </ul>
+    </div>
+
+    <h4>SMTP (Simple Mail Transfer Protocol):</h4>
+    <div class="definition-box">
+        <strong>SMTP:</strong> Protocol for sending emails between servers
+        <br><strong>Port:</strong> 25 (standard), 587 (submission), 465 (deprecated SSL)
+        <br><strong>Characteristics:</strong>
+        <ul>
+            <li>Text-based protocol</li>
+            <li>Uses TCP for reliable delivery</li>
+            <li>Push protocol (sender initiates)</li>
+            <li>Can only handle ASCII text (MIME for binary)</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>SMTP Transaction:</strong>
+        <ol>
+            <li><strong>Connection:</strong> Client connects to server on port 25</li>
+            <li><strong>HELO/EHLO:</strong> Client identifies itself</li>
+            <li><strong>MAIL FROM:</strong> Sender's email address</li>
+            <li><strong>RCPT TO:</strong> Recipient's email address</li>
+            <li><strong>DATA:</strong> Email content transfer</li>
+            <li><strong>QUIT:</strong> Close connection</li>
+        </ol>
+    </div>
+
+    <h4>POP3 (Post Office Protocol v3):</h4>
+    <div class="definition-box">
+        <strong>POP3:</strong> Protocol for retrieving emails from server
+        <br><strong>Port:</strong> 110 (standard), 995 (SSL/TLS)
+        <br><strong>Characteristics:</strong>
+        <ul>
+            <li>Download-and-delete model</li>
+            <li>Simple stateless protocol</li>
+            <li>Limited server-side functionality</li>
+            <li>Good for single-device access</li>
+        </ul>
+    </div>
+
+    <h4>IMAP (Internet Message Access Protocol):</h4>
+    <div class="definition-box">
+        <strong>IMAP:</strong> Advanced protocol for email access
+        <br><strong>Port:</strong> 143 (standard), 993 (SSL/TLS)
+        <br><strong>Characteristics:</strong>
+        <ul>
+            <li>Server-side email storage</li>
+            <li>Multiple device synchronization</li>
+            <li>Folder management on server</li>
+            <li>Partial message download</li>
+            <li>Server-side search capabilities</li>
+        </ul>
+    </div>
+
+    <div class="comparison-table">
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>POP3</th>
+                <th>IMAP</th>
+            </tr>
+            <tr>
+                <td><strong>Email Storage</strong></td>
+                <td>Local (client)</td>
+                <td>Server</td>
+            </tr>
+            <tr>
+                <td><strong>Multiple Devices</strong></td>
+                <td>Difficult</td>
+                <td>Easy</td>
+            </tr>
+            <tr>
+                <td><strong>Offline Access</strong></td>
+                <td>Full</td>
+                <td>Limited</td>
+            </tr>
+            <tr>
+                <td><strong>Server Storage</strong></td>
+                <td>Minimal</td>
+                <td>High</td>
+            </tr>
+            <tr>
+                <td><strong>Bandwidth Usage</strong></td>
+                <td>High (download all)</td>
+                <td>Low (download on demand)</td>
+            </tr>
+            <tr>
+                <td><strong>Folder Management</strong></td>
+                <td>Local only</td>
+                <td>Server-side</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>8.3 FTP (File Transfer Protocol)</h3>
+
+    <div class="definition-box">
+        <strong>FTP:</strong> Protocol for transferring files between systems
+        <br><strong>Ports:</strong> 20 (data), 21 (control)
+        <br><strong>Characteristics:</strong>
+        <ul>
+            <li>Uses two separate TCP connections</li>
+            <li>Control connection for commands</li>
+            <li>Data connection for file transfer</li>
+            <li>Supports both ASCII and binary modes</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>FTP Connection Modes:</strong>
+        <ul>
+            <li><strong>Active Mode:</strong>
+                <ul>
+                    <li>Client opens control connection to server port 21</li>
+                    <li>Server opens data connection to client</li>
+                    <li>Problems with firewalls/NAT</li>
+                </ul>
+            </li>
+            <li><strong>Passive Mode:</strong>
+                <ul>
+                    <li>Client opens both control and data connections</li>
+                    <li>Server provides port number for data connection</li>
+                    <li>Firewall-friendly</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>FTP Session Example:</strong>
+        <ol>
+            <li><strong>Connection:</strong> Client connects to server port 21</li>
+            <li><strong>Authentication:</strong> USER and PASS commands</li>
+            <li><strong>Navigation:</strong> CWD (change directory), LIST (list files)</li>
+            <li><strong>Transfer:</strong> RETR (download), STOR (upload)</li>
+            <li><strong>Termination:</strong> QUIT command</li>
+        </ol>
+    </div>
+
+    <div class="important-note">
+        <strong>FTP Security Issues:</strong>
+        <ul>
+            <li>Passwords sent in plain text</li>
+            <li>Data transmitted unencrypted</li>
+            <li>Solutions: FTPS (FTP over SSL/TLS), SFTP (SSH File Transfer Protocol)</li>
+        </ul>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>9. RECENT TRENDS</h2>
+
+    <h3>9.1 SD-WAN (Software-Defined Wide Area Network)</h3>
+
+    <div class="definition-box">
+        <strong>SD-WAN:</strong> Virtual network architecture that uses software to manage and optimize WAN connections
+        <br><strong>Key Principles:</strong>
+        <ul>
+            <li>Centralized control and management</li>
+            <li>Separation of control and data planes</li>
+            <li>Application-aware routing</li>
+            <li>Multiple transport options</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How SD-WAN Works:</strong>
+        <ol>
+            <li><strong>Centralized Controller:</strong> Manages policies and routing decisions</li>
+            <li><strong>Edge Devices:</strong> Deploy at branch locations</li>
+            <li><strong>Overlay Network:</strong> Virtual network over multiple transports</li>
+            <li><strong>Dynamic Path Selection:</strong> Choose best path based on application needs</li>
+            <li><strong>Security Integration:</strong> Built-in firewall and encryption</li>
+        </ol>
+    </div>
+
+    <div class="definition-box">
+        <strong>SD-WAN Benefits:</strong>
+        <ul>
+            <li><strong>Cost Reduction:</strong> Use cheaper Internet connections</li>
+            <li><strong>Improved Performance:</strong> Application-aware routing</li>
+            <li><strong>Enhanced Security:</strong> Integrated security features</li>
+            <li><strong>Simplified Management:</strong> Centralized configuration</li>
+            <li><strong>Agility:</strong> Rapid deployment of new sites</li>
+        </ul>
+    </div>
+
+    <div class="diagram">
+        <strong>Traditional WAN vs SD-WAN</strong><br><br>
+        Traditional WAN:<br>
+        Branch → MPLS → Data Center<br><br>
+        
+        SD-WAN:<br>
+        Branch → Internet/MPLS/4G → SD-WAN Controller → Cloud/Data Center<br>
+        (Multiple paths, intelligent routing)
+    </div>
+
+    <h3>9.2 CDN (Content Delivery Network)</h3>
+
+    <div class="definition-box">
+        <strong>CDN:</strong> Geographically distributed network of servers that deliver content to users from nearest location
+        <br><strong>Purpose:</strong>
+        <ul>
+            <li>Reduce latency and load times</li>
+            <li>Improve user experience</li>
+            <li>Reduce bandwidth costs</li>
+            <li>Increase content availability</li>
+        </ul>
+    </div>
+
+    <div class="how-it-works">
+        <strong>How CDN Works:</strong>
+        <ol>
+            <li><strong>Content Distribution:</strong> Original content cached at multiple edge servers</li>
+            <li><strong>User Request:</strong> User requests content from website</li>
+            <li><strong>DNS Resolution:</strong> DNS redirects to nearest CDN server</li>
+            <li><strong>Cache Check:</strong> CDN server checks if content is cached</li>
+            <li><strong>Content Delivery:</strong> Serve from cache or fetch from origin</li>
+            <li><strong>Response:</strong> Content delivered to user from nearest location</li>
+        </ol>
+    </div>
+
+    <div class="definition-box">
+        <strong>CDN Components:</strong>
+        <ul>
+            <li><strong>Origin Server:</strong> Original source of content</li>
+            <li><strong>Edge Servers:</strong> Geographically distributed cache servers</li>
+            <li><strong>PoP (Point of Presence):</strong> Data center with edge servers</li>
+            <li><strong>Load Balancers:</strong> Distribute requests among servers</li>
+            <li><strong>Management System:</strong> Monitor and control CDN infrastructure</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>CDN Caching Strategies:</strong>
+        <ul>
+            <li><strong>Static Caching:</strong> Cache static content (images, CSS, JS)</li>
+            <li><strong>Dynamic Caching:</strong> Cache personalized content with TTL</li>
+            <li><strong>Edge Side Includes:</strong> Assemble pages at edge servers</li>
+            <li><strong>Push vs Pull:</strong>
+                <ul>
+                    <li>Push: Content pre-loaded to edge servers</li>
+                    <li>Pull: Content cached on first request</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="diagram">
+        <strong>CDN Architecture</strong><br><br>
+        User (US) → CDN Edge (US) → Origin (EU)<br>
+        User (EU) → CDN Edge (EU) → Origin (EU)<br>
+        User (Asia) → CDN Edge (Asia) → Origin (EU)<br><br>
+        Reduced latency through geographic proximity
+    </div>
+
+    <div class="important-note">
+        <strong>Popular CDN Providers:</strong>
+        <ul>
+            <li><strong>Cloudflare:</strong> Global network with security features</li>
+            <li><strong>AWS CloudFront:</strong> Amazon's CDN service</li>
+            <li><strong>Google Cloud CDN:</strong> Google's global CDN</li>
+            <li><strong>Azure CDN:</strong> Microsoft's content delivery network</li>
+            <li><strong>Akamai:</strong> One of the largest CDN providers</li>
+        </ul>
+    </div>
+
+    <div class="definition-box">
+        <strong>CDN Performance Metrics:</strong>
+        <ul>
+            <li><strong>Cache Hit Ratio:</strong> Percentage of requests served from cache</li>
+            <li><strong>Origin Offload:</strong> Reduction in origin server load</li>
+            <li><strong>TTFB (Time to First Byte):</strong> Response time measure</li>
+            <li><strong>Bandwidth Savings:</strong> Reduction in origin bandwidth usage</li>
+            <li><strong>Global Coverage:</strong> Number of PoPs and geographic spread</li>
+        </ul>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="important-note">
+        <strong>✅ Study Complete!</strong><br>
+        This comprehensive guide covers all major computer networking concepts from Physical Layer to Recent Trends. Each topic includes:
+        <ul>
+            <li>Clear definitions and explanations</li>
+            <li>How it works step-by-step</li>
+            <li>Practical examples and diagrams</li>
+            <li>Comparison tables</li>
+            <li>Important formulas and calculations</li>
+        </ul>
+        <br>
+        <strong>Master these concepts for complete understanding of computer networks!</strong>
+    </div>
+
+</body>
+</html>works">
+        <strong>How Computer Networks Work:</strong>
+        <ol>
+            <li><strong>Data Creation:</strong> Application creates data to send</li>
+            <li><strong>Packetization:</strong> Data broken into small packets</li>
+            <li><strong>Addressing:</strong> Source and destination addresses added</li>
+            <li><strong>Routing:</strong> Network devices find best path</li>
+            <li><strong>Transmission:</strong> Packets sent through network links</li>
+            <li><strong>Reassembly:</strong> Destination rebuilds original data</li>
+        </ol>
+    </div>
+
+    <div class="diagram">
+        <strong>Basic Network Structure</strong><br><br>
+        [Computer A] ←→ [Switch/Router] ←→ [Computer B]<br>
+                ↓<br>
+        [Server] ←→ [Internet] ←→ [Remote Network]
+    </div>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Madhan Maddasani - Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #0f172a;
+        color: #f8fafc;
+        line-height: 1.6;
+      }
+
+      header {
+        background: #1e293b;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+      }
+      header h1 {
+        font-size: 1.5rem;
+      }
+      nav a {
+        color: #f8fafc;
+        margin-left: 1.5rem;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      nav a:hover {
+        color: #38bdf8;
+      }
+
+      section {
+        padding: 4rem 2rem;
+        max-width: 1100px;
+        margin: auto;
+      }
+      .intro {
+        text-align: center;
+        padding-top: 2rem;
+      }
+      .intro h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      .typing {
+        color: #38bdf8;
+        font-weight: 600;
+      }
+      #map {
+        height: 350px;
+        width: 100%;
+        border-radius: 10px;
+        margin-top: 1.5rem;
+        z-index: 1;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+      .card {
+        background: #1e293b;
+        padding: 1.5rem;
+        border-radius: 10px;
+        transition: background 0.3s ease;
+      }
+      .card:hover {
+        background: #334155;
+      }
+      .card h3 {
+        margin-bottom: 0.5rem;
+      }
+      .card a {
+        color: #38bdf8;
+        text-decoration: none;
+      }
+
+      .certificates .cert-card {
+        text-align: center;
+        background: #1e293b;
+        padding: 1rem;
+        border-radius: 10px;
+        transition: background 0.3s;
+      }
+      .certificates .cert-card:hover {
+        background: #334155;
+      }
+      .certificates img {
+        width: 70%;
+        border-radius: 10px;
+      }
+      .certificates h4 {
+        margin-top: 0.5rem;
+        font-size: 1rem;
+        color: #e2e8f0;
+      }
+
+      /* Education Section */
+      .education-section h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .education-card {
+        background: #1e293b;
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+      }
+      .education-card h3 {
+        margin-bottom: 0.5rem;
+      }
+      .education-card p {
+        color: #cbd5e1;
+        font-size: 0.95rem;
+      }
+
+      /* Skills Section */
+      .skills-section h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1rem;
+        text-align: center;
+      }
+      .skill-item {
+        background: #1e293b;
+        padding: 0.8rem;
+        border-radius: 8px;
+        color: #38bdf8;
+        font-weight: 600;
+      }
+      .skill-item:hover {
+        background: #334155;
+        color: #fff;
+      }
+
+      footer {
+        background: #1e293b;
+        text-align: center;
+        padding: 1rem;
+        font-size: 0.9rem;
+        color: #94a3b8;
+      }
+
+      /* Floating Radial Menu */
+      .contact-wrapper {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        z-index: 999;
+      }
+      .contact-btn {
+        width: 60px;
+        height: 60px;
+        border: none;
+        border-radius: 50%;
+        background: #7c3aed;
+        color: white;
+        font-weight: bold;
+        font-size: 0.8rem;
+        cursor: pointer;
+        text-align: center;
+        line-height: 60px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+      }
+      .menu-item {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        transform: scale(0);
+        background: #1e293b;
+        transition: transform 0.3s ease, background 0.3s ease;
+      }
+      .menu-item:hover {
+        background: #334155;
+      }
+      .menu-item.call {
+        background: #22c55e;
+      }
+      .menu-item.email {
+        background: #f59e0b;
+      }
+      .menu-item.linkedin {
+        background: #0ea5e9;
+      }
+      .menu-item.github {
+        background: #64748b;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Madhan Maddasani</h1>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#certificates">Certificates</a>
+      </nav>
+    </header>
+
+    <!-- Intro -->
+    <section class="intro">
+      <h2>Hey, I'm <span class="typing"></span></h2>
+      <p>Based in Prakasam, Andhra Pradesh, India</p>
+      <div id="map"></div>
+    </section>
+
+    <!-- About Me -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        I'm a <strong>Computer Science and Engineering student</strong> at
+        Lovely Professional University, currently holding a CGPA of
+        <strong>7.73</strong>. I’m passionate about leveraging technology to
+        build innovative solutions and solving real-world problems using data
+        and code. <br /><br />
+        I have hands-on experience in <strong>Data Analysis</strong>,
+        <strong>Web Development</strong>, and
+        <strong>Predictive Modelling</strong>. My technical expertise includes
+        <strong>C++</strong>, <strong>Java</strong>, <strong>R</strong>,
+        <strong>HTML/CSS/JavaScript</strong>, and visualization tools like
+        <strong>Tableau</strong> and <strong>Excel</strong>. <br /><br />
+        Over the past few years, I’ve built projects ranging from
+        <strong>scalable web applications</strong> to
+        <strong>data-driven dashboards</strong>. I recently completed an
+        internship-style simulation with <strong>Accenture</strong> through
+        Forage, where I analyzed complex datasets, cleaned missing values, and
+        created actionable insights for a social media client. <br /><br />
+        Outside of academics, I’m known for my
+        <strong
+          >critical thinking, patience, and strong communication skills</strong
+        >. <br /><br />
+        <em
+          >My ultimate goal is to work on innovative projects that make a
+          meaningful difference in people's lives, blending creativity, data,
+          and technology.</em
+        >
+      </p>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="education-section">
+      <h2>Education</h2>
+      <div class="education-card">
+        <h3>B.Tech in Computer Science and Engineering</h3>
+        <p>Lovely Professional University, Punjab (2021 - Present)</p>
+        <p>CGPA: 7.73 / 10</p>
+      </div>
+      <div class="education-card">
+        <h3>Intermediate (MPC)</h3>
+        <p>
+          vinex College affilitated by vasavi Junior colleage, Andhra Pradesh
+          (2020 - 2022)
+        </p>
+        <p>Percentage: 91%</p>
+      </div>
+      <div class="education-card">
+        <h3>Matriculation</h3>
+        <p>Amara Jyothi School, Srikakulam (2020)</p>
+        <p>Percentage: 97%</p>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="skills-section">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-item">C++</div>
+        <div class="skill-item">Java</div>
+        <div class="skill-item">R Programming</div>
+        <div class="skill-item">JavaScript</div>
+        <div class="skill-item">React.js</div>
+        <div class="skill-item">Ms-office</div>
+        <div class="skill-item">predective analytics</div>
+        <div class="skill-item">Data Visualization</div>
+        <div class="skill-item">SQL</div>
+        <div class="skill-item">DSA</div>
+        <div class="skill-item">Data Analysis</div>
+        <div class="skill-item">HTML & CSS</div>
+        <div class="skill-item">Tableau</div>
+        <div class="skill-item">Excel</div>
+        <div class="skill-item">Apache Hadoop</div>
+        <div class="skill-item">Hive</div>
+        <div class="skill-item">HBase</div>
+        <div class="skill-item">Pig</div>
+        <div class="skill-item">Linux</div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Blogging Website (React)</h3>
+          <p>Dynamic blogging platform with scalable architecture.</p>
+          <a
+            href="https://github.com/Madhan7671/Blogging_Website"
+            target="_blank"
+            >View on GitHub</a
+          >
+        </div>
+        <div class="card">
+          <h3>Timer App (HTML/CSS/JS)</h3>
+          <p>Feature-rich Timer App with real-time DOM manipulation.</p>
+          <a href="https://github.com/Madhan7671/Timer-app" target="_blank"
+            >View on GitHub</a
+          >
+        </div>
+        <div class="card">
+          <h3>Recipe Store (HTML/CSS/JS)</h3>
+          <p>Responsive Recipe Store with dynamic content rendering.</p>
+          <a href="https://github.com/Madhan7671/recipe-store" target="_blank"
+            >View on GitHub</a
+          >
+        </div>
+        <div class="card">
+          <h3>Social Buzz (Tableau & Excel)</h3>
+          <p>Analyzed social media data for user engagement trends.</p>
+          <a href="https://github.com/Madhan7671/Social-Buzz" target="_blank"
+            >View on GitHub</a
+          >
+        </div>
+        <div class="card">
+          <h3>Daily Expenses (Excel)</h3>
+          <p>Personal finance data analysis and visualization dashboard.</p>
+          <a href="https://github.com/Madhan7671/Excel-project" target="_blank"
+            >View on GitHub</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Certificates -->
+    <section id="certificates" class="certificates">
+      <h2>Certificates</h2>
+      <div class="grid">
+        <div class="cert-card">
+          <a
+            href="https://drive.google.com/file/d/1SXkH-_ADAAMof8g-DyGFZFR4RrsAEwN6/view?usp=sharing"
+            target="_blank"
+          >
+            <img
+              src="https://img.icons8.com/color/240/000000/certificate.png"
+              alt="Tableau"
+            />
+          </a>
+          <h4>Data Analysis with Tableau (Coursera, Nov 2024)</h4>
+        </div>
+        <div class="cert-card">
+          <a
+            href="https://drive.google.com/file/d/1Kt1Ukyi0CGFQH9ia6op7f2Y1XDBq-Lqi/view?usp=sharing"
+            target="_blank"
+          >
+            <img
+              src="https://img.icons8.com/color/240/000000/certificate.png"
+              alt="NPTEL"
+            />
+          </a>
+          <h4>NPTEL (Nov 2024)</h4>
+        </div>
+        <div class="cert-card">
+          <a
+            href="https://drive.google.com/file/d/1nqsfgqU_fcwDHqUVRutqWS2qMoK4Ftb5/view?usp=sharing"
+            target="_blank"
+          >
+            <img
+              src="https://img.icons8.com/color/240/000000/certificate.png"
+              alt="Excel"
+            />
+          </a>
+          <h4>Excel Skills for Data Analytics (Coursera, Apr 2024)</h4>
+        </div>
+        <div class="cert-card">
+          <a
+            href="https://drive.google.com/file/d/1JJAgttxOraNPGiWVPioksutaooNHUVSI/view?usp=sharing"
+            target="_blank"
+          >
+            <img
+              src="https://img.icons8.com/color/240/000000/certificate.png"
+              alt="R Programming"
+            />
+          </a>
+          <h4>R Programming (Coursera, Apr 2024)</h4>
+        </div>
+        <div class="cert-card">
+          <a
+            href="https://drive.google.com/file/d/1u9FFGn24mygwEgWj95hfVcD53H3-I8_O/view?usp=sharing"
+            target="_blank"
+          >
+            <img
+              src="https://img.icons8.com/color/240/000000/certificate.png"
+              alt="Tableau"
+            />
+          </a>
+          <h4>Geeks for geeks DSA self placed</h4>
+        </div>
+
+        <div class="cert-card">
+          <a
+            href="https://drive.google.com/file/d/1Xm3INSNJZDhCxF6zEIa1OAZnTGsRukoY/view?usp=sharing"
+            target="_blank"
+          >
+            <img
+              src="https://img.icons8.com/color/240/000000/certificate.png"
+              alt="Tableau"
+            />
+          </a>
+          <h4>Regressions</h4>
+        </div>
+        <div class="cert-card">
+          <a
+            href="https://drive.google.com/file/d/16iD7HS_chaucEd7RHlo8GcfAMARvgcpo/view?usp=sharing"
+            target="_blank"
+          >
+            <img
+              src="https://img.icons8.com/color/240/000000/certificate.png"
+              alt="Tableau"
+            />
+          </a>
+          <h4>Getting started with AI and machine learning</h4>
+        </div>
+      </div>
+    </section>
+
+    <footer><p>&copy; 2025 Madhan Maddasani | All Rights Reserved</p></footer>
+
+    <!-- Floating Contact Menu -->
+    <div class="contact-wrapper" id="contactWrapper">
+      <a href="tel:+917671917739" class="menu-item call" title="Call"
+        ><i class="fas fa-phone"></i
+      ></a>
+      <a
+        href="mailto:madhanmaddasani7671@gmail.com"
+        class="menu-item email"
+        title="Email"
+        ><i class="fas fa-envelope"></i
+      ></a>
+      <a
+        href="https://www.linkedin.com/in/madhan1729/"
+        class="menu-item linkedin"
+        title="LinkedIn"
+        target="_blank"
+        ><i class="fab fa-linkedin-in"></i
+      ></a>
+      <a
+        href="https://github.com/Madhan7671"
+        class="menu-item github"
+        title="GitHub"
+        target="_blank"
+        ><i class="fab fa-github"></i
+      ></a>
+      <button class="contact-btn" id="contactBtn">Contact</button>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      window.onload = () => {
+        // Typing Effect
+        const text = "Madhan Maddasani";
+        let index = 0;
+        const typingElement = document.querySelector(".typing");
+        function type() {
+          typingElement.innerHTML = text.slice(0, index);
+          index++;
+          if (index <= text.length) setTimeout(type, 150);
+        }
+        type();
+
+        // Map Setup with Fly Animation
+        const map = L.map("map", {
+          center: [20, 0],
+          zoom: 2,
+          zoomControl: false,
+        });
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution: "&copy; OpenStreetMap contributors",
+        }).addTo(map);
+
+        const location = [15.4991, 79.9039];
+        const marker = L.marker(location).bindPopup(
+          "<b>Madhan Maddasani</b><br>Prakasam, Andhra Pradesh"
+        );
+
+        setTimeout(() => {
+          map.flyTo(location, 12, { duration: 3 });
+          marker.addTo(map).openPopup();
+        }, 1000);
+
+        // Contact Menu
+        const contactWrapper = document.getElementById("contactWrapper");
+        const contactBtn = document.getElementById("contactBtn");
+        const menuItems = document.querySelectorAll(".menu-item");
+
+        const radius = 130;
+        const totalItems = menuItems.length;
+        const angleGap = Math.PI / 2 / (totalItems - 1);
+
+        contactBtn.addEventListener("click", () => {
+          contactWrapper.classList.toggle("open");
+          menuItems.forEach((item, index) => {
+            if (contactWrapper.classList.contains("open")) {
+              const angle = angleGap * index;
+              const x = -Math.cos(angle) * radius;
+              const y = -Math.sin(angle) * radius;
+              item.style.transform = `translate(${x}px, ${y}px) scale(1)`;
+            } else {
+              item.style.transform = "scale(0)";
+            }
+          });
+        });
+      };
+    </script>
+  </body>
+</html>

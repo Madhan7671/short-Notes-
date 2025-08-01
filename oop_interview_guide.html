@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Object-Oriented Programming Interview Questions & Answers Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .table-of-contents {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-of-contents h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .table-of-contents ul {
+            list-style: none;
+        }
+
+        .table-of-contents li {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .table-of-contents li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .table-of-contents a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .table-of-contents a:hover {
+            color: #2c3e50;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #e74c3c;
+        }
+
+        .section:nth-child(even) {
+            border-left-color: #3498db;
+        }
+
+        .section:nth-child(3n) {
+            border-left-color: #27ae60;
+        }
+
+        .section:nth-child(4n) {
+            border-left-color: #f39c12;
+        }
+
+        .section:nth-child(5n) {
+            border-left-color: #9b59b6;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .question:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: #3498db;
+        }
+
+        .question h3 {
+            color: #2c3e50;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .answer {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            font-size: 1.05em;
+            line-height: 1.7;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .level-basic { border-left-color: #27ae60; }
+        .level-intermediate { border-left-color: #f39c12; }
+        .level-advanced { border-left-color: #e74c3c; }
+        .level-realworld { border-left-color: #9b59b6; }
+        .level-tricky { border-left-color: #e67e22; }
+        .level-bonus { border-left-color: #1abc9c; }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .question {
+                padding: 15px;
+            }
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Complete Object-Oriented Programming</h1>
+            <h2>Interview Questions & Answers Guide</h2>
+        </div>
+
+
+
+        <div class="section level-basic" id="basic-level">
+            <h2>Basic Level (Concept Foundations)</h2>
+            
+            <div class="question">
+                <h3>1. What is Object-Oriented Programming?</h3>
+                <div class="answer">
+                    OOP is a programming paradigm that organizes code around <span class="highlight">objects</span> containing data (attributes) and methods (functions). It models real-world entities and promotes code reusability, modularity, and maintainability through concepts like inheritance, encapsulation, polymorphism, and abstraction.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>2. What are the four main pillars of OOP? Explain each with examples.</h3>
+                <div class="answer">
+                    <strong>Encapsulation:</strong> Bundling data and methods together while hiding internal details (private variables with public getters/setters).<br><br>
+                    <strong>Inheritance:</strong> Creating new classes from existing ones (<code>Car extends Vehicle</code>).<br><br>
+                    <strong>Polymorphism:</strong> Same interface with different implementations (<code>Animal.makeSound()</code> behaves differently for Dog and Cat).<br><br>
+                    <strong>Abstraction:</strong> Hiding complex implementation details and showing only essential features (abstract classes/interfaces).
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>3. What is a class? What is an object?</h3>
+                <div class="answer">
+                    A <span class="highlight">class</span> is a blueprint or template that defines attributes and methods for creating objects. An <span class="highlight">object</span> is an instance of a class that occupies memory and has actual values for the attributes defined in the class.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>4. What is the difference between a class and a structure (C++)?</h3>
+                <div class="answer">
+                    In C++, the main difference is default access: <code>struct</code> members are public by default, while <code>class</code> members are private by default. Both support constructors, destructors, inheritance, and member functions, but structs are typically used for simple data grouping.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>5. What is encapsulation? Why is it important?</h3>
+                <div class="answer">
+                    Encapsulation bundles data and methods within a class while controlling access through access specifiers. It's important for <span class="highlight">data security</span> (prevents unauthorized access), <span class="highlight">data integrity</span> (validates modifications), and <span class="highlight">maintainability</span> (internal changes don't affect external code).
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>6. What is abstraction? How is it achieved in Java and C++?</h3>
+                <div class="answer">
+                    Abstraction hides implementation complexity and shows only essential features. In <strong>Java:</strong> achieved through abstract classes and interfaces. In <strong>C++:</strong> achieved through pure virtual functions and abstract classes with virtual methods.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>7. What are access specifiers (public, private, protected)?</h3>
+                <div class="answer">
+                    <strong>Public:</strong> accessible everywhere.<br>
+                    <strong>Private:</strong> accessible only within the same class.<br>
+                    <strong>Protected:</strong> accessible within the same class and its subclasses.<br><br>
+                    They control visibility and access to class members for encapsulation.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>8. What is the difference between compile-time and runtime polymorphism?</h3>
+                <div class="answer">
+                    <strong>Compile-time polymorphism</strong> (static binding) is resolved during compilation through method overloading and operator overloading - faster execution.<br><br>
+                    <strong>Runtime polymorphism</strong> (dynamic binding) is resolved during execution through method overriding and virtual functions - more flexible but slower.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>9. What is inheritance? How is it implemented in Java and C++?</h3>
+                <div class="answer">
+                    Inheritance allows a class to acquire properties and methods from another class. <strong>Java:</strong> uses <code>extends</code> keyword for single inheritance. <strong>C++:</strong> uses colon notation and supports multiple inheritance with public/private/protected access levels.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>10. What is a constructor and destructor?</h3>
+                <div class="answer">
+                    <strong>Constructor:</strong> Special method called when object is created to initialize its state, has same name as class.<br><br>
+                    <strong>Destructor:</strong> Special method called when object is destroyed to clean up resources, preceded by <code>~</code> in C++. Java uses garbage collection instead of explicit destructors.
+                </div>
+            </div>
+        </div>
+
+        <div class="section level-intermediate" id="intermediate-level">
+            <h2>Intermediate Level (Language Features)</h2>
+            
+            <div class="question">
+                <h3>1. What is method overloading and method overriding?</h3>
+                <div class="answer">
+                    <strong>Method overloading:</strong> Multiple methods with same name but different parameters in the same class (compile-time polymorphism).<br><br>
+                    <strong>Method overriding:</strong> Child class provides specific implementation of parent's method with same signature (runtime polymorphism).
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>2. What is the difference between virtual functions (C++) and method overriding (Java)?</h3>
+                <div class="answer">
+                    <strong>C++</strong> requires explicit <code>virtual</code> keyword and methods are non-virtual by default, supports pure virtual functions.<br><br>
+                    <strong>Java</strong> methods are virtual by default, uses <code>@Override</code> annotation for clarity, and doesn't need explicit virtual keyword.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>3. What is the difference between an abstract class and an interface in Java?</h3>
+                <div class="answer">
+                    <strong>Abstract class:</strong> Can have concrete and abstract methods, instance variables, constructors, single inheritance.<br><br>
+                    <strong>Interface:</strong> Only abstract methods (before Java 8), constants only, no constructors, supports multiple inheritance.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>4. How is multiple inheritance handled in C++ vs Java?</h3>
+                <div class="answer">
+                    <strong>C++:</strong> Supports direct multiple class inheritance but can cause diamond problem, solved using virtual inheritance.<br><br>
+                    <strong>Java:</strong> No multiple class inheritance, only multiple interface implementation to avoid complexity and ambiguity.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>5. What is a friend function in C++? Is there an equivalent in Java?</h3>
+                <div class="answer">
+                    Friend function in C++ is a non-member function that can access private/protected members of a class using <code>friend</code> keyword. Java has no direct equivalent but uses package-private access and nested classes for similar functionality.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>6. What is this keyword and when do you use it?</h3>
+                <div class="answer">
+                    <code>this</code> refers to the current object instance. Used to distinguish between instance variables and parameters, call other constructors, return current object for method chaining, and pass current object to other methods.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>7. What is super keyword in Java and how is it different from base keyword in C++?</h3>
+                <div class="answer">
+                    Java's <code>super</code> refers to immediate parent class for accessing parent methods, variables, and constructors. C++ has no base keyword; instead uses direct class name or scope resolution operator (<code>::</code>) to access parent class members.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>8. What is operator overloading (C++)? Why doesn't Java allow it?</h3>
+                <div class="answer">
+                    C++ operator overloading allows redefining operators (<code>+, -, ==</code>) for user-defined types making code intuitive. Java doesn't allow it to maintain simplicity, consistency, readability, and prevent confusion about operator behavior.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>9. What is a static member (variable or method)?</h3>
+                <div class="answer">
+                    Static members belong to the class rather than instances, shared among all objects, accessed using class name, loaded when class is loaded. Static methods cannot access instance variables directly.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>10. Explain the difference between stack and heap memory allocation.</h3>
+                <div class="answer">
+                    <strong>Stack:</strong> Faster, limited size, automatic allocation/deallocation, stores local variables, LIFO structure, thread-local.<br><br>
+                    <strong>Heap:</strong> Slower, larger size, manual management (C++) or garbage collected (Java), stores objects, global access, can fragment.
+                </div>
+            </div>
+        </div>
+
+        <div class="section level-advanced" id="advanced-level">
+            <h2>Advanced Level (Design & Deep Concepts)</h2>
+            
+            <div class="question">
+                <h3>1. What is a virtual destructor in C++? Why is it important?</h3>
+                <div class="answer">
+                    Virtual destructor ensures proper cleanup when deleting objects through base class pointers by making destructor calls polymorphic. Without it, only base class destructor is called, leading to <span class="highlight">memory leaks</span> and incomplete cleanup of derived class resources.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>2. What is pure virtual function (C++) and how is it related to abstract classes?</h3>
+                <div class="answer">
+                    Pure virtual function has no implementation in base class (declared with <code>= 0</code>). It makes the class abstract (cannot be instantiated) and forces derived classes to provide implementation, ensuring consistent interface across inheritance hierarchy.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>3. Can we create an object of an abstract class? Why/why not?</h3>
+                <div class="answer">
+                    No, abstract classes cannot be instantiated because they have incomplete implementation (pure virtual functions). However, you can create pointers/references to abstract classes that point to derived class objects for polymorphic behavior.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>4. What is dynamic binding (late binding) vs static binding?</h3>
+                <div class="answer">
+                    <strong>Static binding:</strong> Method calls resolved at compile time based on reference type (method overloading, static methods) - faster.<br><br>
+                    <strong>Dynamic binding:</strong> Method calls resolved at runtime based on actual object type (method overriding, virtual functions) - flexible but slower.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>5. Explain multiple inheritance ambiguity in C++ and how virtual inheritance solves it.</h3>
+                <div class="answer">
+                    Diamond problem occurs when a class inherits from two classes sharing common base class, causing ambiguity. <span class="highlight">Virtual inheritance</span> creates single shared instance of base class among all derived classes, eliminating ambiguity and redundancy.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>6. How does Java handle multiple inheritance using interfaces?</h3>
+                <div class="answer">
+                    Java allows single class inheritance but multiple interface implementation. Interfaces provide contract without implementation conflicts. Default method conflicts in interfaces must be explicitly resolved by implementing class.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>7. What is a copy constructor in C++? When is it called?</h3>
+                <div class="answer">
+                    Copy constructor creates new object as copy of existing object with signature <code>ClassName(const ClassName& other)</code>. Called during object initialization with another object, passing by value, returning by value, and temporary object creation.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>8. What is a deep copy vs shallow copy?</h3>
+                <div class="answer">
+                    <strong>Shallow copy:</strong> Copies only immediate members; pointers copied but not pointed data, leading to shared memory and potential double deletion.<br><br>
+                    <strong>Deep copy:</strong> Copies all data including dynamically allocated memory, creating independent objects but more expensive.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>9. What are inner classes in Java? When do you use them?</h3>
+                <div class="answer">
+                    Inner classes are classes defined inside another class with access to outer class members including private ones. Used for logical grouping, encapsulation, event handling, and when inner class is only relevant to outer class.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>10. How does garbage collection work in Java compared to destructors in C++?</h3>
+                <div class="answer">
+                    Java uses automatic garbage collection to reclaim memory of unreferenced objects, eliminating manual memory management. C++ requires explicit destructors and manual memory management with <code>new/delete</code>, giving more control but requiring careful resource management.
+                </div>
+            </div>
+        </div>
+
+        <div class="section level-realworld" id="real-world-level">
+            <h2>Real-World & Design Level (Pro Questions)</h2>
+            
+            <div class="question">
+                <h3>1. What are design patterns and how do they relate to OOP?</h3>
+                <div class="answer">
+                    Design patterns are reusable solutions to common programming problems that leverage OOP principles. They provide proven approaches for object interaction, creation, and structure, promoting code reusability, maintainability, and best practices in object-oriented design.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>2. Explain the Singleton pattern and how to implement it in Java and C++.</h3>
+                <div class="answer">
+                    Singleton ensures only one instance of a class exists globally. Implementation involves private constructor, static instance variable, and public static method returning the single instance. Thread safety requires synchronization or eager initialization.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>3. What is dependency injection and how does it connect to OOP principles?</h3>
+                <div class="answer">
+                    Dependency injection provides dependencies to an object rather than the object creating them internally. It promotes <span class="highlight">loose coupling</span>, testability, and flexibility by removing hard-coded dependencies, aligning with OOP principles of modularity and abstraction.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>4. What is the difference between composition and aggregation?</h3>
+                <div class="answer">
+                    <strong>Composition:</strong> "has-a" relationship where child cannot exist without parent (strong ownership).<br><br>
+                    <strong>Aggregation:</strong> "has-a" relationship where child can exist independently (weak ownership).<br><br>
+                    Both represent containment but differ in lifecycle dependency.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>5. When would you use composition over inheritance?</h3>
+                <div class="answer">
+                    Use composition when you need "has-a" relationship rather than "is-a," want to avoid inheritance hierarchy complexity, need runtime flexibility, or when inheritance violates Liskov Substitution Principle. Composition provides better encapsulation and flexibility.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>6. What is the Liskov Substitution Principle (from SOLID)?</h3>
+                <div class="answer">
+                    LSP states that objects of derived classes should be substitutable for objects of base classes without breaking application functionality. Derived classes should honor the contract and behavior expected from base class interface.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>7. How do you handle object cloning in Java and C++?</h3>
+                <div class="answer">
+                    <strong>Java:</strong> Implement <code>Cloneable</code> interface and override <code>clone()</code> method, handle <code>CloneNotSupportedException</code>.<br><br>
+                    <strong>C++:</strong> Implement copy constructor and assignment operator for proper object copying, ensuring deep copy for dynamic memory.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>8. Explain the difference between interface segregation and abstraction.</h3>
+                <div class="answer">
+                    <strong>Interface segregation:</strong> Clients shouldn't depend on interfaces they don't use; prefer multiple specific interfaces over single general one.<br><br>
+                    <strong>Abstraction:</strong> Hiding implementation details and showing only essential features through abstract classes/interfaces.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>9. What is multiple interface implementation conflict in Java? How do you solve it?</h3>
+                <div class="answer">
+                    Occurs when implementing multiple interfaces with same default method signatures. Resolved by overriding the conflicting method in implementing class and explicitly calling desired interface method using <code>Interface.super.method()</code>.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>10. What are some real-life examples where polymorphism is useful?</h3>
+                <div class="answer">
+                    Media players (different file formats), drawing applications (various shapes), payment processing (different payment methods), database drivers (different databases), and plugin architectures where same interface supports multiple implementations.
+                </div>
+            </div>
+        </div>
+
+        <div class="section level-tricky" id="extra-tricky-questions">
+            <h2>Extra Tricky Questions</h2>
+            
+            <div class="question">
+                <h3>41. Can a constructor be virtual in C++? Why/why not?</h3>
+                <div class="answer">
+                    No, constructors cannot be virtual because objects don't exist during construction, so virtual table pointer isn't set yet. Virtual mechanism requires existing object, but constructor's job is to create the object and initialize virtual table pointer.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>42. Can we override static methods?</h3>
+                <div class="answer">
+                    No, static methods belong to class, not instances, so they cannot be overridden. However, they can be hidden in derived classes. Java prevents overriding static methods, while C++ allows hiding with same signature.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>43. Why are destructors not needed in Java?</h3>
+                <div class="answer">
+                    Java uses automatic garbage collection to manage memory, eliminating need for explicit destructors. The garbage collector automatically reclaims memory of unreferenced objects, though <code>finalize()</code> method exists for cleanup but is deprecated.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>44. Can enums extend classes or implement interfaces?</h3>
+                <div class="answer">
+                    In Java, enums implicitly extend <code>java.lang.Enum</code> and cannot extend other classes due to single inheritance, but can implement interfaces. Enums can have constructors, methods, and fields like regular classes.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>45. Difference between abstract classes with only abstract methods vs interface?</h3>
+                <div class="answer">
+                    Abstract class with only abstract methods can have constructors, instance variables, and different access modifiers. Interface cannot have constructors or instance variables, all methods are public by default, and supports multiple inheritance.
+                </div>
+            </div>
+        </div>
+
+        <div class="section level-bonus" id="bonus-questions">
+            <h2>Bonus Advanced Questions</h2>
+            
+            <div class="question">
+                <h3>46. What is method hiding vs method overriding?</h3>
+                <div class="answer">
+                    <strong>Method hiding:</strong> Static methods in subclass hide parent's static method with same signature (compile-time resolution).<br><br>
+                    <strong>Method overriding:</strong> Instance methods in subclass override parent's method (runtime resolution with dynamic binding).
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>47. Explain covariant return types in Java.</h3>
+                <div class="answer">
+                    Covariant return types allow overriding method to return subtype of original return type. Introduced in Java 5, enables more specific return types in subclasses while maintaining polymorphic behavior and type safety.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>48. What is the diamond problem with default methods in Java 8?</h3>
+                <div class="answer">
+                    When class implements multiple interfaces with same default method, compilation error occurs due to ambiguity. Resolved by explicitly overriding the method and choosing specific interface implementation using <code>Interface.super.method()</code>.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>49. What is RAII (Resource Acquisition Is Initialization) in C++?</h3>
+                <div class="answer">
+                    RAII ties resource management to object lifetime - resources acquired in constructor and released in destructor. Ensures automatic cleanup when objects go out of scope, preventing resource leaks even with exceptions.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>50. Explain the difference between early binding and late binding with examples.</h3>
+                <div class="answer">
+                    <strong>Early binding:</strong> Method calls resolved at compile time (overloaded methods, static methods, private methods).<br><br>
+                    <strong>Late binding:</strong> Method calls resolved at runtime (virtual functions, overridden methods) enabling polymorphic behavior.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>51. What is slicing problem in C++?</h3>
+                <div class="answer">
+                    Object slicing occurs when derived object is assigned to base object, losing derived class specific data and behavior. Only base class portion is copied, causing loss of polymorphic behavior and potential data corruption.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>52. Can abstract methods be static? Why/why not?</h3>
+                <div class="answer">
+                    No, abstract methods cannot be static because static methods belong to class and cannot be overridden, while abstract methods must be implemented in subclasses. Static methods are resolved at compile time, abstract methods at runtime.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>53. What is the difference between IS-A and HAS-A relationships?</h3>
+                <div class="answer">
+                    <strong>IS-A:</strong> Inheritance relationship where subclass is a type of superclass (Dog IS-A Animal).<br><br>
+                    <strong>HAS-A:</strong> Composition/Aggregation relationship where class contains another class (Car HAS-A Engine).<br><br>
+                    Determines whether to use inheritance or composition.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>54. Explain method overloading resolution in Java.</h3>
+                <div class="answer">
+                    Java resolves overloaded methods using most specific match based on: exact match, widening primitive conversions, autoboxing/unboxing, widening reference conversions, and finally varargs. Compilation error if multiple methods match equally.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>55. What are phantom references in Java and how do they relate to object cleanup?</h3>
+                <div class="answer">
+                    Phantom references are weakest references that don't prevent garbage collection but notify when object is about to be finalized. Used for cleanup actions after object becomes unreachable, providing more control than <code>finalize()</code> method.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>56. How does virtual inheritance affect object layout in C++?</h3>
+                <div class="answer">
+                    Virtual inheritance changes object memory layout by adding virtual base table pointer, making base class subobject shared among all derived classes. Increases object size and indirection but eliminates duplication in multiple inheritance scenarios.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>57. What is the Curiously Recurring Template Pattern (CRTP) in C++?</h3>
+                <div class="answer">
+                    CRTP is when class derives from template instantiation of itself. Enables <span class="highlight">static polymorphism</span>, compile-time method dispatch, and avoiding virtual function overhead while maintaining polymorphic-like behavior through templates.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>58. Explain the difference between aggregation and association.</h3>
+                <div class="answer">
+                    <strong>Association:</strong> General relationship between classes (Student studies Course).<br><br>
+                    <strong>Aggregation:</strong> Special association representing whole-part relationship where parts can exist independently (Department has Employees).<br><br>
+                    Aggregation is "has-a" relationship with independent lifecycles.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>59. What happens if constructor throws exception in Java vs C++?</h3>
+                <div class="answer">
+                    <strong>Java:</strong> Object creation fails, memory is automatically cleaned up by garbage collector, partially constructed object is not accessible.<br><br>
+                    <strong>C++:</strong> Destructors of already constructed members are called, but object's destructor is not called, requiring careful exception handling.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>60. How does name mangling work in C++ and why is it important for function overloading?</h3>
+                <div class="answer">
+                    Name mangling encodes function signatures into unique symbol names including parameter types, enabling linker to distinguish overloaded functions. Different compilers use different schemes, making binary compatibility challenging but enabling type-safe linking and overloading support.
+                </div>
+            </div>
+        </div>
+
+        <footer style="text-align: center; padding: 40px; background: linear-gradient(45deg, #2c3e50, #3498db); color: white; border-radius: 15px; margin-top: 50px;">
+            <h3>🎯 Master Your OOP Interview!</h3>
+            <p style="font-size: 1.1em; margin: 15px 0;">Complete guide covering 60+ essential questions from basic to advanced level</p>
+            <p style="font-style: italic; opacity: 0.9;">Good luck with your interviews! 🚀</p>
+        </footer>
+    </div>
+
+    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">↑ Top</button>
+
+    <script>
+        // Show/hide back to top button
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'block';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        // Add animation to questions on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply animation to all questions
+        document.querySelectorAll('.question').forEach(function(question) {
+            question.style.opacity = '0';
+            question.style.transform = 'translateY(20px)';
+            question.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(question);
+        });
+
+        // Add search functionality
+        function addSearchFeature() {
+            const searchHTML = `
+                <div style="margin: 20px 0; text-align: center;">
+                    <input type="text" id="searchBox" placeholder="Search questions..." 
+                           style="width: 60%; padding: 12px; border: 2px solid #3498db; border-radius: 25px; 
+                                  font-size: 16px; outline: none; box-shadow: 0 2px 10px rgba(52, 152, 219, 0.2);">
+                    <button onclick="clearSearch()" style="margin-left: 10px; padding: 12px 20px; 
+                                                          background: #e74c3c; color: white; border: none; 
+                                                          border-radius: 20px; cursor: pointer;">Clear</button>
+                </div>
+            `;
+            
+            const firstSection = document.querySelector('.section');
+            firstSection.insertAdjacentHTML('beforebegin', searchHTML);
+            
+            const searchBox = document.getElementById('searchBox');
+            searchBox.addEventListener('input', performSearch);
+        }
+
+        function performSearch() {
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            const questions = document.querySelectorAll('.question');
+            
+            questions.forEach(question => {
+                const text = question.textContent.toLowerCase();
+                if (text.includes(searchTerm) || searchTerm === '') {
+                    question.style.display = 'block';
+                } else {
+                    question.style.display = 'none';
+                }
+            });
+        }
+
+        function clearSearch() {
+            document.getElementById('searchBox').value = '';
+            document.querySelectorAll('.question').forEach(question => {
+                question.style.display = 'block';
+            });
+        }
+
+        // Initialize search feature
+        addSearchFeature();
+    </script>
+</body>
+</html>

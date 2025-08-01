@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBMS Tutorial – Learn Database Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .nav-container {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            padding: 1rem 0;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: #3498db;
+            color: white;
+        }
+
+        main {
+            padding: 2rem 0;
+        }
+
+        .intro-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .intro-section h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .intro-section p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .intro-section ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .intro-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .section {
+            background: white;
+            margin-bottom: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .section-content {
+            padding: 2rem;
+        }
+
+        .topic {
+            margin-bottom: 3rem;
+            border-left: 4px solid #3498db;
+            padding-left: 2rem;
+        }
+
+        .topic h3 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .topic p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .topic ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .topic li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .code-example {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        .highlight {
+            background: #f39c12;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .important-note {
+            background: #e8f5e8;
+            border-left: 4px solid #27ae60;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .warning-note {
+            background: #fdf2e9;
+            border-left: 4px solid #e67e22;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* Section specific colors */
+        .section-basics .section-header { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .section-basics .topic { border-left-color: #e74c3c; }
+
+        .section-design .section-header { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .section-design .topic { border-left-color: #9b59b6; }
+
+        .section-sql .section-header { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+        .section-sql .topic { border-left-color: #2ecc71; }
+
+        .section-normalization .section-header { background: linear-gradient(135deg, #1abc9c, #16a085); }
+        .section-normalization .topic { border-left-color: #1abc9c; }
+
+        .section-transaction .section-header { background: linear-gradient(135deg, #34495e, #2c3e50); }
+        .section-transaction .topic { border-left-color: #34495e; }
+
+        .section-advanced .section-header { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .section-advanced .topic { border-left-color: #f39c12; }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .section-content {
+                padding: 1rem;
+            }
+            
+            .topic {
+                padding-left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🗄️ DBMS Tutorial</h1>
+            <p class="subtitle">Complete Database Management System Learning Guide</p>
+        </div>
+    </header>
+
+    <div class="nav-container">
+        <nav class="container">
+            <div class="nav-links">
+                <a href="#basics">DBMS Basics</a>
+                <a href="#design">Database Design</a>
+                <a href="#sql">SQL</a>
+                <a href="#normalization">Normalization</a>
+                <a href="#transactions">Transactions</a>
+                <a href="#advanced">Advanced Topics</a>
+            </div>
+        </nav>
+    </div>
+
+    <main class="container">
+        <section class="intro-section">
+            <h2>What is Database Management System (DBMS)?</h2>
+            <p>A <span class="highlight">Database Management System (DBMS)</span> is software that enables users to store, retrieve, and manage data efficiently. It provides a systematic way to create, retrieve, update and manage data in a database.</p>
+            
+            <p><strong>Key Components:</strong></p>
+            <ul>
+                <li><strong>Database:</strong> Collection of related data</li>
+                <li><strong>Database Engine:</strong> Core service for storing and retrieving data</li>
+                <li><strong>Database Schema:</strong> Structure that defines the organization of data</li>
+                <li><strong>Query Processor:</strong> Processes and executes database queries</li>
+            </ul>
+        </section>
+
+        <!-- DBMS Basics Section -->
+        <section id="basics" class="section section-basics">
+            <div class="section-header">
+                <h2>🔰 DBMS Fundamentals</h2>
+                <p class="section-description">Learn the core concepts and foundation of database systems</p>
+            </div>
+            <div class="section-content">
+                
+                <div class="topic">
+                    <h3>Introduction to DBMS</h3>
+                    <p>A Database Management System is a software application that interacts with users, applications, and the database itself to capture and analyze data.</p>
+                    
+                    <p><strong>Why do we need DBMS?</strong></p>
+                    <ul>
+                        <li><strong>Data Organization:</strong> Structures data in a logical manner</li>
+                        <li><strong>Data Security:</strong> Provides access control and data protection</li>
+                        <li><strong>Data Integrity:</strong> Ensures data accuracy and consistency</li>
+                        <li><strong>Concurrent Access:</strong> Multiple users can access data simultaneously</li>
+                        <li><strong>Backup & Recovery:</strong> Protects against data loss</li>
+                    </ul>
+
+                    <div class="important-note">
+                        <strong>Real-world Example:</strong> Banking systems use DBMS to manage customer accounts, transactions, and maintain data consistency across all operations.
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Database vs File System</h3>
+                    <p>Before databases, data was stored in file systems. However, file systems have several limitations that databases solve:</p>
+                    
+                    <p><strong>File System Problems:</strong></p>
+                    <ul>
+                        <li><strong>Data Redundancy:</strong> Same data stored in multiple files leads to inconsistency</li>
+                        <li><strong>Data Isolation:</strong> Data scattered across files makes access difficult</li>
+                        <li><strong>Integrity Problems:</strong> Hard to enforce data validation rules</li>
+                        <li><strong>Atomicity Problems:</strong> Partial updates can leave data in inconsistent state</li>
+                        <li><strong>Concurrent Access Issues:</strong> Multiple users can corrupt data</li>
+                        <li><strong>Security Problems:</strong> Difficult to provide selective access</li>
+                    </ul>
+
+                    <div class="code-example">File System Example:
+student_personal.txt: ID=1, Name=John, Age=20
+student_academic.txt: ID=1, Name=John, GPA=3.5, Course=CS
+student_financial.txt: ID=1, Name=Jhon, Fees=5000
+
+Problem: Name inconsistency (John vs Jhon)</div>
+
+                    <p><strong>DBMS Solutions:</strong></p>
+                    <ul>
+                        <li>Centralized data storage eliminates redundancy</li>
+                        <li>Standardized access methods through SQL</li>
+                        <li>Built-in integrity constraints</li>
+                        <li>Transaction management for atomicity</li>
+                        <li>Concurrent access control</li>
+                        <li>User authentication and authorization</li>
+                    </ul>
+                </div>
+
+                <div class="topic">
+                    <h3>DBMS Architecture</h3>
+                    <p>DBMS architecture describes how a database system is designed and organized. There are two main architectural approaches:</p>
+                    
+                    <p><strong>1. Three-Schema Architecture (ANSI-SPARC)</strong></p>
+                    <ul>
+                        <li><strong>External Level (View Level):</strong> Individual user views of the database
+                            <div class="code-example">-- Teacher's view
+CREATE VIEW TeacherView AS 
+SELECT student_name, course_name, grade 
+FROM students s, courses c, enrollments e
+WHERE s.student_id = e.student_id AND c.course_id = e.course_id;</div>
+                        </li>
+                        <li><strong>Conceptual Level (Logical Level):</strong> Complete logical structure of entire database
+                            <div class="code-example">-- Conceptual schema
+Students(student_id, name, email, department)
+Courses(course_id, course_name, credits)
+Enrollments(student_id, course_id, grade, semester)</div>
+                        </li>
+                        <li><strong>Internal Level (Physical Level):</strong> How data is actually stored on storage devices
+                            <div class="code-example">-- Physical storage details
+Students table: stored as B-tree index on student_id
+Location: /data/students.dat
+Block size: 4KB, Records per block: 50</div>
+                        </li>
+                    </ul>
+
+                    <p><strong>2. Three-Tier Architecture</strong></p>
+                    <ul>
+                        <li><strong>Presentation Tier:</strong> User interface (web browser, mobile app)</li>
+                        <li><strong>Application Tier:</strong> Business logic and processing</li>
+                        <li><strong>Data Tier:</strong> Database server where data is stored</li>
+                    </ul>
+
+                    <div class="important-note">
+                        <strong>Data Independence:</strong> Changes at lower levels don't affect higher levels. For example, changing how data is physically stored doesn't affect application code.
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Data Models</h3>
+                    <p>Data models define how data is structured, stored, and manipulated in a database system.</p>
+                    
+                    <p><strong>1. Hierarchical Model</strong></p>
+                    <ul>
+                        <li>Data organized in tree-like structure</li>
+                        <li>Parent-child relationships (one-to-many)</li>
+                        <li>Example: File systems, organizational charts</li>
+                        <li>Limitation: Rigid structure, difficult to represent many-to-many relationships</li>
+                    </ul>
+
+                    <p><strong>2. Network Model</strong></p>
+                    <ul>
+                        <li>Extension of hierarchical model</li>
+                        <li>Allows many-to-many relationships</li>
+                        <li>Uses graph structure with nodes and edges</li>
+                        <li>More flexible but complex to implement</li>
+                    </ul>
+
+                    <p><strong>3. Relational Model</strong></p>
+                    <ul>
+                        <li>Most popular model used today</li>
+                        <li>Data stored in tables (relations) with rows and columns</li>
+                        <li>Based on mathematical set theory</li>
+                        <li>Examples: MySQL, PostgreSQL, Oracle, SQL Server</li>
+                    </ul>
+
+                    <div class="code-example">-- Relational Model Example
+Students Table:
++------------+----------+-------------------+
+| student_id | name     | email             |
++------------+----------+-------------------+
+| 1          | John Doe | john@example.com  |
+| 2          | Jane     | jane@example.com  |
++------------+----------+-------------------+</div>
+
+                    <p><strong>4. Object-Oriented Model</strong></p>
+                    <ul>
+                        <li>Combines object-oriented programming with database features</li>
+                        <li>Supports complex data types, inheritance, and encapsulation</li>
+                        <li>Examples: ObjectDB, db4o</li>
+                    </ul>
+
+                    <p><strong>5. NoSQL Models</strong></p>
+                    <ul>
+                        <li><strong>Document:</strong> JSON/XML documents (MongoDB)</li>
+                        <li><strong>Key-Value:</strong> Simple key-value pairs (Redis)</li>
+                        <li><strong>Column-Family:</strong> Column-oriented storage (Cassandra)</li>
+                        <li><strong>Graph:</strong> Nodes and relationships (Neo4j)</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Database Design Section -->
+        <section id="design" class="section section-design">
+            <div class="section-header">
+                <h2>🎨 Database Design & ER Model</h2>
+                <p class="section-description">Master the art of designing efficient database structures</p>
+            </div>
+            <div class="section-content">
+                
+                <div class="topic">
+                    <h3>Entity-Relationship (ER) Model</h3>
+                    <p>The ER model is a high-level conceptual data model that helps in designing databases by representing the real world as entities and relationships.</p>
+                    
+                    <p><strong>Core Components:</strong></p>
+                    <ul>
+                        <li><strong>Entity:</strong> A thing or object in the real world that can be identified uniquely
+                            <div class="code-example">Examples:
+- Student (John, Mary, David)
+- Course (Database Systems, Data Structures)
+- Department (Computer Science, Mathematics)</div>
+                        </li>
+                        <li><strong>Attributes:</strong> Properties that describe an entity
+                            <div class="code-example">Student attributes:
+- student_id (identifier)
+- name (simple)
+- address (composite: street, city, state)
+- phone_numbers (multi-valued)
+- age (derived from birth_date)</div>
+                        </li>
+                        <li><strong>Relationships:</strong> Associations between entities
+                            <div class="code-example">Examples:
+- Student "enrolls in" Course
+- Professor "teaches" Course
+- Department "offers" Course</div>
+                        </li>
+                    </ul>
+
+                    <p><strong>Attribute Types:</strong></p>
+                    <ul>
+                        <li><strong>Simple:</strong> Cannot be divided further (name, age)</li>
+                        <li><strong>Composite:</strong> Can be divided into components (address = street + city + state)</li>
+                        <li><strong>Single-valued:</strong> Has one value (student_id)</li>
+                        <li><strong>Multi-valued:</strong> Can have multiple values (phone_numbers)</li>
+                        <li><strong>Derived:</strong> Calculated from other attributes (age from birth_date)</li>
+                    </ul>
+                </div>
+
+                <div class="topic">
+                    <h3>ER Diagrams</h3>
+                    <p>ER diagrams provide a visual representation of the database design using standardized symbols.</p>
+                    
+                    <p><strong>ER Diagram Symbols:</strong></p>
+                    <ul>
+                        <li><strong>Rectangle:</strong> Entity sets</li>
+                        <li><strong>Ellipse:</strong> Attributes</li>
+                        <li><strong>Diamond:</strong> Relationship sets</li>
+                        <li><strong>Lines:</strong> Connect entities to attributes and relationships</li>
+                        <li><strong>Double Rectangle:</strong> Weak entity sets</li>
+                        <li><strong>Double Ellipse:</strong> Multi-valued attributes</li>
+                        <li><strong>Dashed Ellipse:</strong> Derived attributes</li>
+                        <li><strong>Underline:</strong> Primary key attributes</li>
+                    </ul>
+
+                    <div class="code-example">ER Diagram Example (text representation):
+
+[Student] ---- (enrolls) ---- [Course]
+   |                             |
+   |                             |
+student_id                   course_id
+   name                      course_name
+   email                     credits</div>
+
+                    <div class="important-note">
+                        <strong>Benefits of ER Diagrams:</strong> They provide clear communication between database designers and stakeholders, help identify data requirements, and serve as a blueprint for database implementation.
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Entity Types: Strong vs Weak</h3>
+                    
+                    <p><strong>Strong Entity:</strong></p>
+                    <ul>
+                        <li>Has its own primary key</li>
+                        <li>Can exist independently</li>
+                        <li>Represented by single rectangle</li>
+                    </ul>
+
+                    <div class="code-example">Strong Entity Example:
+Student
+- student_id (Primary Key)
+- name
+- email
+- department
+
+Can exist without depending on other entities</div>
+
+                    <p><strong>Weak Entity:</strong></p>
+                    <ul>
+                        <li>Cannot be uniquely identified by its own attributes</li>
+                        <li>Depends on a strong entity (owner entity)</li>
+                        <li>Uses partial key + owner's key for identification</li>
+                        <li>Represented by double rectangle</li>
+                    </ul>
+
+                    <div class="code-example">Weak Entity Example:
+Dependent (employee's family member)
+- dependent_name (Partial Key)
+- relationship
+- age
+
+Depends on Employee entity:
+- employee_id + dependent_name = Unique identification</div>
+
+                    <div class="warning-note">
+                        <strong>Important:</strong> Weak entities cannot exist without their owner entity. If an employee is deleted, all their dependents must also be deleted.
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Relationships and Cardinality</h3>
+                    <p>Relationships define how entities are connected, and cardinality specifies how many instances of each entity can be associated.</p>
+                    
+                    <p><strong>Cardinality Types:</strong></p>
+                    
+                    <p><strong>1. One-to-One (1:1)</strong></p>
+                    <ul>
+                        <li>Each entity instance is associated with exactly one instance of another entity</li>
+                        <li>Example: Person ↔ Passport</li>
+                    </ul>
+
+                    <div class="code-example">One-to-One Example:
+Person(person_id, name, address)
+Passport(passport_no, issue_date, expiry_date, person_id)
+
+Each person has exactly one passport
+Each passport belongs to exactly one person</div>
+
+                    <p><strong>2. One-to-Many (1:M)</strong></p>
+                    <ul>
+                        <li>One entity instance can be associated with multiple instances of another entity</li>
+                        <li>Example: Department → Employees</li>
+                    </ul>
+
+                    <div class="code-example">One-to-Many Example:
+Department(dept_id, dept_name, location)
+Employee(emp_id, name, salary, dept_id)
+
+One department has many employees
+Each employee belongs to one department</div>
+
+                    <p><strong>3. Many-to-Many (M:N)</strong></p>
+                    <ul>
+                        <li>Multiple instances of each entity can be associated with multiple instances of the other</li>
+                        <li>Example: Students ↔ Courses</li>
+                        <li>Requires a junction table in relational implementation</li>
+                    </ul>
+
+                    <div class="code-example">Many-to-Many Example:
+Student(student_id, name, email)
+Course(course_id, course_name, credits)
+Enrollment(student_id, course_id, grade, semester)
+
+One student can enroll in many courses
+One course can have many students</div>
+
+                    <p><strong>Participation Constraints:</strong></p>
+                    <ul>
+                        <li><strong>Total Participation:</strong> Every entity must participate (double line)</li>
+                        <li><strong>Partial Participation:</strong> Some entities may not participate (single line)</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SQL Section -->
+        <section id="sql" class="section section-sql">
+            <div class="section-header">
+                <h2>💻 SQL - Structured Query Language</h2>
+                <p class="section-description">Master the language of databases</p>
+            </div>
+            <div class="section-content">
+                
+                <div class="topic">
+                    <h3>SQL Fundamentals</h3>
+                    <p>SQL (Structured Query Language) is a standardized programming language designed for managing and manipulating relational databases.</p>
+                    
+                    <p><strong>Key Characteristics:</strong></p>
+                    <ul>
+                        <li><strong>Declarative:</strong> You specify what you want, not how to get it</li>
+                        <li><strong>Standardized:</strong> ANSI/ISO standard with vendor variations</li>
+                        <li><strong>Comprehensive:</strong> Handles data definition, manipulation, and control</li>
+                        <li><strong>Set-based:</strong> Operates on sets of data, not individual records</li>
+                    </ul>
+
+                    <p><strong>SQL Command Categories:</strong></p>
+                    <ul>
+                        <li><strong>DDL (Data Definition Language):</strong> CREATE, ALTER, DROP</li>
+                        <li><strong>DML (Data Manipulation Language):</strong> SELECT, INSERT, UPDATE, DELETE</li>
+                        <li><strong>DCL (Data Control Language):</strong> GRANT, REVOKE</li>
+                        <li><strong>TCL (Transaction Control Language):</strong> COMMIT, ROLLBACK, SAVEPOINT</li>
+                    </ul>
+
+                    <div class="code-example">-- Basic SQL Query Structure
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition
+GROUP BY column
+HAVING group_condition
+ORDER BY column;</div>
+                </div>
+
+                <div class="topic">
+                    <h3>Data Definition Language (DDL)</h3>
+                    <p>DDL commands are used to define and modify database structure.</p>
+                    
+                    <p><strong>CREATE - Creating Database Objects</strong></p>
+
+                    <div class="code-example">-- Create Database
+CREATE DATABASE university;
+
+-- Create Table
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    birth_date DATE,
+    gpa DECIMAL(3,2) CHECK (gpa >= 0.0 AND gpa <= 4.0),
+    enrollment_date DATE DEFAULT CURRENT_DATE
+);
+
+-- Create Index
+CREATE INDEX idx_student_email ON students(email);
+CREATE INDEX idx_student_name ON students(last_name, first_name);</div>
+
+                    <p><strong>ALTER - Modifying Database Objects</strong></p>
+
+                    <div class="code-example">-- Add Column
+ALTER TABLE students 
+ADD COLUMN phone VARCHAR(15);
+
+-- Modify Column
+ALTER TABLE students 
+MODIFY COLUMN email VARCHAR(150);
+
+-- Drop Column
+ALTER TABLE students 
+DROP COLUMN phone;
+
+-- Add Constraint
+ALTER TABLE students 
+ADD CONSTRAINT chk_gpa CHECK (gpa BETWEEN 0.0 AND 4.0);</div>
+
+                    <p><strong>DROP - Removing Database Objects</strong></p>
+
+                    <div class="code-example">-- Drop Table
+DROP TABLE students;
+
+-- Drop Index
+DROP INDEX idx_student_email;
+
+-- Drop Database
+DROP DATABASE university;</div>
+                </div>
+
+                <div class="topic">
+                    <h3>Data Manipulation Language (DML)</h3>
+                    <p>DML commands are used to manipulate data within database tables.</p>
+                    
+                    <p><strong>INSERT - Adding Data</strong></p>
+
+                    <div class="code-example">-- Insert Single Record
+INSERT INTO students (student_id, first_name, last_name, email, gpa)
+VALUES (1, 'John', 'Doe', 'john.doe@email.com', 3.75);
+
+-- Insert Multiple Records
+INSERT INTO students (student_id, first_name, last_name, email, gpa) VALUES
+(2, 'Jane', 'Smith', 'jane.smith@email.com', 3.90),
+(3, 'Bob', 'Johnson', 'bob.johnson@email.com', 3.25),
+(4, 'Alice', 'Brown', 'alice.brown@email.com', 3.85);
+
+-- Insert from Another Table
+INSERT INTO honor_students (student_id, name, gpa)
+SELECT student_id, CONCAT(first_name, ' ', last_name), gpa
+FROM students 
+WHERE gpa >= 3.5;</div>
+
+                    <p><strong>SELECT - Retrieving Data</strong></p>
+
+                    <div class="code-example">-- Basic SELECT
+SELECT first_name, last_name, gpa 
+FROM students;
+
+-- SELECT with Conditions
+SELECT * 
+FROM students 
+WHERE gpa > 3.5 AND enrollment_date >= '2023-01-01';
+
+-- SELECT with Sorting
+SELECT first_name, last_name, gpa
+FROM students
+ORDER BY gpa DESC, last_name ASC;
+
+-- SELECT with LIMIT
+SELECT * 
+FROM students 
+ORDER BY gpa DESC 
+LIMIT 5;</div>
+
+                    <p><strong>UPDATE - Modifying Data</strong></p>
+
+                    <div class="code-example">-- Update Single Record
+UPDATE students 
+SET gpa = 3.80, email = 'john.doe.updated@email.com'
+WHERE student_id = 1;
+
+-- Update Multiple Records
+UPDATE students 
+SET gpa = gpa + 0.1 
+WHERE enrollment_date < '2023-01-01';
+
+-- Update with Subquery
+UPDATE students 
+SET gpa = (SELECT AVG(grade) FROM enrollments WHERE enrollments.student_id = students.student_id)
+WHERE student_id IN (SELECT student_id FROM enrollments);</div>
+
+                    <p><strong>DELETE - Removing Data</strong></p>
+
+                    <div class="code-example">-- Delete Specific Records
+DELETE FROM students 
+WHERE gpa < 2.0;
+
+-- Delete with Subquery
+DELETE FROM students 
+WHERE student_id NOT IN (SELECT DISTINCT student_id FROM enrollments);
+
+-- Delete All Records (but keep table structure)
+DELETE FROM students;</div>
+                </div>
+
+                <div class="topic">
+                    <h3>SQL Functions and Advanced Queries</h3>
+                    <p>SQL provides various built-in functions for data manipulation and analysis.</p>
+                    
+                    <p><strong>Aggregate Functions</strong></p>
+
+                    <div class="code-example">-- Basic Aggregate Functions
+SELECT 
+    COUNT(*) as total_students,
+    AVG(gpa) as average_gpa,
+    MAX(gpa) as highest_gpa,
+    MIN(gpa) as lowest_gpa,
+    SUM(credits) as total_credits
+FROM students;
+
+-- GROUP BY with Aggregates
+SELECT 
+    department,
+    COUNT(*) as student_count,
+    AVG(gpa) as avg_gpa,
+    MAX(gpa) as max_gpa
+FROM students
+GROUP BY department
+HAVING COUNT(*) > 10;</div>
+
+                    <p><strong>String Functions</strong></p>
+
+                    <div class="code-example">-- String Manipulation
+SELECT 
+    UPPER(first_name) as uppercase_name,
+    LOWER(last_name) as lowercase_surname,
+    LENGTH(email) as email_length,
+    SUBSTRING(email, 1, POSITION('@' IN email) - 1) as username,
+    CONCAT(first_name, ' ', last_name) as full_name,
+    REPLACE(phone, '-', '.') as formatted_phone
+FROM students;</div>
+
+                    <p><strong>Date Functions</strong></p>
+
+                    <div class="code-example">-- Date Operations
+SELECT 
+    first_name,
+    birth_date,
+    CURRENT_DATE as today,
+    TIMESTAMPDIFF(YEAR, birth_date, CURRENT_DATE) as age,
+    DATE_ADD(enrollment_date, INTERVAL 4 YEAR) as expected_graduation,
+    DAYOFWEEK(birth_date) as birth_day_of_week,
+    MONTHNAME(birth_date) as birth_month
+FROM students;</div>
+                </div>
+
+                <div class="topic">
+                    <h3>SQL Joins</h3>
+                    <p>Joins are used to combine data from multiple tables based on related columns.</p>
+                    
+                    <p><strong>INNER JOIN</strong></p>
+                    <p>Returns only the matching records from both tables.</p>
+
+                    <div class="code-example">-- INNER JOIN Example
+SELECT 
+    s.first_name,
+    s.last_name,
+    c.course_name,
+    e.grade
+FROM students s
+INNER JOIN enrollments e ON s.student_id = e.student_id
+INNER JOIN courses c ON e.course_id = c.course_id;</div>
+
+                    <p><strong>LEFT JOIN (LEFT OUTER JOIN)</strong></p>
+                    <p>Returns all records from the left table and matching records from the right table.</p>
+
+                    <div class="code-example">-- LEFT JOIN Example
+SELECT 
+    s.first_name,
+    s.last_name,
+    c.course_name,
+    e.grade
+FROM students s
+LEFT JOIN enrollments e ON s.student_id = e.student_id
+LEFT JOIN courses c ON e.course_id = c.course_id;
+
+-- This shows all students, even those not enrolled in any course</div>
+
+                    <p><strong>RIGHT JOIN and FULL OUTER JOIN</strong></p>
+
+                    <div class="code-example">-- RIGHT JOIN
+SELECT s.first_name, c.course_name
+FROM students s
+RIGHT JOIN enrollments e ON s.student_id = e.student_id
+RIGHT JOIN courses c ON e.course_id = c.course_id;
+
+-- FULL OUTER JOIN (MySQL doesn't support, use UNION)
+SELECT s.first_name, c.course_name
+FROM students s
+LEFT JOIN enrollments e ON s.student_id = e.student_id
+LEFT JOIN courses c ON e.course_id = c.course_id
+UNION
+SELECT s.first_name, c.course_name
+FROM students s
+RIGHT JOIN enrollments e ON s.student_id = e.student_id
+RIGHT JOIN courses c ON e.course_id = c.course_id;</div>
+
+                    <div class="important-note">
+                        <strong>Join Performance Tip:</strong> Always ensure that join conditions use indexed columns for better performance, especially on large tables.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Normalization Section -->
+        <section id="normalization" class="section section-normalization">
+            <div class="section-header">
+                <h2>🔧 Database Normalization</h2>
+                <p class="section-description">Eliminate redundancy and ensure data integrity</p>
+            </div>
+            <div class="section-content">
+                
+                <div class="topic">
+                    <h3>What is Normalization?</h3>
+                    <p>Database normalization is the process of organizing data in a database to reduce redundancy and improve data integrity. It involves decomposing tables to eliminate undesirable characteristics like insertion, update, and deletion anomalies.</p>
+                    
+                    <p><strong>Goals of Normalization:</strong></p>
+                    <ul>
+                        <li><strong>Eliminate Data Redundancy:</strong> Reduce duplicate data storage</li>
+                        <li><strong>Ensure Data Consistency:</strong> Prevent update anomalies</li>
+                        <li><strong>Minimize Storage Space:</strong> Efficient use of storage</li>
+                        <li><strong>Maintain Data Integrity:</strong> Enforce business rules</li>
+                    </ul>
+
+                    <div class="warning-note">
+                        <strong>Example of Problems without Normalization:</strong><br>
+                        If student information is repeated in every course enrollment record, updating a student's address requires changing multiple records, leading to potential inconsistencies.
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Functional Dependencies</h3>
+                    <p>A functional dependency A → B means that if we know the value of A, we can uniquely determine the value of B.</p>
+                    
+                    <div class="code-example">Example Table: Student_Course
++------------+----------+------------+------------+----------+
+| student_id | name     | course_id  | course_name| grade    |
++------------+----------+------------+------------+----------+
+| 1          | John     | CS101      | Programming| A        |
+| 1          | John     | MATH201    | Calculus   | B        |
+| 2          | Jane     | CS101      | Programming| A        |
++------------+----------+------------+------------+----------+
+
+Functional Dependencies:
+student_id → name (student ID determines name)
+course_id → course_name (course ID determines course name)
+{student_id, course_id} → grade (both together determine grade)</div>
+
+                    <p><strong>Types of Functional Dependencies:</strong></p>
+                    <ul>
+                        <li><strong>Trivial FD:</strong> A → B where B ⊆ A</li>
+                        <li><strong>Non-trivial FD:</strong> A → B where B ⊄ A</li>
+                        <li><strong>Partial Dependency:</strong> Non-key attribute depends on part of composite key</li>
+                        <li><strong>Transitive Dependency:</strong> A → B and B → C, therefore A → C</li>
+                    </ul>
+                </div>
+
+                <div class="topic">
+                    <h3>First Normal Form (1NF)</h3>
+                    <p>A table is in 1NF if all attributes contain only atomic (indivisible) values and there are no repeating groups.</p>
+                    
+                    <p><strong>Rules for 1NF:</strong></p>
+                    <ul>
+                        <li>Each column should contain atomic values</li>
+                        <li>Each column should have a unique name</li>
+                        <li>Order of rows and columns doesn't matter</li>
+                        <li>No duplicate rows</li>
+                    </ul>
+
+                    <div class="code-example">-- Violates 1NF (multiple values in phone column)
+Student_Info:
++------------+----------+-------------------+
+| student_id | name     | phone_numbers     |
++------------+----------+-------------------+
+| 1          | John     | 123-456, 789-012  |
+| 2          | Jane     | 555-123           |
++------------+----------+-------------------+
+
+-- Satisfies 1NF (atomic values)
+Students:
++------------+----------+
+| student_id | name     |
++------------+----------+
+| 1          | John     |
+| 2          | Jane     |
++------------+----------+
+
+Student_Phones:
++------------+-------------+
+| student_id | phone       |
++------------+-------------+
+| 1          | 123-456     |
+| 1          | 789-012     |
+| 2          | 555-123     |
++------------+-------------+</div>
+                </div>
+
+                <div class="topic">
+                    <h3>Second Normal Form (2NF)</h3>
+                    <p>A table is in 2NF if it's in 1NF and every non-key attribute is fully functionally dependent on the entire primary key (no partial dependencies).</p>
+                    
+                    <div class="code-example">-- Violates 2NF (partial dependencies exist)
+Student_Course:
++------------+----------+------------+------------+-------+
+| student_id | name     | course_id  | course_name| grade |
++------------+----------+------------+------------+-------+
+| 1          | John     | CS101      | Programming| A     |
+| 1          | John     | MATH201    | Calculus   | B     |
+| 2          | Jane     | CS101      | Programming| A     |
++------------+----------+------------+------------+-------+
+
+Primary Key: {student_id, course_id}
+Partial Dependencies:
+- student_id → name (name depends only on student_id)
+- course_id → course_name (course_name depends only on course_id)
+
+-- Satisfies 2NF (decomposed into separate tables)
+Students:
++------------+----------+
+| student_id | name     |
++------------+----------+
+| 1          | John     |
+| 2          | Jane     |
++------------+----------+
+
+Courses:
++------------+------------+
+| course_id  | course_name|
++------------+------------+
+| CS101      | Programming|
+| MATH201    | Calculus   |
++------------+------------+
+
+Enrollments:
++------------+------------+-------+
+| student_id | course_id  | grade |
++------------+------------+-------+
+| 1          | CS101      | A     |
+| 1          | MATH201    | B     |
+| 2          | CS101      | A     |
++------------+------------+-------+</div>
+                </div>
+
+                <div class="topic">
+                    <h3>Third Normal Form (3NF)</h3>
+                    <p>A table is in 3NF if it's in 2NF and no non-key attribute is transitively dependent on the primary key.</p>
+                    
+                    <div class="code-example">-- Violates 3NF (transitive dependency exists)
+Students:
++------------+----------+----------+----------+----------+
+| student_id | name     | dept_code| dept_name| dept_head|
++------------+----------+----------+----------+----------+
+| 1          | John     | CS       | Comp Sci | Dr. Smith|
+| 2          | Jane     | CS       | Comp Sci | Dr. Smith|
+| 3          | Bob      | MATH     | Math     | Dr. Jones|
++------------+----------+----------+----------+----------+
+
+Transitive Dependencies:
+student_id → dept_code → dept_name
+student_id → dept_code → dept_head
+
+-- Satisfies 3NF (eliminated transitive dependencies)
+Students:
++------------+----------+----------+
+| student_id | name     | dept_code|
++------------+----------+----------+
+| 1          | John     | CS       |
+| 2          | Jane     | CS       |
+| 3          | Bob      | MATH     |
++------------+----------+----------+
+
+Departments:
++----------+------------+----------+
+| dept_code| dept_name  | dept_head|
++----------+------------+----------+
+| CS       | Comp Sci   | Dr. Smith|
+| MATH     | Math       | Dr. Jones|
++----------+------------+----------+</div>
+
+                    <div class="important-note">
+                        <strong>Benefits of 3NF:</strong> Eliminates most redundancy, prevents update anomalies, and is generally sufficient for most business applications.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Transactions Section -->
+        <section id="transactions" class="section section-transaction">
+            <div class="section-header">
+                <h2>⚡ Transactions & Concurrency</h2>
+                <p class="section-description">Master transaction processing and concurrent database access</p>
+            </div>
+            <div class="section-content">
+                
+                <div class="topic">
+                    <h3>What are Transactions?</h3>
+                    <p>A transaction is a logical unit of work that consists of one or more database operations that should be executed as a single, indivisible unit. Transactions ensure data consistency and integrity in database systems.</p>
+                    
+                    <div class="code-example">-- Example: Bank Transfer Transaction
+BEGIN TRANSACTION;
+
+-- Deduct money from sender's account
+UPDATE accounts 
+SET balance = balance - 1000 
+WHERE account_id = 'A001';
+
+-- Add money to receiver's account  
+UPDATE accounts 
+SET balance = balance + 1000 
+WHERE account_id = 'A002';
+
+-- If both operations succeed
+COMMIT;
+
+-- If any operation fails
+-- ROLLBACK;</div>
+
+                    <p><strong>Transaction States:</strong></p>
+                    <ul>
+                        <li><strong>Active:</strong> Transaction is executing</li>
+                        <li><strong>Partially Committed:</strong> After final statement executed</li>
+                        <li><strong>Committed:</strong> After successful completion</li>
+                        <li><strong>Failed:</strong> When transaction cannot proceed</li>
+                        <li><strong>Aborted:</strong> After rollback and database restored</li>
+                        <li><strong>Terminated:</strong> Final state after commit or abort</li>
+                    </ul>
+                </div>
+
+                <div class="topic">
+                    <h3>ACID Properties</h3>
+                    <p>ACID properties ensure that database transactions are processed reliably.</p>
+                    
+                    <p><strong>Atomicity</strong></p>
+                    <ul>
+                        <li>Transaction is treated as a single, indivisible unit</li>
+                        <li>Either all operations complete successfully or none do</li>
+                        <li>No partial updates are allowed</li>
+                    </ul>
+
+                    <div class="code-example">-- Atomicity Example
+BEGIN TRANSACTION;
+    INSERT INTO orders (order_id, customer_id, total) VALUES (1001, 'C001', 500);
+    INSERT INTO order_items (order_id, product_id, quantity) VALUES (1001, 'P001', 2);
+    UPDATE inventory SET quantity = quantity - 2 WHERE product_id = 'P001';
+COMMIT;
+
+-- If any statement fails, entire transaction is rolled back</div>
+
+                    <p><strong>Consistency</strong></p>
+                    <ul>
+                        <li>Database moves from one consistent state to another</li>
+                        <li>All integrity constraints are maintained</li>
+                        <li>Business rules are preserved</li>
+                    </ul>
+
+                    <p><strong>Isolation</strong></p>
+                    <ul>
+                        <li>Concurrent transactions don't interfere with each other</li>
+                        <li>Each transaction appears to execute in isolation</li>
+                        <li>Prevents interference between concurrent transactions</li>
+                    </ul>
+
+                    <p><strong>Durability</strong></p>
+                    <ul>
+                        <li>Once committed, changes are permanent</li>
+                        <li>Data survives system failures</li>
+                        <li>Changes are written to non-volatile storage</li>
+                    </ul>
+                </div>
+
+                <div class="topic">
+                    <h3>Concurrency Control Problems</h3>
+                    <p>When multiple transactions execute concurrently, several problems can occur without proper control mechanisms.</p>
+                    
+                    <p><strong>1. Lost Update Problem</strong></p>
+                    <div class="code-example">-- Two transactions updating the same account
+Transaction T1:          Transaction T2:
+READ balance (1000)      READ balance (1000)
+balance = balance + 100  balance = balance - 50
+WRITE balance (1100)     WRITE balance (950)
+
+Result: T1's update is lost, final balance is 950 instead of 1050</div>
+
+                    <p><strong>2. Dirty Read Problem</strong></p>
+                    <div class="code-example">-- T2 reads uncommitted data from T1
+Transaction T1:          Transaction T2:
+BEGIN                    BEGIN
+UPDATE balance = 500     
+                        READ balance (500) -- Dirty read
+ROLLBACK                -- T2 read data that was rolled back
+                        -- T2 continues with incorrect data</div>
+
+                    <p><strong>3. Non-repeatable Read</strong></p>
+                    <div class="code-example">-- T1 reads same data twice, gets different values
+Transaction T1:          Transaction T2:
+BEGIN                    BEGIN
+READ balance (1000)      
+                        UPDATE balance = 500
+                        COMMIT
+READ balance (500)       -- Different value in same transaction
+-- Same data, different values!</div>
+
+                    <p><strong>4. Phantom Read</strong></p>
+                    <div class="code-example">-- T1 sees new rows that weren't there before
+Transaction T1:              Transaction T2:
+BEGIN                        BEGIN
+SELECT COUNT(*) FROM         
+accounts WHERE balance > 100 
+-- Returns 5 rows
+                            INSERT INTO accounts VALUES (..., 200)
+                            COMMIT
+SELECT COUNT(*) FROM         
+accounts WHERE balance > 100 
+-- Returns 6 rows (phantom row appeared)</div>
+                </div>
+
+                <div class="topic">
+                    <h3>Locking and Deadlocks</h3>
+                    <p>Locking is a concurrency control mechanism that prevents conflicts between concurrent transactions.</p>
+                    
+                    <p><strong>Lock Types:</strong></p>
+                    <ul>
+                        <li><strong>Shared Lock (S-lock):</strong> Multiple transactions can read the same data</li>
+                        <li><strong>Exclusive Lock (X-lock):</strong> Only one transaction can modify data</li>
+                    </ul>
+
+                    <div class="code-example">-- Lock Compatibility Matrix
+        | S | X |
+    ----|----|---|
+    S   | ✓ | ✗ |
+    X   | ✗ | ✗ |
+
+-- Example
+SELECT * FROM accounts WHERE id = 1; -- Acquires S-lock
+UPDATE accounts SET balance = 1000 WHERE id = 1; -- Acquires X-lock</div>
+
+                    <p><strong>Deadlock Example:</strong></p>
+                    <div class="code-example">-- Two transactions waiting for each other
+Transaction T1:          Transaction T2:
+LOCK TABLE A            LOCK TABLE B
+-- waiting for B       -- waiting for A
+LOCK TABLE B            LOCK TABLE A
+
+Result: Both transactions wait indefinitely (deadlock)</div>
+
+                    <p><strong>Deadlock Resolution:</strong></p>
+                    <ul>
+                        <li><strong>Detection:</strong> Use wait-for graphs to detect cycles</li>
+                        <li><strong>Prevention:</strong> Order resources, use timeouts</li>
+                        <li><strong>Recovery:</strong> Abort one transaction (victim selection)</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Advanced Topics Section -->
+        <section id="advanced" class="section section-advanced">
+            <div class="section-header">
+                <h2>🚀 Advanced Database Topics</h2>
+                <p class="section-description">Explore cutting-edge database technologies and concepts</p>
+            </div>
+            <div class="section-content">
+                
+                <div class="topic">
+                    <h3>Database Indexing</h3>
+                    <p>Indexes are data structures that improve the speed of data retrieval operations on database tables.</p>
+                    
+                    <p><strong>How Indexes Work:</strong></p>
+                    <ul>
+                        <li>Create a separate structure pointing to table rows</li>
+                        <li>Like an index in a book - helps find information quickly</li>
+                        <li>Trade-off: Faster reads vs slower writes and more storage</li>
+                    </ul>
+
+                    <div class="code-example">-- Creating Indexes
+CREATE INDEX idx_student_lastname ON students(last_name);
+CREATE INDEX idx_student_email ON students(email);
+CREATE INDEX idx_composite ON students(department, gpa);
+
+-- Query that benefits from index
+SELECT * FROM students WHERE last_name = 'Smith';
+-- Without index: Full table scan O(n)
+-- With index: Index lookup O(log n)</div>
+
+                    <p><strong>Types of Indexes:</strong></p>
+                    <ul>
+                        <li><strong>B-Tree Index:</strong> Most common, good for range queries</li>
+                        <li><strong>Hash Index:</strong> Fast equality lookups, no range queries</li>
+                        <li><strong>Bitmap Index:</strong> Efficient for low-cardinality data</li>
+                        <li><strong>Composite Index:</strong> Multiple columns in single index</li>
+                    </ul>
+
+                    <div class="important-note">
+                        <strong>Index Best Practices:</strong> Create indexes on frequently queried columns, foreign keys, and columns used in WHERE clauses and JOIN conditions.
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>NoSQL Databases</h3>
+                    <p>NoSQL databases are designed to handle large volumes of unstructured or semi-structured data and provide horizontal scalability.</p>
+                    
+                    <p><strong>1. Document Databases</strong></p>
+                    <ul>
+                        <li>Store data as documents (JSON, BSON, XML)</li>
+                        <li>Examples: MongoDB, CouchDB, Amazon DocumentDB</li>
+                        <li>Use cases: Content management, catalogs, user profiles</li>
+                    </ul>
+
+                    <div class="code-example">// MongoDB Document Example
+{
+  "_id": ObjectId("507f1f77bcf86cd799439011"),
+  "name": "John Doe",
+  "email": "john@example.com",
+  "age": 25,
+  "address": {
+    "street": "123 Main St",
+    "city": "Boston",
+    "state": "MA"
+  },
+  "courses": ["CS101", "MATH201", "PHYS301"],
+  "enrollment_date": ISODate("2023-09-01")
+}</div>
+
+                    <p><strong>2. Key-Value Stores</strong></p>
+                    <ul>
+                        <li>Simple key-value pairs</li>
+                        <li>Examples: Redis, Amazon DynamoDB, Riak</li>
+                        <li>Use cases: Caching, session storage, real-time recommendations</li>
+                    </ul>
+
+                    <div class="code-example">// Redis Key-Value Examples
+SET user:1001:name "John Doe"
+SET user:1001:email "john@example.com"
+SET session:abc123 "user_id:1001,login_time:2023-09-01"
+
+// Retrieval
+GET user:1001:name  // Returns "John Doe"</div>
+
+                    <p><strong>3. Column-Family Databases</strong></p>
+                    <ul>
+                        <li>Data organized by column families</li>
+                        <li>Examples: Cassandra, HBase, Amazon SimpleDB</li>
+                        <li>Use cases: Time-series data, IoT applications, large-scale analytics</li>
+                    </ul>
+
+                    <p><strong>4. Graph Databases</strong></p>
+                    <ul>
+                        <li>Store data as nodes and relationships</li>
+                        <li>Examples: Neo4j, Amazon Neptune, ArangoDB</li>
+                        <li>Use cases: Social networks, recommendation engines, fraud detection</li>
+                    </ul>
+
+                    <div class="code-example">// Neo4j Cypher Query Example
+// Create nodes and relationships
+CREATE (john:Person {name: 'John', age: 25})
+CREATE (jane:Person {name: 'Jane', age: 23})
+CREATE (john)-[:FRIENDS_WITH]->(jane)
+
+// Query relationships
+MATCH (p1:Person)-[:FRIENDS_WITH]->(p2:Person)
+RETURN p1.name, p2.name</div>
+                </div>
+
+                <div class="topic">
+                    <h3>Distributed Databases</h3>
+                    <p>Distributed databases store data across multiple physical locations, providing scalability and fault tolerance.</p>
+                    
+                    <p><strong>Distribution Strategies:</strong></p>
+                    <ul>
+                        <li><strong>Horizontal Partitioning (Sharding):</strong> Split table rows across nodes</li>
+                        <li><strong>Vertical Partitioning:</strong> Split table columns across nodes</li>
+                        <li><strong>Replication:</strong> Copy data to multiple nodes</li>
+                    </ul>
+
+                    <div class="code-example">-- Horizontal Partitioning Example
+-- Partition users by region
+Users_North_America: user_id 1-100000
+Users_Europe: user_id 100001-200000  
+Users_Asia: user_id 200001-300000
+
+-- Queries are routed to appropriate partition
+SELECT * FROM users WHERE user_id = 50000; 
+-- Routed to North America partition</div>
+
+                    <p><strong>CAP Theorem:</strong></p>
+                    <ul>
+                        <li><strong>Consistency:</strong> All nodes see the same data simultaneously</li>
+                        <li><strong>Availability:</strong> System remains operational</li>
+                        <li><strong>Partition Tolerance:</strong> System continues despite network failures</li>
+                        <li><strong>Rule:</strong> Can only guarantee 2 out of 3 properties</li>
+                    </ul>
+
+                    <div class="warning-note">
+                        <strong>CAP Theorem Trade-offs:</strong><br>
+                        • CA Systems: Traditional RDBMS (sacrifice partition tolerance)<br>
+                        • CP Systems: MongoDB, HBase (sacrifice availability)<br>
+                        • AP Systems: Cassandra, DynamoDB (sacrifice consistency)
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Modern Database Trends</h3>
+                    <p>The database landscape continues to evolve with new technologies and approaches.</p>
+                    
+                    <p><strong>1. Cloud Databases (DBaaS)</strong></p>
+                    <ul>
+                        <li><strong>Managed Services:</strong> Amazon RDS, Google Cloud SQL, Azure SQL</li>
+                        <li><strong>Serverless:</strong> Aurora Serverless, Google Firestore</li>
+                        <li><strong>Benefits:</strong> Reduced administration, automatic scaling, high availability</li>
+                    </ul>
+
+                    <p><strong>2. NewSQL Databases</strong></p>
+                    <ul>
+                        <li>Combine ACID properties with horizontal scalability</li>
+                        <li>Examples: Google Spanner, CockroachDB, VoltDB</li>
+                        <li>Provide SQL interface with NoSQL scalability</li>
+                    </ul>
+
+                    <p><strong>3. AI and Machine Learning Integration</strong></p>
+                    <ul>
+                        <li><strong>Intelligent Query Optimization:</strong> ML-based query planning</li>
+                        <li><strong>Automated Tuning:</strong> Self-optimizing databases</li>
+                        <li><strong>Natural Language Queries:</strong> Convert English to SQL</li>
+                        <li><strong>Predictive Analytics:</strong> Built-in ML algorithms</li>
+                    </ul>
+
+                    <div class="code-example">-- Example: SQL with ML (Google BigQuery ML)
+CREATE MODEL my_model
+OPTIONS(model_type='linear_reg') AS
+SELECT
+  gpa,
+  study_hours,
+  attendance_rate,
+  final_grade as label
+FROM student_performance;
+
+-- Use model for predictions
+SELECT predicted_label
+FROM ML.PREDICT(MODEL my_model, 
+  (SELECT 3.5 as gpa, 20 as study_hours, 0.9 as attendance_rate));</div>
+
+                    <p><strong>4. Blockchain Databases</strong></p>
+                    <ul>
+                        <li>Immutable, decentralized data storage</li>
+                        <li>Examples: BigchainDB, Amazon QLDB</li>
+                        <li>Use cases: Supply chain, financial transactions, audit trails</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 DBMS Tutorial. Complete Database Management System Learning Resource.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight active navigation link
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
