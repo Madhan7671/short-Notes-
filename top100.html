@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DSA 100 - Problem Tracker</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Monaco", "Consolas", monospace;
+        background: #fdfdfd;
+        color: #333;
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .header {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+      }
+
+      .title {
+        font-size: 2rem;
+        color: #222;
+        margin-bottom: 5px;
+        font-weight: 600;
+      }
+
+      .subtitle {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .controls {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      select,
+      input[type="text"] {
+        background: #fff;
+        border: 1px solid #ccc;
+        color: #333;
+        padding: 6px 10px;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 0.85rem;
+      }
+
+      select:focus,
+      input:focus {
+        outline: none;
+        border-color: #388bfd;
+      }
+
+      .stats {
+        display: flex;
+        gap: 25px;
+        margin-left: auto;
+        color: #666;
+        font-size: 0.85rem;
+      }
+
+      .stat-number {
+        color: #222;
+        font-weight: 600;
+      }
+
+      .main-content {
+        display: flex;
+        gap: 30px;
+      }
+
+      .content-area {
+        flex: 1;
+      }
+
+      .problems-table {
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+
+      .table-header {
+        display: grid;
+        grid-template-columns: 40px 1fr 80px 100px 60px;
+        background: #f0f0f0;
+        padding: 12px 20px;
+        border-bottom: 1px solid #ccc;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #222;
+      }
+
+      .problem-row {
+        display: grid;
+        grid-template-columns: 40px 1fr 80px 100px 60px;
+        padding: 12px 20px;
+        border-bottom: 1px solid #eee;
+        align-items: center;
+        transition: background 0.2s;
+        cursor: pointer;
+      }
+
+      .problem-row:hover {
+        background: #f5f5f5;
+      }
+
+      .problem-row.solved {
+        background: #e0f7e9;
+      }
+
+      .problem-checkbox {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+      }
+
+      .problem-number {
+        color: #666;
+        font-size: 0.8rem;
+      }
+
+      .problem-name {
+        color: #222;
+        font-size: 0.9rem;
+      }
+
+      .problem-name:hover {
+        color: #007bff;
+        text-decoration: underline;
+      }
+
+      .difficulty-badge {
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      .easy {
+        background: #d4edda;
+        color: #155724;
+      }
+
+      .medium {
+        background: #fff3cd;
+        color: #856404;
+      }
+
+      .hard {
+        background: #f8d7da;
+        color: #721c24;
+      }
+
+      .topic-badge {
+        background: #f0f0f0;
+        color: #666;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+      }
+
+      .status-icon {
+        text-align: center;
+        font-size: 1.2rem;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #999;
+      }
+
+      @media (max-width: 768px) {
+        .main-content {
+          flex-direction: column;
+        }
+
+        .table-header,
+        .problem-row {
+          grid-template-columns: 30px 1fr 60px;
+        }
+
+        .topic-badge,
+        .status-icon {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="title">DSA Problem Tracker</div>
+        <div class="subtitle">
+          Master 100 essential data structure and algorithm problems
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="control-group">
+          <label>Status:</label>
+          <select id="statusFilter">
+            <option value="all">All</option>
+            <option value="solved">Solved</option>
+            <option value="unsolved">Unsolved</option>
+          </select>
+        </div>
+
+        <div class="stats">
+          <div class="stat-item">
+            <span class="stat-number" id="solvedCount">0</span>
+            <span>solved</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="totalCount">100</span>
+            <span>total</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="progressPercent">0%</span>
+            <span>complete</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <div class="content-area">
+          <div class="problems-table">
+            <div class="table-header">
+              <div></div>
+              <div>Problem</div>
+              <div>Difficulty</div>
+              <div>Topic</div>
+              <div>Status</div>
+            </div>
+            <div id="problemsList">
+              <!-- Problems will be inserted here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="progress-bar">
+      <div style="display: flex; align-items: center; gap: 15px">
+        <span>Progress:</span>
+        <div class="progress-container">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <span id="progressText">0/100</span>
+      </div>
+      <div style="color: #8b949e; font-size: 0.8rem">Keep going! 💪</div>
+    </div> -->
+
+    <script>
+      const problems = [
+        // Arrays
+        { name: "Two Sum", topic: "Arrays", difficulty: "easy", id: 1 },
+        {
+          name: "Best Time to Buy and Sell Stock",
+          topic: "Arrays",
+          difficulty: "easy",
+          id: 2,
+        },
+        {
+          name: "Contains Duplicate",
+          topic: "Arrays",
+          difficulty: "easy",
+          id: 3,
+        },
+        {
+          name: "Product of Array Except Self",
+          topic: "Arrays",
+          difficulty: "medium",
+          id: 4,
+        },
+        {
+          name: "Maximum Subarray",
+          topic: "Arrays",
+          difficulty: "easy",
+          id: 5,
+        },
+        {
+          name: "Maximum Product Subarray",
+          topic: "Arrays",
+          difficulty: "medium",
+          id: 6,
+        },
+        {
+          name: "Find Minimum in Rotated Sorted Array",
+          topic: "Arrays",
+          difficulty: "medium",
+          id: 7,
+        },
+        {
+          name: "Search in Rotated Sorted Array",
+          topic: "Arrays",
+          difficulty: "medium",
+          id: 8,
+        },
+        { name: "3Sum", topic: "Arrays", difficulty: "medium", id: 9 },
+        {
+          name: "Container With Most Water",
+          topic: "Arrays",
+          difficulty: "medium",
+          id: 10,
+        },
+        { name: "Rotate Image", topic: "Arrays", difficulty: "medium", id: 85 },
+        {
+          name: "Spiral Matrix",
+          topic: "Arrays",
+          difficulty: "medium",
+          id: 86,
+        },
+        {
+          name: "Set Matrix Zeroes",
+          topic: "Arrays",
+          difficulty: "medium",
+          id: 87,
+        },
+        { name: "Missing Number", topic: "Arrays", difficulty: "easy", id: 88 },
+        {
+          name: "Find the Duplicate Number",
+          topic: "Arrays",
+          difficulty: "medium",
+          id: 89,
+        },
+
+        // Strings
+        { name: "Valid Anagram", topic: "Strings", difficulty: "easy", id: 11 },
+        {
+          name: "Valid Parentheses",
+          topic: "Strings",
+          difficulty: "easy",
+          id: 12,
+        },
+        {
+          name: "Valid Palindrome",
+          topic: "Strings",
+          difficulty: "easy",
+          id: 13,
+        },
+        {
+          name: "Longest Substring Without Repeating Characters",
+          topic: "Strings",
+          difficulty: "medium",
+          id: 14,
+        },
+        {
+          name: "Longest Repeating Character Replacement",
+          topic: "Strings",
+          difficulty: "medium",
+          id: 15,
+        },
+        {
+          name: "Minimum Window Substring",
+          topic: "Strings",
+          difficulty: "hard",
+          id: 16,
+        },
+        {
+          name: "Group Anagrams",
+          topic: "Strings",
+          difficulty: "medium",
+          id: 17,
+        },
+        {
+          name: "Longest Palindromic Substring",
+          topic: "Strings",
+          difficulty: "medium",
+          id: 18,
+        },
+        {
+          name: "Palindromic Substrings",
+          topic: "Strings",
+          difficulty: "medium",
+          id: 19,
+        },
+        {
+          name: "Encode and Decode Strings",
+          topic: "Strings",
+          difficulty: "medium",
+          id: 20,
+        },
+        {
+          name: "Reverse String",
+          topic: "Strings",
+          difficulty: "easy",
+          id: 90,
+        },
+        {
+          name: "First Unique Character in a String",
+          topic: "Strings",
+          difficulty: "easy",
+          id: 91,
+        },
+        {
+          name: "String to Integer (atoi)",
+          topic: "Strings",
+          difficulty: "medium",
+          id: 92,
+        },
+        {
+          name: "Implement strStr()",
+          topic: "Strings",
+          difficulty: "easy",
+          id: 93,
+        },
+        { name: "Count and Say", topic: "Strings", difficulty: "easy", id: 94 },
+
+        // Linked Lists
+        {
+          name: "Reverse Linked List",
+          topic: "Linked Lists",
+          difficulty: "easy",
+          id: 21,
+        },
+        {
+          name: "Linked List Cycle",
+          topic: "Linked Lists",
+          difficulty: "easy",
+          id: 22,
+        },
+        {
+          name: "Merge Two Sorted Lists",
+          topic: "Linked Lists",
+          difficulty: "easy",
+          id: 23,
+        },
+        {
+          name: "Merge k Sorted Lists",
+          topic: "Linked Lists",
+          difficulty: "hard",
+          id: 24,
+        },
+        {
+          name: "Remove Nth Node From End of List",
+          topic: "Linked Lists",
+          difficulty: "medium",
+          id: 25,
+        },
+        {
+          name: "Reorder List",
+          topic: "Linked Lists",
+          difficulty: "medium",
+          id: 26,
+        },
+        {
+          name: "Add Two Numbers",
+          topic: "Linked Lists",
+          difficulty: "medium",
+          id: 27,
+        },
+        {
+          name: "Copy List with Random Pointer",
+          topic: "Linked Lists",
+          difficulty: "medium",
+          id: 28,
+        },
+
+        // Trees
+        {
+          name: "Maximum Depth of Binary Tree",
+          topic: "Trees",
+          difficulty: "easy",
+          id: 29,
+        },
+        { name: "Same Tree", topic: "Trees", difficulty: "easy", id: 30 },
+        {
+          name: "Invert Binary Tree",
+          topic: "Trees",
+          difficulty: "easy",
+          id: 31,
+        },
+        {
+          name: "Binary Tree Maximum Path Sum",
+          topic: "Trees",
+          difficulty: "hard",
+          id: 32,
+        },
+        {
+          name: "Binary Tree Level Order Traversal",
+          topic: "Trees",
+          difficulty: "medium",
+          id: 33,
+        },
+        {
+          name: "Serialize and Deserialize Binary Tree",
+          topic: "Trees",
+          difficulty: "hard",
+          id: 34,
+        },
+        {
+          name: "Subtree of Another Tree",
+          topic: "Trees",
+          difficulty: "easy",
+          id: 35,
+        },
+        {
+          name: "Construct Binary Tree from Preorder and Inorder Traversal",
+          topic: "Trees",
+          difficulty: "medium",
+          id: 36,
+        },
+        {
+          name: "Validate Binary Search Tree",
+          topic: "Trees",
+          difficulty: "medium",
+          id: 37,
+        },
+        {
+          name: "Kth Smallest Element in a BST",
+          topic: "Trees",
+          difficulty: "medium",
+          id: 38,
+        },
+        {
+          name: "Lowest Common Ancestor of a Binary Search Tree",
+          topic: "Trees",
+          difficulty: "easy",
+          id: 39,
+        },
+        {
+          name: "Implement Trie (Prefix Tree)",
+          topic: "Trees",
+          difficulty: "medium",
+          id: 40,
+        },
+        {
+          name: "Diameter of Binary Tree",
+          topic: "Trees",
+          difficulty: "easy",
+          id: 95,
+        },
+        {
+          name: "Balanced Binary Tree",
+          topic: "Trees",
+          difficulty: "easy",
+          id: 96,
+        },
+        { name: "Path Sum", topic: "Trees", difficulty: "easy", id: 97 },
+
+        // Dynamic Programming
+        {
+          name: "Climbing Stairs",
+          topic: "Dynamic Programming",
+          difficulty: "easy",
+          id: 41,
+        },
+        {
+          name: "Coin Change",
+          topic: "Dynamic Programming",
+          difficulty: "medium",
+          id: 42,
+        },
+        {
+          name: "Longest Increasing Subsequence",
+          topic: "Dynamic Programming",
+          difficulty: "medium",
+          id: 43,
+        },
+        {
+          name: "Longest Common Subsequence",
+          topic: "Dynamic Programming",
+          difficulty: "medium",
+          id: 44,
+        },
+        {
+          name: "Word Break",
+          topic: "Dynamic Programming",
+          difficulty: "medium",
+          id: 45,
+        },
+        {
+          name: "Combination Sum",
+          topic: "Dynamic Programming",
+          difficulty: "medium",
+          id: 46,
+        },
+        {
+          name: "House Robber",
+          topic: "Dynamic Programming",
+          difficulty: "medium",
+          id: 47,
+        },
+        {
+          name: "House Robber II",
+          topic: "Dynamic Programming",
+          difficulty: "medium",
+          id: 48,
+        },
+        {
+          name: "Decode Ways",
+          topic: "Dynamic Programming",
+          difficulty: "medium",
+          id: 49,
+        },
+        {
+          name: "Unique Paths",
+          topic: "Dynamic Programming",
+          difficulty: "medium",
+          id: 50,
+        },
+        {
+          name: "Jump Game",
+          topic: "Dynamic Programming",
+          difficulty: "medium",
+          id: 51,
+        },
+
+        // Graphs
+        { name: "Clone Graph", topic: "Graphs", difficulty: "medium", id: 52 },
+        {
+          name: "Course Schedule",
+          topic: "Graphs",
+          difficulty: "medium",
+          id: 53,
+        },
+        {
+          name: "Pacific Atlantic Water Flow",
+          topic: "Graphs",
+          difficulty: "medium",
+          id: 54,
+        },
+        {
+          name: "Number of Islands",
+          topic: "Graphs",
+          difficulty: "medium",
+          id: 55,
+        },
+        {
+          name: "Longest Consecutive Sequence",
+          topic: "Graphs",
+          difficulty: "medium",
+          id: 56,
+        },
+        {
+          name: "Alien Dictionary",
+          topic: "Graphs",
+          difficulty: "hard",
+          id: 57,
+        },
+        {
+          name: "Graph Valid Tree",
+          topic: "Graphs",
+          difficulty: "medium",
+          id: 58,
+        },
+        {
+          name: "Number of Connected Components in an Undirected Graph",
+          topic: "Graphs",
+          difficulty: "medium",
+          id: 59,
+        },
+
+        // Stacks & Queues
+        {
+          name: "Valid Parentheses",
+          topic: "Stacks & Queues",
+          difficulty: "easy",
+          id: 60,
+        },
+        {
+          name: "Min Stack",
+          topic: "Stacks & Queues",
+          difficulty: "easy",
+          id: 61,
+        },
+        {
+          name: "Evaluate Reverse Polish Notation",
+          topic: "Stacks & Queues",
+          difficulty: "medium",
+          id: 62,
+        },
+        {
+          name: "Generate Parentheses",
+          topic: "Stacks & Queues",
+          difficulty: "medium",
+          id: 63,
+        },
+        {
+          name: "Daily Temperatures",
+          topic: "Stacks & Queues",
+          difficulty: "medium",
+          id: 64,
+        },
+        {
+          name: "Car Fleet",
+          topic: "Stacks & Queues",
+          difficulty: "medium",
+          id: 65,
+        },
+
+        // Sorting & Searching
+        {
+          name: "Binary Search",
+          topic: "Sorting & Searching",
+          difficulty: "easy",
+          id: 66,
+        },
+        {
+          name: "Search a 2D Matrix",
+          topic: "Sorting & Searching",
+          difficulty: "medium",
+          id: 67,
+        },
+        {
+          name: "Kth Largest Element in an Array",
+          topic: "Sorting & Searching",
+          difficulty: "medium",
+          id: 68,
+        },
+        {
+          name: "Find Peak Element",
+          topic: "Sorting & Searching",
+          difficulty: "medium",
+          id: 69,
+        },
+        {
+          name: "Search for a Range",
+          topic: "Sorting & Searching",
+          difficulty: "medium",
+          id: 70,
+        },
+        {
+          name: "Merge Intervals",
+          topic: "Sorting & Searching",
+          difficulty: "medium",
+          id: 71,
+        },
+        {
+          name: "Insert Interval",
+          topic: "Sorting & Searching",
+          difficulty: "hard",
+          id: 72,
+        },
+        {
+          name: "Non-overlapping Intervals",
+          topic: "Sorting & Searching",
+          difficulty: "medium",
+          id: 73,
+        },
+
+        // Recursion
+        { name: "Subsets", topic: "Recursion", difficulty: "medium", id: 74 },
+        {
+          name: "Permutations",
+          topic: "Recursion",
+          difficulty: "medium",
+          id: 75,
+        },
+        {
+          name: "Letter Combinations of a Phone Number",
+          topic: "Recursion",
+          difficulty: "medium",
+          id: 76,
+        },
+        {
+          name: "Palindrome Partitioning",
+          topic: "Recursion",
+          difficulty: "medium",
+          id: 77,
+        },
+        {
+          name: "Word Search",
+          topic: "Recursion",
+          difficulty: "medium",
+          id: 78,
+        },
+        { name: "N-Queens", topic: "Recursion", difficulty: "hard", id: 79 },
+
+        // Hash Tables
+        {
+          name: "Group Anagrams",
+          topic: "Hash Tables",
+          difficulty: "medium",
+          id: 80,
+        },
+        {
+          name: "Top K Frequent Elements",
+          topic: "Hash Tables",
+          difficulty: "medium",
+          id: 81,
+        },
+        {
+          name: "Product of Array Except Self",
+          topic: "Hash Tables",
+          difficulty: "medium",
+          id: 82,
+        },
+        {
+          name: "Valid Sudoku",
+          topic: "Hash Tables",
+          difficulty: "medium",
+          id: 83,
+        },
+        {
+          name: "Encode and Decode TinyURL",
+          topic: "Hash Tables",
+          difficulty: "medium",
+          id: 84,
+        },
+        {
+          name: "Sum of Left Leaves",
+          topic: "Hash Tables",
+          difficulty: "easy",
+          id: 98,
+        },
+        {
+          name: "Binary Tree Paths",
+          topic: "Hash Tables",
+          difficulty: "easy",
+          id: 99,
+        },
+        {
+          name: "Maximum Subarray Sum",
+          topic: "Hash Tables",
+          difficulty: "medium",
+          id: 100,
+        },
+      ];
+
+      let solvedProblems = new Set(
+        JSON.parse(localStorage.getItem("solvedProblems") || "[]")
+      );
+
+      function updateStats() {
+        const solved = solvedProblems.size;
+        const total = problems.length;
+        const percentage = Math.round((solved / total) * 100);
+
+        document.getElementById("solvedCount").textContent = solved;
+        document.getElementById("totalCount").textContent = total;
+        document.getElementById("progressPercent").textContent =
+          percentage + "%";
+        document.getElementById("progressFill").style.width = percentage + "%";
+      }
+
+      function toggleProblem(problemId) {
+        if (solvedProblems.has(problemId)) {
+          solvedProblems.delete(problemId);
+        } else {
+          solvedProblems.add(problemId);
+        }
+        localStorage.setItem(
+          "solvedProblems",
+          JSON.stringify([...solvedProblems])
+        );
+        renderProblems();
+        updateStats();
+      }
+
+      function filterProblems() {
+        const statusFilter = document.getElementById("statusFilter").value;
+
+        return problems.filter((problem) => {
+          const statusMatch =
+            statusFilter === "all" ||
+            (statusFilter === "solved" && solvedProblems.has(problem.id)) ||
+            (statusFilter === "unsolved" && !solvedProblems.has(problem.id));
+
+          return statusMatch;
+        });
+      }
+
+      function renderProblems() {
+        const filteredProblems = filterProblems();
+        const problemsList = document.getElementById("problemsList");
+
+        if (filteredProblems.length === 0) {
+          problemsList.innerHTML =
+            '<div class="empty-state">No problems match your filters</div>';
+          return;
+        }
+
+        problemsList.innerHTML = filteredProblems
+          .map((problem, index) => {
+            const isSolved = solvedProblems.has(problem.id);
+            return `
+                    <div class="problem-row ${
+                      isSolved ? "solved" : ""
+                    }" onclick="toggleProblem(${problem.id})">
+                        <div>
+                            <input type="checkbox" class="problem-checkbox" ${
+                              isSolved ? "checked" : ""
+                            } 
+                                   onchange="event.stopPropagation(); toggleProblem(${
+                                     problem.id
+                                   })">
+                        </div>
+                        <div class="problem-name">${problem.name}</div>
+                        <div><span class="difficulty-badge ${
+                          problem.difficulty
+                        }">${problem.difficulty}</span></div>
+                        <div><span class="topic-badge">${
+                          problem.topic
+                        }</span></div>
+                        <div class="status-icon">${isSolved ? "✅" : "⭕"}</div>
+                    </div>
+                `;
+          })
+          .join("");
+      }
+
+      // Event listeners
+      document
+        .getElementById("statusFilter")
+        .addEventListener("change", renderProblems);
+
+      // Initialize
+      renderProblems();
+      updateStats();
+    </script>
+  </body>
+</html>
