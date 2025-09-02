@@ -17,11 +17,16 @@
         <select id="companyFilter" class="border p-2 rounded shadow">
           <option value="">All Categories</option>
         </select>
+
         <select id="difficultyFilter" class="border p-2 rounded shadow">
           <option value="">Select Difficulty</option>
           <option value="Easy">Easy</option>
           <option value="Medium">Medium</option>
           <option value="Hard">Hard</option>
+        </select>
+
+        <select id="tagFilter" class="border p-2 rounded shadow">
+          <option value="">Select Tag</option>
         </select>
       </div>
 
@@ -47,6 +52,7 @@
     <script>
       const companyFilter = document.getElementById("companyFilter");
       const difficultyFilter = document.getElementById("difficultyFilter");
+      const tagFilter = document.getElementById("tagFilter");
       const problemTable = document.getElementById("problemTable");
 
       let problems = [];
@@ -71,22 +77,33 @@
           companyFilter.appendChild(option);
         });
 
+        // Fill tag dropdown
+        const tags = [...new Set(problems.flatMap((p) => p.tags))];
+        tags.forEach((t) => {
+          const option = document.createElement("option");
+          option.value = t;
+          option.textContent = t;
+          tagFilter.appendChild(option);
+        });
+
         // Add event listeners
         companyFilter.addEventListener("change", renderProblems);
         difficultyFilter.addEventListener("change", renderProblems);
+        tagFilter.addEventListener("change", renderProblems);
       }
 
       function renderProblems() {
         const company = companyFilter.value;
         const difficulty = difficultyFilter.value;
+        const tag = tagFilter.value;
 
         problemTable.innerHTML = "";
 
         const filtered = problems.filter((p) => {
-          return (
-            (!company || p.company === company) &&
-            (!difficulty || p.difficulty === difficulty)
-          );
+          const matchesCompany = !company || p.company === company;
+          const matchesDifficulty = !difficulty || p.difficulty === difficulty;
+          const matchesTag = !tag || p.tags.includes(tag);
+          return matchesCompany && matchesDifficulty && matchesTag;
         });
 
         filtered.forEach((p, idx) => {
