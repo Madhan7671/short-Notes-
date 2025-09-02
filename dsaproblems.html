@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DSA Problems by Company</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen">
+    <div class="max-w-6xl mx-auto p-6">
+      <h1 class="text-3xl font-bold text-center mb-6">
+        DSA Problems by Company
+      </h1>
+
+      <!-- Filters -->
+      <div class="flex justify-center gap-4 mb-6">
+        <select id="companyFilter" class="border p-2 rounded shadow">
+          <option value="">Select a Company</option>
+        </select>
+        <select id="difficultyFilter" class="border p-2 rounded shadow">
+          <option value="">Select Difficulty</option>
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
+        </select>
+      </div>
+
+      <!-- Table -->
+      <div class="overflow-x-auto">
+        <table
+          class="w-full border-collapse shadow-lg rounded-xl overflow-hidden"
+        >
+          <thead class="bg-gray-200">
+            <tr>
+              <th class="p-3 text-left">#</th>
+              <th class="p-3 text-left">Problem</th>
+              <th class="p-3 text-left">Difficulty</th>
+              <th class="p-3 text-left">Tags</th>
+              <th class="p-3 text-center">Link</th>
+            </tr>
+          </thead>
+          <tbody id="problemTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      const companyFilter = document.getElementById("companyFilter");
+      const difficultyFilter = document.getElementById("difficultyFilter");
+      const problemTable = document.getElementById("problemTable");
+
+      let problems = [];
+
+      // Fetch problems JSON
+      fetch("problems.json")
+        .then((res) => res.json())
+        .then((data) => {
+          problems = data;
+          init();
+          renderProblems(); // Show all by default
+        })
+        .catch((err) => console.error("Error loading problems:", err));
+
+      function init() {
+        // Fill company dropdown
+        const companies = [...new Set(problems.map((p) => p.company))];
+        companies.forEach((c) => {
+          const option = document.createElement("option");
+          option.value = c;
+          option.textContent = c;
+          companyFilter.appendChild(option);
+        });
+
+        // Add event listeners
+        companyFilter.addEventListener("change", renderProblems);
+        difficultyFilter.addEventListener("change", renderProblems);
+      }
+
+      function renderProblems() {
+        const company = companyFilter.value;
+        const difficulty = difficultyFilter.value;
+
+        problemTable.innerHTML = "";
+
+        const filtered = problems.filter((p) => {
+          return (
+            (!company || p.company === company) &&
+            (!difficulty || p.difficulty === difficulty)
+          );
+        });
+
+        filtered.forEach((p, idx) => {
+          const row = document.createElement("tr");
+          row.className = "border-b hover:bg-gray-50";
+
+          row.innerHTML = `
+            <td class="p-3">${idx + 1}</td>
+            <td class="p-3">${p.title}</td>
+            <td class="p-3">
+              <span class="px-2 py-1 rounded text-sm ${
+                p.difficulty === "Easy"
+                  ? "bg-green-100 text-green-700"
+                  : p.difficulty === "Medium"
+                  ? "bg-yellow-100 text-yellow-700"
+                  : "bg-red-100 text-red-700"
+              }">${p.difficulty}</span>
+            </td>
+            <td class="p-3">${p.tags.join(", ")}</td>
+            <td class="p-3 text-center">
+              <a href="${
+                p.link
+              }" target="_blank" class="text-blue-600 underline">View</a>
+            </td>
+          `;
+          problemTable.appendChild(row);
+        });
+      }
+    </script>
+  </body>
+</html>
