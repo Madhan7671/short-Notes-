@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Algorithms Quick Revision</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        padding: 20px;
+        color: #333;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .controls {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        gap: 10px;
+      }
+      input,
+      select {
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      th,
+      td {
+        padding: 12px;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+        font-size: 14px;
+      }
+      th {
+        background: #4caf50;
+        color: white;
+        text-transform: uppercase;
+        font-size: 13px;
+      }
+      tr:hover {
+        background: #f1f1f1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Algorithms Quick Revision</h1>
+
+    <div class="controls">
+      <input type="text" id="search" placeholder="Search algorithms..." />
+      <select id="category">
+        <option value="all">All Categories</option>
+        <option value="Array">Array</option>
+        <option value="Sorting">Sorting</option>
+        <option value="Graph">Graph</option>
+        <option value="Greedy">Greedy</option>
+        <option value="DP">Dynamic Programming</option>
+        <option value="String">String</option>
+        <option value="Math">Math</option>
+      </select>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Algorithm</th>
+          <th>Category</th>
+          <th>Time Complexity</th>
+          <th>Space Complexity</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody id="algoTable"></tbody>
+    </table>
+
+    <script>
+      const algorithms = [
+        // Array
+        {
+          name: "Kadane’s Algorithm",
+          category: "Array",
+          time: "O(n)",
+          space: "O(1)",
+          desc: "Finds maximum subarray sum.",
+        },
+        {
+          name: "Moore’s Voting Algorithm",
+          category: "Array",
+          time: "O(n)",
+          space: "O(1)",
+          desc: "Find majority element (>n/2).",
+        },
+        {
+          name: "Two Pointer Technique",
+          category: "Array",
+          time: "O(n)",
+          space: "O(1)",
+          desc: "Optimized search in sorted arrays.",
+        },
+        {
+          name: "Dutch National Flag",
+          category: "Array",
+          time: "O(n)",
+          space: "O(1)",
+          desc: "Sorts 0s, 1s, and 2s in linear time.",
+        },
+
+        // Searching
+        {
+          name: "Linear Search",
+          category: "Array",
+          time: "O(n)",
+          space: "O(1)",
+          desc: "Sequential search of elements.",
+        },
+        {
+          name: "Binary Search",
+          category: "Array",
+          time: "O(log n)",
+          space: "O(1)",
+          desc: "Search in sorted array.",
+        },
+        {
+          name: "Exponential Search",
+          category: "Array",
+          time: "O(log n)",
+          space: "O(1)",
+          desc: "Search in infinite sorted array.",
+        },
+
+        // Sorting
+        {
+          name: "Bubble Sort",
+          category: "Sorting",
+          time: "O(n²)",
+          space: "O(1)",
+          desc: "Repeated adjacent swaps.",
+        },
+        {
+          name: "Selection Sort",
+          category: "Sorting",
+          time: "O(n²)",
+          space: "O(1)",
+          desc: "Selects minimum each pass.",
+        },
+        {
+          name: "Insertion Sort",
+          category: "Sorting",
+          time: "O(n²)",
+          space: "O(1)",
+          desc: "Inserts element in sorted portion.",
+        },
+        {
+          name: "Merge Sort",
+          category: "Sorting",
+          time: "O(n log n)",
+          space: "O(n)",
+          desc: "Divide and conquer stable sort.",
+        },
+        {
+          name: "Quick Sort",
+          category: "Sorting",
+          time: "O(n log n)",
+          space: "O(log n)",
+          desc: "Partition based sort.",
+        },
+        {
+          name: "Heap Sort",
+          category: "Sorting",
+          time: "O(n log n)",
+          space: "O(1)",
+          desc: "Heap-based sorting.",
+        },
+        {
+          name: "Counting Sort",
+          category: "Sorting",
+          time: "O(n+k)",
+          space: "O(k)",
+          desc: "Sort using counting frequencies.",
+        },
+        {
+          name: "Radix Sort",
+          category: "Sorting",
+          time: "O(nk)",
+          space: "O(n+k)",
+          desc: "Digit-wise sorting algorithm.",
+        },
+
+        // Graph
+        {
+          name: "BFS",
+          category: "Graph",
+          time: "O(V+E)",
+          space: "O(V)",
+          desc: "Level-order traversal.",
+        },
+        {
+          name: "DFS",
+          category: "Graph",
+          time: "O(V+E)",
+          space: "O(V)",
+          desc: "Depth traversal.",
+        },
+        {
+          name: "Dijkstra’s Algorithm",
+          category: "Graph",
+          time: "O((V+E) log V)",
+          space: "O(V)",
+          desc: "Shortest path from source.",
+        },
+        {
+          name: "Bellman-Ford",
+          category: "Graph",
+          time: "O(VE)",
+          space: "O(V)",
+          desc: "Shortest paths with negatives.",
+        },
+        {
+          name: "Floyd-Warshall",
+          category: "Graph",
+          time: "O(V³)",
+          space: "O(V²)",
+          desc: "All pairs shortest path.",
+        },
+        {
+          name: "Kruskal’s Algorithm",
+          category: "Graph",
+          time: "O(E log E)",
+          space: "O(V)",
+          desc: "MST using union-find.",
+        },
+        {
+          name: "Prim’s Algorithm",
+          category: "Graph",
+          time: "O(E log V)",
+          space: "O(V)",
+          desc: "MST using greedy.",
+        },
+        {
+          name: "Topological Sort",
+          category: "Graph",
+          time: "O(V+E)",
+          space: "O(V)",
+          desc: "Ordering in DAG.",
+        },
+        {
+          name: "Tarjan’s Algorithm",
+          category: "Graph",
+          time: "O(V+E)",
+          space: "O(V)",
+          desc: "Finds SCCs using DFS + stack.",
+        },
+        {
+          name: "Kosaraju’s Algorithm",
+          category: "Graph",
+          time: "O(V+E)",
+          space: "O(V)",
+          desc: "Finds SCCs using 2 DFS passes.",
+        },
+
+        // Dynamic Programming
+        {
+          name: "Fibonacci (DP)",
+          category: "DP",
+          time: "O(n)",
+          space: "O(n) / O(1)",
+          desc: "Efficient Fibonacci computation.",
+        },
+        {
+          name: "Longest Common Subsequence",
+          category: "DP",
+          time: "O(n*m)",
+          space: "O(n*m)",
+          desc: "Match longest subsequence.",
+        },
+        {
+          name: "Longest Increasing Subsequence",
+          category: "DP",
+          time: "O(n log n)",
+          space: "O(n)",
+          desc: "Find LIS in array.",
+        },
+        {
+          name: "0/1 Knapsack",
+          category: "DP",
+          time: "O(nW)",
+          space: "O(nW)",
+          desc: "Max value under weight limit.",
+        },
+        {
+          name: "Matrix Chain Multiplication",
+          category: "DP",
+          time: "O(n³)",
+          space: "O(n²)",
+          desc: "Optimal parenthesization.",
+        },
+        {
+          name: "Coin Change",
+          category: "DP",
+          time: "O(n*amount)",
+          space: "O(amount)",
+          desc: "Ways to make an amount.",
+        },
+        {
+          name: "Edit Distance",
+          category: "DP",
+          time: "O(n*m)",
+          space: "O(n*m)",
+          desc: "Convert string A → B.",
+        },
+
+        // Greedy
+        {
+          name: "Activity Selection",
+          category: "Greedy",
+          time: "O(n log n)",
+          space: "O(1)",
+          desc: "Max non-overlapping activities.",
+        },
+        {
+          name: "Huffman Coding",
+          category: "Greedy",
+          time: "O(n log n)",
+          space: "O(n)",
+          desc: "Optimal encoding.",
+        },
+        {
+          name: "Job Sequencing",
+          category: "Greedy",
+          time: "O(n log n)",
+          space: "O(n)",
+          desc: "Max profit scheduling jobs.",
+        },
+
+        // String
+        {
+          name: "KMP Algorithm",
+          category: "String",
+          time: "O(n+m)",
+          space: "O(m)",
+          desc: "Efficient substring search.",
+        },
+        {
+          name: "Rabin-Karp",
+          category: "String",
+          time: "O(n+m)",
+          space: "O(1)",
+          desc: "Hash-based pattern matching.",
+        },
+        {
+          name: "Z Algorithm",
+          category: "String",
+          time: "O(n+m)",
+          space: "O(n)",
+          desc: "Pattern matching using Z-values.",
+        },
+        {
+          name: "Manacher’s Algorithm",
+          category: "String",
+          time: "O(n)",
+          space: "O(n)",
+          desc: "Longest palindromic substring.",
+        },
+
+        // Math
+        {
+          name: "Sieve of Eratosthenes",
+          category: "Math",
+          time: "O(n log log n)",
+          space: "O(n)",
+          desc: "Generate primes up to n.",
+        },
+        {
+          name: "Euclidean Algorithm",
+          category: "Math",
+          time: "O(log min(a,b))",
+          space: "O(1)",
+          desc: "Find GCD of numbers.",
+        },
+      ];
+
+      const tableBody = document.getElementById("algoTable");
+      const searchInput = document.getElementById("search");
+      const categorySelect = document.getElementById("category");
+
+      function renderTable() {
+        const search = searchInput.value.toLowerCase();
+        const category = categorySelect.value;
+        tableBody.innerHTML = "";
+
+        algorithms
+          .filter(
+            (algo) =>
+              (category === "all" || algo.category === category) &&
+              algo.name.toLowerCase().includes(search)
+          )
+          .forEach((algo) => {
+            const row = `<tr>
+            <td>${algo.name}</td>
+            <td>${algo.category}</td>
+            <td>${algo.time}</td>
+            <td>${algo.space}</td>
+            <td>${algo.desc}</td>
+          </tr>`;
+            tableBody.innerHTML += row;
+          });
+      }
+
+      searchInput.addEventListener("input", renderTable);
+      categorySelect.addEventListener("change", renderTable);
+
+      renderTable();
+    </script>
+  </body>
+</html>
